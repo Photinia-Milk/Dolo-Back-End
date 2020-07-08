@@ -1,4 +1,4 @@
 package sjtu.couse.service;
 
-public class AdminService {
+public interface AdminService {
 }

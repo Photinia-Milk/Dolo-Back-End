@@ -1,4 +1,4 @@
 package sjtu.couse.service;
 
-public class TeacherService {
+public interface TeacherService {
 }

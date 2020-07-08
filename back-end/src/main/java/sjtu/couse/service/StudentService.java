@@ -1,4 +1,4 @@
 package sjtu.couse.service;
 
-public class StudentService {
+public interface StudentService {
 }

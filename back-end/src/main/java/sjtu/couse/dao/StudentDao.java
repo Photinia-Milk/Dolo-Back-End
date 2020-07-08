@@ -1,4 +1,4 @@
 package sjtu.couse.dao;
 
-public class StudentDao {
+public interface StudentDao {
 }

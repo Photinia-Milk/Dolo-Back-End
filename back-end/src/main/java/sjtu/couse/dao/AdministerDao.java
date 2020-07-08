@@ -1,4 +1,5 @@
 package sjtu.couse.dao;
 
-public class AdministerDao {
+public interface AdministerDao {
+
 }
