@@ -1,4 +1,4 @@
-package sjtu.couse.utils;
+package sjtu.dolo.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

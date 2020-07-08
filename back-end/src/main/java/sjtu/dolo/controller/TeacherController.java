@@ -1,4 +1,4 @@
-package sjtu.couse.controller;
+package sjtu.dolo.controller;
 
 public class TeacherController {
 }

@@ -1,4 +1,4 @@
-package sjtu.couse.service;
+package sjtu.dolo.service;
 
 public interface StudentService {
 }

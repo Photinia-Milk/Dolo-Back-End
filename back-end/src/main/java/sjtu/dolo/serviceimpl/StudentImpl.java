@@ -1,4 +1,4 @@
-package sjtu.couse.serviceimpl;
+package sjtu.dolo.serviceimpl;
 
 public class StudentImpl {
 }

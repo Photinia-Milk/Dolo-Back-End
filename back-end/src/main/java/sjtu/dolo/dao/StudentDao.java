@@ -1,4 +1,4 @@
-package sjtu.couse.dao;
+package sjtu.dolo.dao;
 
 public interface StudentDao {
 }

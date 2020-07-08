@@ -1,4 +1,4 @@
-package sjtu.couse.model;
+package sjtu.dolo.model;
 
 import java.util.Date;
 

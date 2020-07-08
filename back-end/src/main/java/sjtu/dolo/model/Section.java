@@ -1,4 +1,4 @@
-package sjtu.couse.model;
+package sjtu.dolo.model;
 
 public class Section {
     private String sectionID;

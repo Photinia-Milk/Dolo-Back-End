@@ -1,4 +1,4 @@
-package sjtu.couse.daoimpl;
+package sjtu.dolo.daoimpl;
 
 public class AdminDaoImpl {
 }

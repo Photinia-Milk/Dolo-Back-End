@@ -1,4 +1,4 @@
-package sjtu.couse.model;
+package sjtu.dolo.model;
 
 public class Teacher {
     private String teacherID;
