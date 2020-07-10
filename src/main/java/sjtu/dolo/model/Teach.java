@@ -5,18 +5,18 @@ public class Teach {
     private String semester;
     private String year;
     private String timeSlotID;
-    private String teacherID;
+    private String user_name;
     private String courseID;
 
     public Teach() {
     }
 
-    public Teach(String secID, String semester, String year, String timeSlotID, String teacherID, String courseID) {
+    public Teach(String secID, String semester, String year, String timeSlotID, String user_name, String courseID) {
         this.secID = secID;
         this.semester = semester;
         this.year = year;
         this.timeSlotID = timeSlotID;
-        this.teacherID = teacherID;
+        this.user_name = user_name;
         this.courseID = courseID;
     }
 
@@ -52,12 +52,12 @@ public class Teach {
         this.timeSlotID = timeSlotID;
     }
 
-    public String getTeacherID() {
-        return teacherID;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setTeacherID(String teacherID) {
-        this.teacherID = teacherID;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getCourseID() {
@@ -70,12 +70,12 @@ public class Teach {
 
     @Override
     public String toString() {
-        return "teach{" +
+        return "Teach{" +
                 "secID='" + secID + '\'' +
                 ", semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
                 ", timeSlotID='" + timeSlotID + '\'' +
-                ", teacherID='" + teacherID + '\'' +
+                ", user_name='" + user_name + '\'' +
                 ", courseID='" + courseID + '\'' +
                 '}';
     }
