@@ -2,16 +2,11 @@ package sjtu.dolo.model;
 
 public class Course {
     private String courseID;
+    private String deptID;
     private String courseName;
     private String description;
 
     public Course() {
-    }
-
-    public Course(String courseID, String courseName, String description) {
-        this.courseID = courseID;
-        this.courseName = courseName;
-        this.description = description;
     }
 
     public String getCourseID() {
@@ -20,6 +15,14 @@ public class Course {
 
     public void setCourseID(String courseID) {
         this.courseID = courseID;
+    }
+
+    public String getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(String deptID) {
+        this.deptID = deptID;
     }
 
     public String getCourseName() {
@@ -42,6 +45,7 @@ public class Course {
     public String toString() {
         return "Course{" +
                 "courseID='" + courseID + '\'' +
+                ", deptID='" + deptID + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", description='" + description + '\'' +
                 '}';
