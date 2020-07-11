@@ -7,19 +7,21 @@ public class Takes {
     private String semester;
     private String year;
     private String timeSlotID;
-    private String studentID;
+    private String courseID;
+    private String user_name;
     private BigDecimal grade;
     private BigDecimal gpa;
 
     public Takes() {
     }
 
-    public Takes(String secID, String semester, String year, String timeSlotID, String studentID, BigDecimal grade, BigDecimal gpa) {
+    public Takes(String secID, String semester, String year, String timeSlotID, String courseID, String user_name, BigDecimal grade, BigDecimal gpa) {
         this.secID = secID;
         this.semester = semester;
         this.year = year;
         this.timeSlotID = timeSlotID;
-        this.studentID = studentID;
+        this.courseID = courseID;
+        this.user_name = user_name;
         this.grade = grade;
         this.gpa = gpa;
     }
@@ -56,12 +58,20 @@ public class Takes {
         this.timeSlotID = timeSlotID;
     }
 
-    public String getStudentID() {
-        return studentID;
+    public String getCourseID() {
+        return courseID;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public BigDecimal getGrade() {
@@ -82,12 +92,13 @@ public class Takes {
 
     @Override
     public String toString() {
-        return "takes{" +
+        return "Takes{" +
                 "secID='" + secID + '\'' +
                 ", semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
                 ", timeSlotID='" + timeSlotID + '\'' +
-                ", studentID='" + studentID + '\'' +
+                ", courseID='" + courseID + '\'' +
+                ", user_name='" + user_name + '\'' +
                 ", grade=" + grade +
                 ", gpa=" + gpa +
                 '}';

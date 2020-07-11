@@ -5,8 +5,7 @@ import java.util.Date;
 public class Student {
     private String studentID;
     private String name;
-    private String userID;
-    private String password;
+    private String user_name;
     private String phone;
     private String address;
     private short gender;
@@ -14,15 +13,14 @@ public class Student {
     private Date admisson_date;
     private String document_type;
     private String country;
-
+    private String academic_year;
     public Student() {
     }
 
-    public Student(String studentID, String name, String userID, String password, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country) {
+    public Student(String studentID, String name, String user_name, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country, String academic_year) {
         this.studentID = studentID;
         this.name = name;
-        this.userID = userID;
-        this.password = password;
+        this.user_name = user_name;
         this.phone = phone;
         this.address = address;
         this.gender = gender;
@@ -30,6 +28,7 @@ public class Student {
         this.admisson_date = admisson_date;
         this.document_type = document_type;
         this.country = country;
+        this.academic_year = academic_year;
     }
 
     public String getStudentID() {
@@ -48,20 +47,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getPhone() {
@@ -120,13 +111,20 @@ public class Student {
         this.country = country;
     }
 
+    public String getAcademic_year() {
+        return academic_year;
+    }
+
+    public void setAcademic_year(String academic_year) {
+        this.academic_year = academic_year;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "studentID='" + studentID + '\'' +
                 ", name='" + name + '\'' +
-                ", userID='" + userID + '\'' +
-                ", password='" + password + '\'' +
+                ", user_name='" + user_name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", gender=" + gender +
@@ -134,6 +132,7 @@ public class Student {
                 ", admisson_date=" + admisson_date +
                 ", document_type='" + document_type + '\'' +
                 ", country='" + country + '\'' +
+                ", academic_year='" + academic_year + '\'' +
                 '}';
     }
 }
