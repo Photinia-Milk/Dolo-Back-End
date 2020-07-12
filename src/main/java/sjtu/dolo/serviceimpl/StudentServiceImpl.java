@@ -8,11 +8,12 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.service.StudentService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-    @Autowired
+    @Resource
     private StudentMapper studentMapper;
 
     @Override
@@ -27,7 +28,8 @@ public class StudentServiceImpl implements StudentService {
             String semester = data.getString("semester");
             String year = data.getString("year");
             String timeslotID = data.getString("timeslotID");
-            Takes takes = new Takes(secID, semester, year, timeslotID, studentID,null,null);
+            String courseID = data.getString("courseID");
+            Takes takes = new Takes(secID, semester, year, timeslotID, studentID, courseID, null,null);
             String status = studentMapper.addTakes(takes);
             return status;
     }
@@ -39,7 +41,8 @@ public class StudentServiceImpl implements StudentService {
         String semester = data.getString("semester");
         String year = data.getString("year");
         String timeslotID = data.getString("timeslotID");
-        Takes takes = new Takes(secID, semester, year, timeslotID, studentID,null,null);
+        String courseID = data.getString("courseID");
+        Takes takes = new Takes(secID, semester, year, timeslotID, studentID, courseID, null,null);
         String status = studentMapper.delTakes(takes);
         return null;
     }
