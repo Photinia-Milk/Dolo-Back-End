@@ -3,7 +3,6 @@ package sjtu.dolo.model;
 import java.util.Date;
 
 public class Student {
-    private String studentID;
     private String name;
     private String user_name;
     private String phone;
@@ -17,8 +16,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String studentID, String name, String user_name, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country, String academic_year) {
-        this.studentID = studentID;
+    public Student(String name, String user_name, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country, String academic_year) {
         this.name = name;
         this.user_name = user_name;
         this.phone = phone;
@@ -29,14 +27,6 @@ public class Student {
         this.document_type = document_type;
         this.country = country;
         this.academic_year = academic_year;
-    }
-
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
     }
 
     public String getName() {
@@ -122,7 +112,6 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "studentID='" + studentID + '\'' +
                 ", name='" + name + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", phone='" + phone + '\'' +
