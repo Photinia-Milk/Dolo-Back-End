@@ -5,7 +5,6 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.Takes;
 
 import java.util.List;
-
 public interface StudentService {
     List<Section> findSectionValid();
 
