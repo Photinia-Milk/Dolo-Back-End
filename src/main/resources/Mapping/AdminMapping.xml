@@ -6,5 +6,7 @@
     <select id="getTimeSlot" resultType="sjtu.dolo.model.TimeSlot" parameterType="String">
         select * from course.timeslot where timeslotID = #{id}
     </select>
-    <insert id="InsertTimeSlot"
+    <insert id="InsertTimeSlot" parameterType="sjtu.dolo.model.TimeSlot">
+        insert into course.timeslot (timeslotID, day, starttime, endtime) VALUES (#{timeSlotID},#{day},#{startTime},#{endTime});
+    </insert>
 </mapper>
