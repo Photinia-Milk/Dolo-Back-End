@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Student {
     private String name;
-    private String user_name;
-    private String phone;
-    private String address;
+    private String user_name; //用户名
+    private String phone; //联系电话
+    private String address; //家庭住址
     private short gender;
     private Date birthday;
     private Date admisson_date;

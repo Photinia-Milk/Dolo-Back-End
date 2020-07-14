@@ -3,14 +3,14 @@ package sjtu.dolo.model;
 import java.math.BigDecimal;
 
 public class Takes {
-    private String secID;
-    private String semester;
-    private String year;
-    private String timeSlotID;
-    private String courseID;
-    private String user_name;
-    private BigDecimal grade;
-    private BigDecimal gpa;
+    private String secID; //学期编号
+    private String semester; //学期
+    private String year; //学年
+    private String timeSlotID; //时间段编号
+    private String courseID; //课号
+    private String user_name; //用户名
+    private BigDecimal grade; //成绩
+    private BigDecimal gpa; //GPA
 
     public Takes() {
     }

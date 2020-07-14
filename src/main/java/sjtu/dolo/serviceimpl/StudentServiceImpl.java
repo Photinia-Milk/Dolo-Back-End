@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
         String courseID = data.getString("courseID");
         Takes takes = new Takes(secID, semester, year, timeslotID, studentID, courseID, null,null);
         String status = studentMapper.delTakes(takes);
-        return null;
+        return status;
     }
 
     @Override
