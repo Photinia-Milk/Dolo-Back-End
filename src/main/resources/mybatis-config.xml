@@ -8,10 +8,16 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/couse?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/course?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="200510"/>
             </dataSource>
         </environment>
     </environments>
+    <mappers>
+        <mapper resource="resources/Mapping/AdminMapping.xml"/>
+        <mapper resource="resources/Mapping/StudentMapping.xml"/>
+        <mapper resource="resources/Mapping/TeacherMapping.xml"/>
+        <mapper resource="resources/Mapping/UserAuthMappin.xml"/>
+    </mappers>
 </configuration>

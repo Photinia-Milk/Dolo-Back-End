@@ -1,14 +1,16 @@
 package sjtu.dolo.model;
 
+import java.math.BigDecimal;
+
 public class Section {
-    private String sectionID;
+    private String secID;
     private String semester;
     private String year;
     private String timeSlotID;
     private String courseID;
     private String building;
     private String roomNumber;
-    private int credits;
+    private BigDecimal credits;
     private String weeks;
     private int maxNum;
     private int currentNum;
@@ -16,8 +18,8 @@ public class Section {
     public Section() {
     }
 
-    public Section(String sectionID, String semester, String year, String timeSlotID, String courseID, String building, String roomNumber, int credits, String weeks, int maxNum, int currentNum) {
-        this.sectionID = sectionID;
+    public Section(String secID, String semester, String year, String timeSlotID, String courseID, String building, String roomNumber, BigDecimal credits, String weeks, int maxNum, int currentNum) {
+        this.secID = secID;
         this.semester = semester;
         this.year = year;
         this.timeSlotID = timeSlotID;
@@ -30,12 +32,12 @@ public class Section {
         this.currentNum = currentNum;
     }
 
-    public String getSectionID() {
-        return sectionID;
+    public String getSecID() {
+        return secID;
     }
 
-    public void setSectionID(String sectionID) {
-        this.sectionID = sectionID;
+    public void setSecID(String sectionID) {
+        this.secID = sectionID;
     }
 
     public String getSemester() {
@@ -86,11 +88,11 @@ public class Section {
         this.roomNumber = roomNumber;
     }
 
-    public int getCredits() {
+    public BigDecimal getCredits() {
         return credits;
     }
 
-    public void setCredits(int credits) {
+    public void setCredits(BigDecimal credits) {
         this.credits = credits;
     }
 
@@ -112,6 +114,23 @@ public class Section {
 
     public int getCurrentNum() {
         return currentNum;
+    }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "secID='" + secID + '\'' +
+                ", semester='" + semester + '\'' +
+                ", year='" + year + '\'' +
+                ", timeSlotID='" + timeSlotID + '\'' +
+                ", courseID='" + courseID + '\'' +
+                ", building='" + building + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", credits=" + credits +
+                ", weeks='" + weeks + '\'' +
+                ", maxNum=" + maxNum +
+                ", currentNum=" + currentNum +
+                '}';
     }
 
     public void setCurrentNum(int currentNum) {
