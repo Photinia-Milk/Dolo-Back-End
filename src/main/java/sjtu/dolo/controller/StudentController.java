@@ -15,21 +15,27 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("/course_to_select")
+    @RequestMapping("/course_valid")
     @ResponseBody
-    public List<Section> getCourseToSelect() {
+    public List<Section> getCourseValid() {
         return studentService.findSectionValid();
+    }
+
+    @RequestMapping("/course_search")
+    @ResponseBody
+    public List<Section> searchCourse(String searchString) {
+        return studentService.findSection(searchString);
     }
 
     @RequestMapping("/course_select")
     @ResponseBody
-    public String selectCourse(JSONObject data) {
+    public int selectCourse(JSONObject data) {
         return studentService.addCourseTakes(data);
     }
 
     @RequestMapping("/course_drop")
     @ResponseBody
-    public String dropCourse(JSONObject data) {
+    public int dropCourse(JSONObject data) {
         return studentService.delCourseTakes(data);
     }
 

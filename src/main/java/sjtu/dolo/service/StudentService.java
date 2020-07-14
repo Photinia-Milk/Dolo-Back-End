@@ -8,9 +8,11 @@ import java.util.List;
 public interface StudentService {
     List<Section> findSectionValid();
 
-    String addCourseTakes(JSONObject data);
+    List<Section> findSection(String searchString);
 
-    String delCourseTakes(JSONObject data);
+    int addCourseTakes(JSONObject data);
+
+    int delCourseTakes(JSONObject data);
 
     List<Takes> findTakeList(String studentID);
 }
