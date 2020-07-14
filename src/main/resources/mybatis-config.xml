@@ -18,6 +18,6 @@
         <mapper resource="resources/Mapping/AdminMapping.xml"/>
         <mapper resource="resources/Mapping/StudentMapping.xml"/>
         <mapper resource="resources/Mapping/TeacherMapping.xml"/>
-        <mapper resource="resources/Mapping/UserAuthMapping.xml"/>
+        <mapper resource="resources/Mapping/UserAuthMappin.xml"/>
     </mappers>
 </configuration>
