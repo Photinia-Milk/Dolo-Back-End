@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {
      List<Section> getAllSection();
-     String addTakes(Takes takes);
-     String delTakes(Takes takes);
+     int addTakes(Takes takes);
+     int delTakes(Takes takes);
      List<Takes> getAllTakes(String studentID);
 }
