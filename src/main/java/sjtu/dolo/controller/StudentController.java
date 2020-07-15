@@ -17,8 +17,12 @@ public class StudentController {
     @RequestMapping("/course_valid")
     @ResponseBody
     public List<Map<String, Object>> getCourseValid(JSONObject data) {
+        System.out.println("data:");
+        System.out.println(data);
         int startIdx = data.getInt("startIndex");
         int pageSize = data.getInt("pageSize");
+        System.out.println(startIdx);
+        System.out.println(pageSize);
         return studentService.findSectionValid(startIdx, pageSize);
     }
 

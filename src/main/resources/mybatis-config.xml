@@ -10,7 +10,7 @@
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/course?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
-                <property name="password" value="200510"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
     </environments>
@@ -18,8 +18,12 @@
         <mapper resource="resources/Mapping/AdminMapping.xml"/>
         <mapper resource="resources/Mapping/StudentMapping.xml"/>
         <mapper resource="resources/Mapping/TeacherMapping.xml"/>
-        <mapper resource="resources/Mapping/UserAuthMappin.xml"/>
+        <mapper resource="resources/Mapping/UserAuthMapping.xml"/>
+        <mapper resource="resources/Mapping/SectionMapping.xml"/>
         <mapper class="sjtu.dolo.mapper.SectionMapper"/>
         <mapper class="sjtu.dolo.mapper.TakesMapper"/>
+        <mapper class="sjtu.dolo.mapper.LoginMapper"/>
+        <mapper class="sjtu.dolo.mapper.StudentMapper"/>
+        <mapper class="sjtu.dolo.mapper.UserAuthMapper"/>
     </mappers>
 </configuration>
