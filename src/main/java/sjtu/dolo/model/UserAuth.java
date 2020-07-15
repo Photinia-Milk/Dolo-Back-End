@@ -1,9 +1,9 @@
 package sjtu.dolo.model;
 
 public class UserAuth {
-    private String user_name;
-    private String password;
-    private String type;
+    private String user_name; //用户名
+    private String password; //密码
+    private String type; //用户类型
 
     public UserAuth() {
     }

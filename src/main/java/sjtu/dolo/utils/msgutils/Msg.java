@@ -3,9 +3,9 @@ package sjtu.dolo.utils.msgutils;
 import net.sf.json.JSONObject;
 
 public class Msg {
-    private int status;
-    private String msg;
-    private JSONObject data;
+    private int status; //状态值
+    private String msg; //信息
+    private JSONObject data; //待传数据
 
     Msg(int status, String extra, JSONObject data){
         this.status = status;

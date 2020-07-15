@@ -3,22 +3,25 @@ package sjtu.dolo.model;
 import java.math.BigDecimal;
 
 public class Section {
-    private String secID;
-    private String semester;
-    private String year;
-    private String timeSlotID;
-    private String courseID;
-    private String building;
-    private String roomNumber;
-    private BigDecimal credits;
-    private String weeks;
-    private int maxNum;
-    private int currentNum;
+
+    private String secID; //学期编号
+    private String semester; //学期
+    private String year; //学年
+    private String timeSlotID; //时间段编号
+    private String courseID; //课号
+    private String building; //教学楼
+    private String roomNumber; //房间号
+    private BigDecimal credits; //学分
+    private String weeks; //上课周数
+    private int maxNum; //最大选课人数
+    private int currentNum; //当前选课人数
+
     public Section() {
     }
 
-    public Section(String secID, String semester, String year, String timeSlotID, String courseID, String building, String roomNumber, BigDecimal credits, String weeks, int maxNum, int currentNum) {
-        this.secID = secID;
+    public Section(String sectionID, String semester, String year, String timeSlotID, String courseID, String building, String roomNumber, BigDecimal credits, String weeks, int maxNum, int currentNum) {
+        this.secID = sectionID;
+
         this.semester = semester;
         this.year = year;
         this.timeSlotID = timeSlotID;
