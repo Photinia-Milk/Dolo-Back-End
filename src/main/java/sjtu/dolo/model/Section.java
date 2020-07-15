@@ -14,7 +14,6 @@ public class Section {
     private String weeks;
     private int maxNum;
     private int currentNum;
-
     public Section() {
     }
 
@@ -115,6 +114,7 @@ public class Section {
     public int getCurrentNum() {
         return currentNum;
     }
+
 
     @Override
     public String toString() {
