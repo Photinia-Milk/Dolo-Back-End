@@ -11,8 +11,8 @@ import java.util.Map;
 
 @Mapper
 public interface SectionMapper extends BaseMapper<Section> {
-    //List<Section> getSectionByLimit(Map<String,Integer> map);
-    //List<Section> getSectionLike(String value);
+    List<Section> findSectionByLimit(Map<String,Integer> map);
+    List<Section> findSectionLike(String value);
 
     @Select("select * from (section natural join course natural join timeslot) where coursename like #{value} limit #{startIndex},#{pageSize}" )
     List<Map<String,Object>> getSectionLike(String value, Map<String,Integer> map);

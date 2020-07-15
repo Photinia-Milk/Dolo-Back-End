@@ -3,6 +3,7 @@ package sjtu.dolo.mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import sjtu.dolo.model.Section;
+import sjtu.dolo.model.Takes;
 import sjtu.dolo.utils.MybatisUtils;
 
 import java.util.List;
