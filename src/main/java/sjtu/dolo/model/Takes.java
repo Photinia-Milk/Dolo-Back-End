@@ -3,6 +3,7 @@ package sjtu.dolo.model;
 import java.math.BigDecimal;
 
 public class Takes {
+
     private String secID; //学期编号
     private String semester; //学期
     private String year; //学年
@@ -11,11 +12,13 @@ public class Takes {
     private String user_name; //用户名
     private BigDecimal grade; //成绩
     private BigDecimal gpa; //GPA
+    private Student student;
+    private Section section;
 
     public Takes() {
     }
 
-    public Takes(String secID, String semester, String year, String timeSlotID, String courseID, String user_name, BigDecimal grade, BigDecimal gpa) {
+    public Takes(String secID, String semester, String year, String timeSlotID, String courseID, String user_name, BigDecimal grade, BigDecimal gpa, Student student, Section section) {
         this.secID = secID;
         this.semester = semester;
         this.year = year;
@@ -24,6 +27,8 @@ public class Takes {
         this.user_name = user_name;
         this.grade = grade;
         this.gpa = gpa;
+        this.student = student;
+        this.section = section;
     }
 
     public String getSecID() {
@@ -90,6 +95,22 @@ public class Takes {
         this.gpa = gpa;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
     @Override
     public String toString() {
         return "Takes{" +
@@ -101,6 +122,8 @@ public class Takes {
                 ", user_name='" + user_name + '\'' +
                 ", grade=" + grade +
                 ", gpa=" + gpa +
+                ", student=" + student +
+                ", section=" + section +
                 '}';
     }
 }

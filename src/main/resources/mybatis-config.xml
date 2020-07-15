@@ -19,5 +19,7 @@
         <mapper resource="resources/Mapping/StudentMapping.xml"/>
         <mapper resource="resources/Mapping/TeacherMapping.xml"/>
         <mapper resource="resources/Mapping/UserAuthMappin.xml"/>
+        <mapper class="sjtu.dolo.mapper.SectionMapper"/>
+        <mapper class="sjtu.dolo.mapper.TakesMapper"/>
     </mappers>
 </configuration>
