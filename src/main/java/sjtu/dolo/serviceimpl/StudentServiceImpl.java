@@ -117,8 +117,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Takes> findTakeList(String studentID) {
-        return studentMapper.getAllTakes(studentID);
+    public List<Takes> findTakeList(String user_name) {
+//        return studentMapper.getAllTakes(user_name);
+        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
+        takesQueryWrapper
+                .eq("user_name", user_name);
+        return takesMapper.selectList(takesQueryWrapper);
     }
 
 
