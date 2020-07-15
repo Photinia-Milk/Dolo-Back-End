@@ -3,11 +3,10 @@ package sjtu.dolo.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.Takes;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/student")
@@ -17,14 +16,19 @@ public class StudentController {
 
     @RequestMapping("/course_valid")
     @ResponseBody
-    public List<Section> getCourseValid() {
-        return studentService.findSectionValid();
+    public List<Map<String, Object>> getCourseValid(JSONObject data) {
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+        return studentService.findSectionValid(startIdx, pageSize);
     }
 
     @RequestMapping("/course_search")
     @ResponseBody
-    public List<Section> searchCourse(String searchString) {
-        return studentService.findSection(searchString);
+    public List<Map<String, Object>> searchCourse(JSONObject data) {
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+        String searchString = data.getString("searchString");
+        return studentService.findSection(searchString, startIdx, pageSize);
     }
 
     @RequestMapping("/course_select")
@@ -41,7 +45,7 @@ public class StudentController {
 
     @RequestMapping("/course_list")
     @ResponseBody
-    public List<Takes> getCourseList(@RequestParam("user_name") String user_name) {
+    public List<Map<String, Object>> getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);
     }
 }

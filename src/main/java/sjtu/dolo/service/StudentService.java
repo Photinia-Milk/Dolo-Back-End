@@ -1,18 +1,20 @@
 package sjtu.dolo.service;
 
 import net.sf.json.JSONObject;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.Takes;
 
 import java.util.List;
-public interface StudentService {
-    List<Section> findSectionValid();
+import java.util.Map;
 
-    List<Section> findSection(String searchString);
+public interface StudentService {
+//    List<Map> findSectionValid();
+
+    List<Map<String, Object>> findSectionValid(int startIdx, int pageSize);
+
+    List<Map<String, Object>> findSection(String searchString, int startIdx, int pageSize);
 
     int addCourseTakes(JSONObject data);
 
     int delCourseTakes(JSONObject data);
 
-    List<Takes> findTakeList(String studentID);
+    List<Map<String, Object>> findTakeList(String studentID);
 }

@@ -12,7 +12,9 @@ import sjtu.dolo.service.StudentService;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -21,14 +23,25 @@ public class StudentServiceImpl implements StudentService {
     private TakesMapper takesMapper;
     private SectionMapper sectionMapper;
 
+//    @Override
+//    public List<Map> findSectionValid() {
+//        return studentMapper.getAllSection();
+//    }
+
     @Override
-    public List<Section> findSectionValid() {
-        return studentMapper.getAllSection();
+    public List<Map<String, Object>> findSectionValid(int startIdx, int pageSize) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("page", pageSize);
+        return sectionMapper.getSectionByLimit(map);
     }
 
     @Override
-    public List<Section> findSection(String searchString) {
-        return null;
+    public List<Map<String, Object>> findSection(String searchString, int startIdx, int pageSize) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("page", pageSize);
+        return sectionMapper.getSectionLike(searchString, map);
     }
 
     @Override
@@ -46,7 +59,7 @@ public class StudentServiceImpl implements StudentService {
         String weeks = data.getString("weeks");
         int maxnum = data.getInt("maxnum");
         int currentnum = data.getInt("currentnum");
-        Takes takes = new Takes(secID, semester, year, timeslotID, user_name, courseID, null,null);
+        Takes takes = new Takes(secID, semester, year, timeslotID, user_name, courseID, null ,null);
         Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
 
         sectionWrapper
@@ -117,13 +130,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Takes> findTakeList(String user_name) {
+    public List<Map<String, Object>> findTakeList(String user_name) {
 //        return studentMapper.getAllTakes(user_name);
-        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
-        takesQueryWrapper
-                .eq("user_name", user_name);
-        return takesMapper.selectList(takesQueryWrapper);
+//        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
+//        takesQueryWrapper
+//                .eq("user_name", user_name);
+//        return takesMapper.selectList(takesQueryWrapper);
+        return takesMapper.getTakes(user_name);
     }
+
 
 
 }

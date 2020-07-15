@@ -18,8 +18,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Msg login(String username, String password) {
         UserAuth userAuth = userAuthMapper.checkUser(username, password);
-        if(userAuth != null && (userAuth.getType()=="0" || userAuth.getType() == "1")){
-            return new Msg(0, userAuth.getType().toString());
+        if(userAuth != null && (userAuth.getType().equals("0") || userAuth.getType().equals("1"))){
+            return new Msg(0, userAuth.getType());
         } else {
             return new Msg(1, null);
         }
