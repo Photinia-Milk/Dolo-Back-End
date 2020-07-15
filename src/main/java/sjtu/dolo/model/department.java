@@ -1,8 +1,8 @@
 package sjtu.dolo.model;
 
 public class department {
-    private String deptID;
-    private String dept_name;
+    private String deptID; //院系编号
+    private String dept_name; //院系名称
 
     public department(String deptID, String dept_name) {
         this.deptID = deptID;

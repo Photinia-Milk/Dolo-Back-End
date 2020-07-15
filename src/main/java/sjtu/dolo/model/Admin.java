@@ -1,9 +1,9 @@
 package sjtu.dolo.model;
 
 public class Admin {
-    private String adminID;
-    private String name;
-    private String user_name;
+    private String adminID; //管理员编号
+    private String name; //管理员姓名
+    private String user_name; //用户名
 
     public Admin() {
     }

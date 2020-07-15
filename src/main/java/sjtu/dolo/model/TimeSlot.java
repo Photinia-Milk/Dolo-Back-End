@@ -3,10 +3,10 @@ package sjtu.dolo.model;
 import java.sql.Time;
 
 public class TimeSlot {
-    private String timeSlotID;
-    private String day;
-    private Time startTime;
-    private Time endTime;
+    private String timeSlotID; //时间段编号
+    private String day; //日期
+    private Time startTime; //开始时间
+    private Time endTime; //结束时间
 
     public TimeSlot() {
     }

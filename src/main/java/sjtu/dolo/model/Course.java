@@ -1,10 +1,10 @@
 package sjtu.dolo.model;
 
 public class Course {
-    private String courseID;
-    private String deptID;
-    private String courseName;
-    private String description;
+    private String courseID; //课程编号
+    private String deptID; //院系编号
+    private String courseName; //课程名称
+    private String description; //课程描述
 
     public Course() {
     }
