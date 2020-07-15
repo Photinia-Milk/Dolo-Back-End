@@ -3,11 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <properties resource="application.properties"/>
+<!--    <settings>-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--    </settings>-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/course?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="200510"/>
@@ -15,11 +19,11 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="resources/Mapping/AdminMapping.xml"/>
-        <mapper resource="resources/Mapping/StudentMapping.xml"/>
-        <mapper resource="resources/Mapping/TeacherMapping.xml"/>
-        <mapper resource="resources/Mapping/UserAuthMappin.xml"/>
-        <mapper class="sjtu.dolo.mapper.SectionMapper"/>
-        <mapper class="sjtu.dolo.mapper.TakesMapper"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/AdminMapping.xml"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/SectionMapping.xml"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/StudentMapping.xml"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/TakesMapping.xml"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/TeacherMapping.xml"/>
+        <mapper resource="sjtu/dolo/mapper/Mapping/UserAuthMappin.xml"/>
     </mappers>
 </configuration>

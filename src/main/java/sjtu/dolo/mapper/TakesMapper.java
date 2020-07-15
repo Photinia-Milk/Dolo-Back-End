@@ -11,8 +11,8 @@ import java.util.Map;
 @Mapper
 public interface TakesMapper extends BaseMapper<Takes> {
 
-    List<Takes> getTakesByLimit(Map<String,Integer> map);
-    List<Takes> getTakesLike(String value);
+    List<Takes> findTakesByLimit(Map<String,Integer> map);
+    List<Takes> findTakesLike(String value);
 
     @Select("select * from takes natural join course natural join student where student.user_name = #{username}")
     List<Map<String,Object>> getTakes(String username);
