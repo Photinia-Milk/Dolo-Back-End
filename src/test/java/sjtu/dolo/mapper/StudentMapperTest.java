@@ -47,4 +47,15 @@ public class StudentMapperTest extends CourseApplicationTests {
         sqlSession.commit();
         sqlSession.close();
     }
+    @Test
+    public void updateTest()
+    {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        SectionMapper takesMapper = sqlSession.getMapper(SectionMapper.class);
+        BigDecimal credits = BigDecimal.valueOf(4);
+        int res = takesMapper.update(new Section("1","2","2019","1","1","东下院","203",credits,"第一周到第十周",60,5));
+        System.out.println(res);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

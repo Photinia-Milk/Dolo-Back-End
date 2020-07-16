@@ -19,4 +19,6 @@ public interface SectionMapper extends BaseMapper<Section> {
 
     @Select("select * from (section natural join course natural join timeslot) limit #{startIndex},#{pageSize}")
     List<SectionCourseTimeSlotVO> getSectionByLimit(Map<String,Integer> map);
+
+    int update(Section section);
 }
