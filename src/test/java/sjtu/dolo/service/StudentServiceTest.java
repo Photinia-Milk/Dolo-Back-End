@@ -3,6 +3,9 @@ package sjtu.dolo.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +39,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 public class StudentServiceTest extends CourseApplicationTests {
 
+
     @Test
     public void contextLoads() {
 
@@ -49,6 +53,26 @@ public class StudentServiceTest extends CourseApplicationTests {
 
     @MockBean
     private TakesMapper takesMapper;
+
+    @BeforeEach
+    @Test
+    public void addTakes() {
+        JSONObject data = new JSONObject();
+        data.put("secID", "1");
+        data.put("user_name", "amadeus");
+        data.put("semester", "2");
+        data.put("year", "2019");
+        data.put("timeslotID", "1");
+        data.put("courseID", "1");
+        data.put("building", "东上院");
+        data.put("roomnumber", "202");
+        data.put("credits", 3.0);
+        data.put("weeks", "第一周到第十六周");
+        data.put("maxnum", 120);
+        data.put("currentnum", 2);
+        int status = studentService.addCourseTakes(data);
+        System.out.println(status);
+    }
 
     @Test
     public void findSectionValid(){
@@ -78,7 +102,7 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time endTime = new java.sql.Time(end.getTime());
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
         vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 //        vo.add(new SectionCourseTimeSlotVO("1","1","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","Tuesday",startTime,endTime));
         when(sectionMapper.getSectionByLimit(map)).thenReturn(vo);
@@ -121,15 +145,15 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
 
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
         vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 
         when(sectionMapper.getSectionLike(search, map)).thenReturn(vo);
 //        assertEquals(vo, studentService.findSectionValid(0,2));
         for(int i = 0; i < vo.size(); i++){
-            assertEquals(vo.get(i), studentService.findSectionValid(0,2).get(i));
+            assertEquals(vo.get(i), studentService.findSection("I",0,2).get(i));
         }
-        assertEquals(2, studentService.findSectionValid(0,2).size());
+        assertEquals(2, studentService.findSection("I",0,2).size());
     }
 
     @Test
@@ -145,8 +169,6 @@ public class StudentServiceTest extends CourseApplicationTests {
     }
 
     @Test
-    @Transactional
-    @Rollback(true)
     public void addCourseTakes() {
         JSONObject data = new JSONObject();
         data.put("secID", "1");
@@ -165,9 +187,27 @@ public class StudentServiceTest extends CourseApplicationTests {
         assertEquals(status, studentService.addCourseTakes(data));
     }
 
+    @AfterEach
     @Test
-    @Transactional
-    @Rollback(true)
+    public void delTakes() {
+        JSONObject data = new JSONObject();
+        data.put("secID", "1");
+        data.put("user_name", "amadeus");
+        data.put("semester", "2");
+        data.put("year", "2019");
+        data.put("timeslotID", "1");
+        data.put("courseID", "1");
+        data.put("building", "东上院");
+        data.put("roomnumber", "202");
+        data.put("credits", 3.0);
+        data.put("weeks", "第一周到第十六周");
+        data.put("maxnum", 120);
+        data.put("currentnum", 2);
+        int status = 0;
+        assertEquals(status, studentService.delCourseTakes(data));
+    }
+
+    @Test
     public void delCourseTakes() {
         JSONObject data = new JSONObject();
 //        data.put("secID", "2");
