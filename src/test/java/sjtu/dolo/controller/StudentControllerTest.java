@@ -8,20 +8,22 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 import sjtu.dolo.CourseApplicationTests;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
 import java.util.Map;
+
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -52,7 +54,12 @@ public class StudentControllerTest extends CourseApplicationTests {
 
     @Test
     public List<Map<String, Object>> getCourseValid() throws Exception {
-        MvcResult mvcResult = mockMvc.perform()
+
+        MultiValueMap<String, String> params;
+        params.add("start_index","0");
+        params.add("page_size","8");
+        MvcResult mvcResult = mockMvc.perform(get("api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE)
+                .ex));
     }
 
 

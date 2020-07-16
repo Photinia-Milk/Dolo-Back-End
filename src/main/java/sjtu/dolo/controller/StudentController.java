@@ -16,10 +16,9 @@ public class StudentController {
 
     @GetMapping("/course_valid")
     @ResponseBody
-    public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
-
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
+    public List<Map<String, Object>> getCourseValid(
+            @RequestParam("start_index") int startIdx,
+            @RequestParam("page_size") int pageSize) {
         return studentService.findSectionValid(startIdx, pageSize);
     }
 
@@ -27,10 +26,10 @@ public class StudentController {
 
     @GetMapping("/course_search")
     @ResponseBody
-    public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
-        String searchString = data.getString("searchString");
+    public List<Map<String, Object>> searchCourse(
+            @RequestParam("start_index") int startIdx,
+            @RequestParam("page_size") int pageSize,
+            @RequestParam("key") String searchString) {
         return studentService.findSection(searchString, startIdx, pageSize);
     }
 
