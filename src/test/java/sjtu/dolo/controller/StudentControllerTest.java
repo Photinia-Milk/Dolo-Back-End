@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,33 +50,31 @@ public class StudentControllerTest extends CourseApplicationTests {
     @AfterEach
     void tearDown(){}
 
-    @RequestMapping("/course_valid")
-    @ResponseBody
-    public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
-
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
-        return studentService.findSectionValid(startIdx, pageSize);
+    @Test
+    public List<Map<String, Object>> getCourseValid() throws Exception {
+        MvcResult mvcResult = mockMvc.perform()
     }
 
+    @Test
+    public void searchCourse() throws Exception {
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+        String searchString = data.getString("searchString");
+//        return studentService.findSection(searchString, startIdx, pageSize);
+    }
 
-//
-//    public void searchCourse()throws Exception {
-//        int startIdx = data.getInt("startIndex");
-//        int pageSize = data.getInt("pageSize");
-//        String searchString = data.getString("searchString");
-////        return studentService.findSection(searchString, startIdx, pageSize);
-//    }
-//
-//    public void selectCourse() throws Exception {
-//        return studentService.addCourseTakes(data);
-//    }
-//
-//    public void dropCourse() throws Exception {
-//        return studentService.delCourseTakes(data);
-//    }
-//
-//    public void getCourseList() throws Exception {
-//        return studentService.findTakeList(user_name);
-//    }
+    @Test
+    public void selectCourse() throws Exception {
+        return studentService.addCourseTakes(data);
+    }
+
+    @Test
+    public void dropCourse() throws Exception {
+        return studentService.delCourseTakes(data);
+    }
+
+    @Test
+    public void getCourseList() throws Exception {
+        return studentService.findTakeList(user_name);
+    }
 }
