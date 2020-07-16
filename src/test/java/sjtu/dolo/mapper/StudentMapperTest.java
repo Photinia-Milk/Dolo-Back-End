@@ -2,13 +2,14 @@ package sjtu.dolo.mapper;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
+import sjtu.dolo.CourseApplicationTests;
 import sjtu.dolo.model.Section;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.utils.MybatisUtils;
 
 import java.util.*;
 
-public class StudentMapperTest {
+public class StudentMapperTest extends CourseApplicationTests {
     @Test
     public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
