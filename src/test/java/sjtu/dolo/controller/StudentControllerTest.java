@@ -26,55 +26,55 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StudentControllerTest extends CourseApplicationTests {
-    @Test
-    public void contentLoads(){}
-
-    // 屏蔽http网络请求
-    private MockMvc mockMvc;
-
-    @Autowired
-    private WebApplicationContext context;
-
-    @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private StudentController studentController;
-
-    private ObjectMapper om = new ObjectMapper();
-
-    @Before
-    public void setUp(){mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-    }
-
-    @AfterEach
-    void tearDown(){}
-
-    @Test
-    public List<Map<String, Object>> getCourseValid() throws Exception {
-        MvcResult mvcResult = mockMvc.perform()
-    }
-
-    @Test
-    public void searchCourse() throws Exception {
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
-        String searchString = data.getString("searchString");
-//        return studentService.findSection(searchString, startIdx, pageSize);
-    }
-
-    @Test
-    public void selectCourse() throws Exception {
-        return studentService.addCourseTakes(data);
-    }
-
-    @Test
-    public void dropCourse() throws Exception {
-        return studentService.delCourseTakes(data);
-    }
-
-    @Test
-    public void getCourseList() throws Exception {
-        return studentService.findTakeList(user_name);
-    }
+//    @Test
+//    public void contentLoads(){}
+//
+//    // 屏蔽http网络请求
+//    private MockMvc mockMvc;
+//
+//    @Autowired
+//    private WebApplicationContext context;
+//
+//    @Autowired
+//    private StudentService studentService;
+//
+//    @Autowired
+//    private StudentController studentController;
+//
+//    private ObjectMapper om = new ObjectMapper();
+//
+//    @Before
+//    public void setUp(){mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+//    }
+//
+//    @AfterEach
+//    void tearDown(){}
+//
+//    @Test
+//    public List<Map<String, Object>> getCourseValid() throws Exception {
+//        MvcResult mvcResult = mockMvc.perform()
+//    }
+//
+//    @Test
+//    public void searchCourse() throws Exception {
+//        int startIdx = data.getInt("startIndex");
+//        int pageSize = data.getInt("pageSize");
+//        String searchString = data.getString("searchString");
+////        return studentService.findSection(searchString, startIdx, pageSize);
+//    }
+//
+//    @Test
+//    public void selectCourse() throws Exception {
+//        return studentService.addCourseTakes(data);
+//    }
+//
+//    @Test
+//    public void dropCourse() throws Exception {
+//        return studentService.delCourseTakes(data);
+//    }
+//
+//    @Test
+//    public void getCourseList() throws Exception {
+//        return studentService.findTakeList(user_name);
+//    }
 }

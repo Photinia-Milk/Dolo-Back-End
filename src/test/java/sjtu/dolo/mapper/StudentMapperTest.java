@@ -2,6 +2,10 @@ package sjtu.dolo.mapper;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import sjtu.dolo.CourseApplicationTests;
 import sjtu.dolo.model.*;
 import sjtu.dolo.utils.MybatisUtils;
@@ -9,7 +13,12 @@ import sjtu.dolo.utils.MybatisUtils;
 import java.math.BigDecimal;
 import java.util.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class StudentMapperTest extends CourseApplicationTests {
+    @Test
+    public void contextLoads(){
+    }
     @Test
     public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
