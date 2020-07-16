@@ -64,8 +64,10 @@ public class StudentServiceImpl implements StudentService {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
+        System.out.println(map);
         List<SectionCourseTimeSlotVO> itemList;
-        itemList = sectionMapper.getSectionLike(searchString, map);
+        String search = "%"+searchString+"%";
+        itemList = sectionMapper.getSectionLike(search, map);
         return itemList;
     }
 
@@ -87,18 +89,20 @@ public class StudentServiceImpl implements StudentService {
         Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
         Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
 
-        sectionWrapper
-                .eq("secID", secID)
-                .eq("semester",semester)
-                .eq("year",year)
-                .eq("timelotID",timeslotID)
-                .eq("courseID", courseID);
+//        sectionWrapper
+//                .eq("secID", secID)
+//                .eq("semester",semester)
+//                .eq("year",year)
+//                .eq("timelotID",timeslotID)
+//                .eq("courseID", courseID);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int takesStatus = tMapper.addTakes(takes);
-        int sectionStatus = sMapper.update(newSection,sectionWrapper);
+        System.out.println(takesStatus);
+        int sectionStatus = sMapper.update(newSection);
+        System.out.println(sectionStatus);
         sqlSession.commit();
         sqlSession.close();
 
@@ -130,24 +134,32 @@ public class StudentServiceImpl implements StudentService {
         String weeks = data.getString("weeks");
         int maxnum = data.getInt("maxnum");
         int currentnum = data.getInt("currentnum");
+        Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
         Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
 
-        sectionWrapper
-                .eq("secID", secID)
-                .eq("semester",semester)
-                .eq("year",year)
-                .eq("timelotID",timeslotID)
-                .eq("courseID", courseID);
+//        sectionWrapper
+//                .eq("secID", secID)
+//                .eq("semester",semester)
+//                .eq("year",year)
+//                .eq("timelotID",timeslotID)
+//                .eq("courseID", courseID);
+//
+//        takesQueryWrapper
+//                .eq("secID", secID)
+//                .eq("semester", semester)
+//                .eq("year", year)
+//                .eq("timeslotID", timeslotID)
+//                .eq("user_name", user_name)
+//                .eq("courseID",courseID);
 
-        takesQueryWrapper
-                .eq("secID", secID)
-                .eq("semester", semester)
-                .eq("year", year)
-                .eq("timeslotID", timeslotID)
-                .eq("user_name", user_name)
-                .eq("courseID",courseID);
-        int takesStatus = takesMapper.delete(takesQueryWrapper);
-        int sectionStatus = sectionMapper.update(newSection,sectionWrapper);
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+        int takesStatus = tMapper.delTakes(takes);
+        int sectionStatus = sMapper.update(newSection);
+        sqlSession.commit();
+        sqlSession.close();
+
         int result = 0;
         if(takesStatus > 0 && sectionStatus > 0){
             return result;

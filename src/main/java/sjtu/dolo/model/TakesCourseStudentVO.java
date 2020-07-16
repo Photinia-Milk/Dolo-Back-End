@@ -52,165 +52,165 @@ public class TakesCourseStudentVO {
         this.academic_year = academic_year;
     }
 
-//    public String getSecID() {
-//        return secID;
-//    }
-//
-//    public void setSecID(String secID) {
-//        this.secID = secID;
-//    }
-//
-//    public String getSemester() {
-//        return semester;
-//    }
-//
-//    public void setSemester(String semester) {
-//        this.semester = semester;
-//    }
-//
-//    public String getYear() {
-//        return year;
-//    }
-//
-//    public void setYear(String year) {
-//        this.year = year;
-//    }
-//
-//    public String getTimeSlotID() {
-//        return timeSlotID;
-//    }
-//
-//    public void setTimeSlotID(String timeSlotID) {
-//        this.timeSlotID = timeSlotID;
-//    }
-//
-//    public String getCourseID() {
-//        return courseID;
-//    }
-//
-//    public void setCourseID(String courseID) {
-//        this.courseID = courseID;
-//    }
-//
-//    public String getUser_name() {
-//        return user_name;
-//    }
-//
-//    public void setUser_name(String user_name) {
-//        this.user_name = user_name;
-//    }
-//
-//    public BigDecimal getGrade() {
-//        return grade;
-//    }
-//
-//    public void setGrade(BigDecimal grade) {
-//        this.grade = grade;
-//    }
-//
-//    public BigDecimal getGpa() {
-//        return gpa;
-//    }
-//
-//    public void setGpa(BigDecimal gpa) {
-//        this.gpa = gpa;
-//    }
-//
-//    public String getDeptID() {
-//        return deptID;
-//    }
-//
-//    public void setDeptID(String deptID) {
-//        this.deptID = deptID;
-//    }
-//
-//    public String getCourseName() {
-//        return courseName;
-//    }
-//
-//    public void setCourseName(String courseName) {
-//        this.courseName = courseName;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-//
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-//
-//    public short getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(short gender) {
-//        this.gender = gender;
-//    }
-//
-//    public Date getBirthday() {
-//        return birthday;
-//    }
-//
-//    public void setBirthday(Date birthday) {
-//        this.birthday = birthday;
-//    }
-//
-//    public Date getAdmisson_date() {
-//        return admisson_date;
-//    }
-//
-//    public void setAdmisson_date(Date admisson_date) {
-//        this.admisson_date = admisson_date;
-//    }
-//
-//    public String getDocument_type() {
-//        return document_type;
-//    }
-//
-//    public void setDocument_type(String document_type) {
-//        this.document_type = document_type;
-//    }
-//
-//    public String getCountry() {
-//        return country;
-//    }
-//
-//    public void setCountry(String country) {
-//        this.country = country;
-//    }
-//
-//    public String getAcademic_year() {
-//        return academic_year;
-//    }
-//
-//    public void setAcademic_year(String academic_year) {
-//        this.academic_year = academic_year;
-//    }
+    public String getSecID() {
+        return secID;
+    }
+
+    public void setSecID(String secID) {
+        this.secID = secID;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getTimeSlotID() {
+        return timeSlotID;
+    }
+
+    public void setTimeSlotID(String timeSlotID) {
+        this.timeSlotID = timeSlotID;
+    }
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public BigDecimal getGrade() {
+        return grade;
+    }
+
+    public void setGrade(BigDecimal grade) {
+        this.grade = grade;
+    }
+
+    public BigDecimal getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(BigDecimal gpa) {
+        this.gpa = gpa;
+    }
+
+    public String getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(String deptID) {
+        this.deptID = deptID;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public short getGender() {
+        return gender;
+    }
+
+    public void setGender(short gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getAdmisson_date() {
+        return admisson_date;
+    }
+
+    public void setAdmisson_date(Date admisson_date) {
+        this.admisson_date = admisson_date;
+    }
+
+    public String getDocument_type() {
+        return document_type;
+    }
+
+    public void setDocument_type(String document_type) {
+        this.document_type = document_type;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getAcademic_year() {
+        return academic_year;
+    }
+
+    public void setAcademic_year(String academic_year) {
+        this.academic_year = academic_year;
+    }
 
     @Override
     public String toString() {
