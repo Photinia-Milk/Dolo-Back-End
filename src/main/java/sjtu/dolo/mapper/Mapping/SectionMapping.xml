@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.SectionMapper">
-    <select id="getSectionByLimit" parameterType="map" resultType="sjtu.dolo.model.Section">
+    <select id="findSectionByLimit" parameterType="map" resultType="sjtu.dolo.model.Section">
         select * from course.section limit #{startIndex},#{pageSize}
     </select>
-    <select id="getSectionLike" resultType="sjtu.dolo.model.Section">
+    <select id="findSectionLike" resultType="sjtu.dolo.model.Section">
         select * from course.section natural join course.course where coursename like #{value}
     </select>
 </mapper>
