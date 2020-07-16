@@ -3,9 +3,11 @@ package sjtu.dolo.mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import sjtu.dolo.model.Section;
+import sjtu.dolo.model.Student;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.utils.MybatisUtils;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class StudentMapperTest {
@@ -23,6 +25,18 @@ public class StudentMapperTest {
         for (Map<String,Object> map1: allSection) {
             System.out.println(map1);
         }
+        sqlSession.close();
+    }
+    @Test
+    public void testTakes()
+    {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper takesMapper = sqlSession.getMapper(StudentMapper.class);
+        BigDecimal grade = BigDecimal.valueOf(83);
+        BigDecimal gpa = BigDecimal.valueOf(4.0);
+        int res = takesMapper.addTakes(new Takes("1","2","2019","6","1","liujinke",grade,gpa));
+        System.out.println(res);
+        //sqlSession.commit();
         sqlSession.close();
     }
 }

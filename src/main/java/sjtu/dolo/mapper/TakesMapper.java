@@ -1,7 +1,9 @@
 package sjtu.dolo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import sjtu.dolo.model.Takes;
 
@@ -13,6 +15,8 @@ public interface TakesMapper extends BaseMapper<Takes> {
 
     List<Takes> findTakesByLimit(Map<String,Integer> map);
     List<Takes> findTakesLike(String value);
+
+    int insert(Takes takes);
 
     @Select("select * from takes natural join course natural join student where student.user_name = #{username}")
     List<Map<String,Object>> getTakes(String username);

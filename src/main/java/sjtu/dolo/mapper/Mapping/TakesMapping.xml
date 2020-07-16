@@ -9,4 +9,7 @@
     <select id="findTakesLike" resultType="sjtu.dolo.model.Takes">
         select * from course.takes natural join course.course where coursename like #{value}
     </select>
+    <insert id="insert" parameterType="sjtu.dolo.model.Takes">
+        insert into course.takes(secID, semester, year, timeslotID, courseID, user_name, grade, gpa) values (#{secID},#{semester},#{year},#{timeSlotID},#{courseID},#{user_name},#{grade},#{gpa})
+    </insert>
 </mapper>
