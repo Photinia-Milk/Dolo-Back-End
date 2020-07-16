@@ -14,7 +14,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("/course_valid")
+    @GetMapping("/course_valid")
     @ResponseBody
     public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
 
@@ -25,7 +25,7 @@ public class StudentController {
 
 
 
-    @RequestMapping("/course_search")
+    @GetMapping("/course_search")
     @ResponseBody
     public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
         int startIdx = data.getInt("startIndex");
@@ -34,19 +34,19 @@ public class StudentController {
         return studentService.findSection(searchString, startIdx, pageSize);
     }
 
-    @RequestMapping("/course_select")
+    @PostMapping("/course_select")
     @ResponseBody
     public int selectCourse(@RequestBody JSONObject data) {
         return studentService.addCourseTakes(data);
     }
 
-    @RequestMapping("/course_drop")
+    @PostMapping("/course_drop")
     @ResponseBody
     public int dropCourse(@RequestBody JSONObject data) {
         return studentService.delCourseTakes(data);
     }
 
-    @RequestMapping("/course_list")
+    @GetMapping("/course_list")
     @ResponseBody
     public List<Map<String, Object>> getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);
