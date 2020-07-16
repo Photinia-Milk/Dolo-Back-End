@@ -1,15 +1,32 @@
 package sjtu.dolo.service;
 
-import net.sf.json.JSONObject;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import sjtu.dolo.CourseApplicationTests;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+import sjtu.dolo.mapper.SectionMapper;
+import sjtu.dolo.mapper.StudentMapper;
 
-import java.util.List;
-import java.util.Map;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class StudentServiceTest {
 
-public class StudentServiceTest extends CourseApplicationTests {
+
+    @Test
+    public void contextLoads() {
+
+    }
+
+    @Autowired
+    private StudentService studentService;
+
+    @MockBean
+    private StudentMapper studentMapper;
+
+    @MockBean
+    private SectionMapper sectionMapper;
+
 
 }

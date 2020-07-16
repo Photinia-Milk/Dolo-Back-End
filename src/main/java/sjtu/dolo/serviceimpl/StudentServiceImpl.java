@@ -2,13 +2,17 @@ package sjtu.dolo.serviceimpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.Section;
+import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.Takes;
+import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
+import sjtu.dolo.utils.MybatisUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -16,25 +20,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("ALL")
 @Service
 public class StudentServiceImpl implements StudentService {
     @Resource
-    private StudentMapper studentMapper;
     private TakesMapper takesMapper;
-    private SectionMapper sectionMapper;
-//
-//    @Override
-//    public StudentServiceImpl(StudentMapper studentMapper, TakesMapper takesMapper, SectionMapper sectionMapper) {
-//        this.studentMapper = studentMapper;
-//        this.takesMapper = takesMapper;
-//        this.sectionMapper = sectionMapper;
-//    }
 
-//    @Override
-//    public List<Map> findSectionValid() {
-//        return studentMapper.getAllSection();
-//    }
+    @Resource
+    private SectionMapper sectionMapper;
+
+
 
 //    @Override
 //    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
@@ -53,13 +47,26 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
-        return null;
+    public List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize) {
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("pageSize", pageSize);
+
+        List<SectionCourseTimeSlotVO> itemList;
+        itemList = sectionMapper.getSectionByLimit(map);
+
+        return itemList;
     }
 
     @Override
-    public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
-        return null;
+    public List<SectionCourseTimeSlotVO> findSection(String searchString, Integer startIdx, Integer pageSize) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("pageSize", pageSize);
+        List<SectionCourseTimeSlotVO> itemList;
+        itemList = sectionMapper.getSectionLike(searchString, map);
+        return itemList;
     }
 
     @Override
@@ -77,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
         String weeks = data.getString("weeks");
         int maxnum = data.getInt("maxnum");
         int currentnum = data.getInt("currentnum");
-        Takes takes = new Takes(secID, semester, year, timeslotID, user_name, courseID, null ,null);
+        Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
         Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
 
         sectionWrapper
@@ -86,8 +93,14 @@ public class StudentServiceImpl implements StudentService {
                 .eq("year",year)
                 .eq("timelotID",timeslotID)
                 .eq("courseID", courseID);
-        int takesStatus = takesMapper.insert(takes);
-        int sectionStatus = sectionMapper.update(newSection,sectionWrapper);
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+        int takesStatus = tMapper.addTakes(takes);
+        int sectionStatus = sMapper.update(newSection,sectionWrapper);
+        sqlSession.commit();
+        sqlSession.close();
 
         int result = 0;
         if(takesStatus > 0 && sectionStatus > 0){
@@ -148,7 +161,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Map<String, Object>> findTakeList(String user_name) {
+    public List<TakesCourseStudentVO> findTakeList(String user_name) {
 //        return studentMapper.getAllTakes(user_name);
 //        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
 //        takesQueryWrapper
@@ -156,7 +169,7 @@ public class StudentServiceImpl implements StudentService {
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
 //
-         return null;
+         return takesMapper.getTakes(user_name);
     }
 
 
