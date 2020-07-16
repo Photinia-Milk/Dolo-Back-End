@@ -1,19 +1,17 @@
 package sjtu.dolo.model;
 
 public class Admin {
-    private String adminID;
-    private String name;
-    private String userID;
-    private String password;
+    private String adminID; //管理员编号
+    private String name; //管理员姓名
+    private String user_name; //用户名
 
     public Admin() {
     }
 
-    public Admin(String adminID, String name, String userID, String password) {
+    public Admin(String adminID, String name, String user_name) {
         this.adminID = adminID;
         this.name = name;
-        this.userID = userID;
-        this.password = password;
+        this.user_name = user_name;
     }
 
     public String getAdminID() {
@@ -32,20 +30,12 @@ public class Admin {
         this.name = name;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     @Override
@@ -53,8 +43,7 @@ public class Admin {
         return "Admin{" +
                 "adminID='" + adminID + '\'' +
                 ", name='" + name + '\'' +
-                ", userID='" + userID + '\'' +
-                ", password='" + password + '\'' +
+                ", user_name='" + user_name + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sjtu.dolo.mapper.AdminMapper">
+    <select id="getTimeSlot" resultType="sjtu.dolo.model.TimeSlot" parameterType="String">
+        select * from course.timeslot where timeslotID = #{id}
+    </select>
+    <insert id="InsertTimeSlot" parameterType="sjtu.dolo.model.TimeSlot">
+        insert into course.timeslot (timeslotID, day, starttime, endtime) VALUES (#{timeSlotID},#{day},#{startTime},#{endTime});
+    </insert>
+</mapper>
