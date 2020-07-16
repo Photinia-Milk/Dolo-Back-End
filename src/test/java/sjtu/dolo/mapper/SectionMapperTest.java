@@ -14,17 +14,17 @@ import java.util.Map;
 
 public class SectionMapperTest extends CourseApplicationTests {
     @Test
-    public void getSectionLikeTest(){
+    public void getSectionLikeTest() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        SectionMapper mapper =  sqlSession.getMapper(SectionMapper.class);
-        Map<String,Integer> map = new HashMap<String,Integer>();
+        SectionMapper mapper = sqlSession.getMapper(SectionMapper.class);
+        Map<String, Integer> map = new HashMap<String, Integer>();
 //        Map<String,Integer> map = null;
-        map.put("startIndex",1);
-        map.put("pageSize",3);
+        map.put("startIndex", 1);
+        map.put("pageSize", 3);
 
-        List<SectionCourseTimeSlotVO> allSection = mapper.getSectionLike("%ICS%",map);
+        List<SectionCourseTimeSlotVO> allSection = mapper.getSectionLike("%ICS%", map);
 
-        for (SectionCourseTimeSlotVO map1: allSection) {
+        for (SectionCourseTimeSlotVO map1 : allSection) {
             System.out.println(map1);
         }
         sqlSession.close();

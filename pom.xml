@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sjtu</groupId>
-	<artifactId>couse</artifactId>
+	<artifactId>dolo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>couse</name>
+	<name>course</name>
 	<description>A project for Course Selection</description>
 
 	<properties>
