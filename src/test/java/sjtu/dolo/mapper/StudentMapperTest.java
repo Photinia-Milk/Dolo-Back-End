@@ -36,7 +36,7 @@ public class StudentMapperTest extends CourseApplicationTests {
         sqlSession.close();
     }
     @Test
-    public void testTakes()
+    public void testTakes ()
     {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper takesMapper = sqlSession.getMapper(StudentMapper.class);
