@@ -20,8 +20,9 @@ import java.util.Map;
 @Service
 public class StudentServiceImpl implements StudentService {
     @Resource
-    private StudentMapper studentMapper;
     private TakesMapper takesMapper;
+
+    @Resource
     private SectionMapper sectionMapper;
 
     @Override
