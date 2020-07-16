@@ -27,8 +27,11 @@ public class LoginController {
     @RequestMapping("/login")
     @ResponseBody
     public Msg login(@RequestBody JSONObject data) {
+        System.out.println(data);
         String username = data.getString("username");
         String password = data.getString("password");
+        System.out.println(username);
+        System.out.println(password);
         return loginService.login(username, password);
     }
 
