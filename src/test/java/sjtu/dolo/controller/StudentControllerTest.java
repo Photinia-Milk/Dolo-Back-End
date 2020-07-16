@@ -59,23 +59,23 @@ public class StudentControllerTest extends CourseApplicationTests {
     }
 
 
-
-    public void searchCourse()throws Exception {
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
-        String searchString = data.getString("searchString");
-//        return studentService.findSection(searchString, startIdx, pageSize);
-    }
-
-    public void selectCourse() throws Exception {
-        return studentService.addCourseTakes(data);
-    }
-
-    public void dropCourse() throws Exception {
-        return studentService.delCourseTakes(data);
-    }
-
-    public void getCourseList() throws Exception {
-        return studentService.findTakeList(user_name);
-    }
+//
+//    public void searchCourse()throws Exception {
+//        int startIdx = data.getInt("startIndex");
+//        int pageSize = data.getInt("pageSize");
+//        String searchString = data.getString("searchString");
+////        return studentService.findSection(searchString, startIdx, pageSize);
+//    }
+//
+//    public void selectCourse() throws Exception {
+//        return studentService.addCourseTakes(data);
+//    }
+//
+//    public void dropCourse() throws Exception {
+//        return studentService.delCourseTakes(data);
+//    }
+//
+//    public void getCourseList() throws Exception {
+//        return studentService.findTakeList(user_name);
+//    }
 }

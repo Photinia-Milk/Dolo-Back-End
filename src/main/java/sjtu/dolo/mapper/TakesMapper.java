@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import sjtu.dolo.model.Takes;
+import sjtu.dolo.model.TakesCourseStudentVO;
 
 import java.util.List;
 import java.util.Map;
@@ -18,12 +19,12 @@ public interface TakesMapper extends BaseMapper<Takes> {
 
     int insert(Takes takes);
 
-    @Select("select * from takes natural join course natural join student where student.user_name = #{username}")
-    List<Map<String,Object>> getTakes(String username);
+    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username}")
+    List<TakesCourseStudentVO> getTakes(String username);
 
-    @Select("select * from takes natural join course natural join student where student.user_name = #{username} limit #{startIndex},#{pageSize}")
-    List<Map<String,Object>> getTakesByLimit(String username,Map<String,Integer> map);
+    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} limit #{startIndex},#{pageSize}")
+    List<TakesCourseStudentVO> getTakesByLimit(String username,Map<String,Integer> map);
 
-    @Select("select * from takes natural join course natural join student where student.user_name = #{username} and coursename like #{value}")
-    List<Map<String,Object>> getTakesLike(String username,String value);
+    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} and coursename like #{value}")
+    List<TakesCourseStudentVO> getTakesLike(String username,String value);
 }

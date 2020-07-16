@@ -36,20 +36,30 @@ public class StudentServiceImpl implements StudentService {
 //        return studentMapper.getAllSection();
 //    }
 
+//    @Override
+//    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
+//        Map<String, Integer> map = new HashMap<>();
+//        map.put("startIndex", startIdx);
+//        map.put("pageSize", pageSize);
+//        return sectionMapper.getSectionByLimit(map);
+//    }
+
+//    @Override
+//    public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
+//        Map<String, Integer> map = new HashMap<>();
+//        map.put("startIndex", startIdx);
+//        map.put("page", pageSize);
+//        return sectionMapper.getSectionLike(searchString, map);
+//    }
+
     @Override
     public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("startIndex", startIdx);
-        map.put("pageSize", pageSize);
-        return sectionMapper.getSectionByLimit(map);
+        return null;
     }
 
     @Override
     public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("startIndex", startIdx);
-        map.put("page", pageSize);
-        return sectionMapper.getSectionLike(searchString, map);
+        return null;
     }
 
     @Override
@@ -144,9 +154,10 @@ public class StudentServiceImpl implements StudentService {
 //        takesQueryWrapper
 //                .eq("user_name", user_name);
 //        return takesMapper.selectList(takesQueryWrapper);
-        return takesMapper.getTakes(user_name);
+//        return takesMapper.getTakes(user_name);
+//
+         return null;
     }
-
 
 
 }
