@@ -14,9 +14,10 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("/course_valid")
+    @GetMapping("/course_valid")
     @ResponseBody
     public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
+<<<<<<< HEAD
         assert data != null;
         System.out.println("data:");
         System.out.println(data);
@@ -33,23 +34,38 @@ public class StudentController {
 //        int startIdx = data.getInt("startIndex");
         int startIdx = data.optInt("startIndex");
         int pageSize = data.optInt("pageSize");
+=======
+
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+        return studentService.findSectionValid(startIdx, pageSize);
+    }
+
+
+
+    @GetMapping("/course_search")
+    @ResponseBody
+    public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+>>>>>>> cf22b3733edfc8c759337eb0ed42b2df21f523a6
         String searchString = data.getString("searchString");
         return studentService.findSection(searchString, startIdx, pageSize);
     }
 
-    @RequestMapping("/course_select")
+    @PostMapping("/course_select")
     @ResponseBody
     public int selectCourse(@RequestBody JSONObject data) {
         return studentService.addCourseTakes(data);
     }
 
-    @RequestMapping("/course_drop")
+    @PostMapping("/course_drop")
     @ResponseBody
     public int dropCourse(@RequestBody JSONObject data) {
         return studentService.delCourseTakes(data);
     }
 
-    @RequestMapping("/course_list")
+    @GetMapping("/course_list")
     @ResponseBody
     public List<Map<String, Object>> getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);

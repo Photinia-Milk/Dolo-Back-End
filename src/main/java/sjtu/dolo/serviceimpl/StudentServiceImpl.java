@@ -8,13 +8,13 @@ import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.Section;
+import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,18 +26,41 @@ public class StudentServiceImpl implements StudentService {
 
     @Resource
     private SectionMapper sectionMapper;
+//
+//    @Override
+//    public StudentServiceImpl(StudentMapper studentMapper, TakesMapper takesMapper, SectionMapper sectionMapper) {
+//        this.studentMapper = studentMapper;
+//        this.takesMapper = takesMapper;
+//        this.sectionMapper = sectionMapper;
+//    }
 
     @Resource
     private StudentMapper studentMapper;
 
+//    @Override
+//    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
+//        Map<String, Integer> map = new HashMap<>();
+//        map.put("startIndex", startIdx);
+//        map.put("pageSize", pageSize);
+//        return sectionMapper.getSectionByLimit(map);
+//    }
+
+//    @Override
+//    public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
+//        Map<String, Integer> map = new HashMap<>();
+//        map.put("startIndex", startIdx);
+//        map.put("page", pageSize);
+//        return sectionMapper.getSectionLike(searchString, map);
+//    }
+
     @Override
-    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
+    public List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize) {
         System.out.println(startIdx);
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         System.out.println(map);
-        List<Map<String, Object>> itemList;
+        List<SectionCourseTimeSlotVO> itemList;
         itemList = sectionMapper.getSectionByLimit(map);
         System.out.println(itemList);
         return itemList;
@@ -45,10 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("startIndex", startIdx);
-        map.put("page", pageSize);
-        return sectionMapper.getSectionLike(searchString, map);
+        return null;
     }
 
     @Override
@@ -149,9 +169,10 @@ public class StudentServiceImpl implements StudentService {
 //        takesQueryWrapper
 //                .eq("user_name", user_name);
 //        return takesMapper.selectList(takesQueryWrapper);
-        return takesMapper.getTakes(user_name);
+//        return takesMapper.getTakes(user_name);
+//
+         return null;
     }
-
 
 
 }

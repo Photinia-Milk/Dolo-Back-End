@@ -10,7 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
-class CouseApplicationTests {
+public
+class CourseApplicationTests {
 
 	@Autowired
 	private StudentMapper studentMapper;

@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("sjtu.dolo.mapper")
-public class CouseApplication {
+public class CourseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CouseApplication.class, args);
+		SpringApplication.run(CourseApplication.class, args);
 	}
 
 }
