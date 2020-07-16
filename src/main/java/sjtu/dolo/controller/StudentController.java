@@ -23,6 +23,8 @@ public class StudentController {
         return studentService.findSectionValid(startIdx, pageSize);
     }
 
+
+
     @RequestMapping("/course_search")
     @ResponseBody
     public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
