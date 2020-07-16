@@ -3,6 +3,8 @@ package sjtu.dolo.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sjtu.dolo.model.SectionCourseTimeSlotVO;
+import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class StudentController {
 
     @GetMapping("/course_valid")
     @ResponseBody
-    public List<Map<String, Object>> getCourseValid(
+    public SectionCourseTimeSlotVO getCourseValid(
             @RequestParam("start_index") int startIdx,
             @RequestParam("page_size") int pageSize) {
         return studentService.findSectionValid(startIdx, pageSize);
@@ -26,7 +28,7 @@ public class StudentController {
 
     @GetMapping("/course_search")
     @ResponseBody
-    public List<Map<String, Object>> searchCourse(
+    public SectionCourseTimeSlotVO searchCourse(
             @RequestParam("start_index") int startIdx,
             @RequestParam("page_size") int pageSize,
             @RequestParam("key") String searchString) {
@@ -47,7 +49,7 @@ public class StudentController {
 
     @GetMapping("/course_list")
     @ResponseBody
-    public List<Map<String, Object>> getCourseList(@RequestParam("user_name") String user_name) {
+    public TakesCourseStudentVO getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);
     }
 }
