@@ -12,11 +12,11 @@ import sjtu.dolo.service.StudentService;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("ALL")
 @Service
 public class StudentServiceImpl implements StudentService {
     @Resource
@@ -24,17 +24,17 @@ public class StudentServiceImpl implements StudentService {
     private TakesMapper takesMapper;
     private SectionMapper sectionMapper;
 
-//    @Override
-//    public List<Map> findSectionValid() {
-//        return studentMapper.getAllSection();
-//    }
-
     @Override
     public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
+        System.out.println(startIdx);
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
-        return sectionMapper.getSectionByLimit(map);
+        System.out.println(map);
+        List<Map<String, Object>> itemList;
+        itemList = sectionMapper.getSectionByLimit(map);
+        System.out.println(itemList);
+        return itemList;
     }
 
     @Override
