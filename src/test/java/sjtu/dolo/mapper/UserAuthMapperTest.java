@@ -1,4 +1,6 @@
 package sjtu.dolo.mapper;
 
-public class UserAuthMapperTest {
+import sjtu.dolo.CourseApplicationTests;
+
+public class UserAuthMapperTest extends CourseApplicationTests {
 }
