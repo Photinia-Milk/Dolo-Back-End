@@ -1,5 +1,7 @@
 package sjtu.dolo.model;
 
+import java.util.Objects;
+
 public class Admin {
     private String adminID; //管理员编号
     private String name; //管理员姓名
@@ -46,4 +48,5 @@ public class Admin {
                 ", user_name='" + user_name + '\'' +
                 '}';
     }
+
 }
