@@ -1,4 +1,6 @@
 package sjtu.dolo.mapper;
 
-public class TakesMapperTest {
+import sjtu.dolo.CourseApplicationTests;
+
+public class TakesMapperTest extends CourseApplicationTests {
 }
