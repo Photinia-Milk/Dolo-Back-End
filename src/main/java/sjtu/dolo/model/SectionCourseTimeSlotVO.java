@@ -46,141 +46,141 @@ public class SectionCourseTimeSlotVO {
         this.endTime = endTime;
     }
 
-//    public String getSecID() {
-//        return secID;
-//    }
-//
-//    public void setSecID(String secID) {
-//        this.secID = secID;
-//    }
-//
-//    public String getSemester() {
-//        return semester;
-//    }
-//
-//    public void setSemester(String semester) {
-//        this.semester = semester;
-//    }
-//
-//    public String getYear() {
-//        return year;
-//    }
-//
-//    public void setYear(String year) {
-//        this.year = year;
-//    }
-//
-//    public String getTimeSlotID() {
-//        return timeSlotID;
-//    }
-//
-//    public void setTimeSlotID(String timeSlotID) {
-//        this.timeSlotID = timeSlotID;
-//    }
-//
-//    public String getCourseID() {
-//        return courseID;
-//    }
-//
-//    public void setCourseID(String courseID) {
-//        this.courseID = courseID;
-//    }
-//
-//    public String getBuilding() {
-//        return building;
-//    }
-//
-//    public void setBuilding(String building) {
-//        this.building = building;
-//    }
-//
-//    public String getRoomNumber() {
-//        return roomNumber;
-//    }
-//
-//    public void setRoomNumber(String roomNumber) {
-//        this.roomNumber = roomNumber;
-//    }
-//
-//    public BigDecimal getCredits() {
-//        return credits;
-//    }
-//
-//    public void setCredits(BigDecimal credits) {
-//        this.credits = credits;
-//    }
-//
-//    public String getWeeks() {
-//        return weeks;
-//    }
-//
-//    public void setWeeks(String weeks) {
-//        this.weeks = weeks;
-//    }
-//
-//    public int getMaxNum() {
-//        return maxNum;
-//    }
-//
-//    public void setMaxNum(int maxNum) {
-//        this.maxNum = maxNum;
-//    }
-//
-//    public int getCurrentNum() {
-//        return currentNum;
-//    }
-//
-//    public void setCurrentNum(int currentNum) {
-//        this.currentNum = currentNum;
-//    }
-//
-//    public String getDeptID() {
-//        return deptID;
-//    }
-//
-//    public void setDeptID(String deptID) {
-//        this.deptID = deptID;
-//    }
-//
-//    public String getCourseName() {
-//        return courseName;
-//    }
-//
-//    public void setCourseName(String courseName) {
-//        this.courseName = courseName;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public String getDay() {
-//        return day;
-//    }
-//
-//    public void setDay(String day) {
-//        this.day = day;
-//    }
-//
-//    public Time getStartTime() {
-//        return startTime;
-//    }
-//
-//    public void setStartTime(Time startTime) {
-//        this.startTime = startTime;
-//    }
-//
-//    public Time getEndTime() {
-//        return endTime;
-//    }
-//
-//    public void setEndTime(Time endTime) {
-//        this.endTime = endTime;
-//    }
+    public String getSecID() {
+        return secID;
+    }
+
+    public void setSecID(String secID) {
+        this.secID = secID;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getTimeSlotID() {
+        return timeSlotID;
+    }
+
+    public void setTimeSlotID(String timeSlotID) {
+        this.timeSlotID = timeSlotID;
+    }
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public BigDecimal getCredits() {
+        return credits;
+    }
+
+    public void setCredits(BigDecimal credits) {
+        this.credits = credits;
+    }
+
+    public String getWeeks() {
+        return weeks;
+    }
+
+    public void setWeeks(String weeks) {
+        this.weeks = weeks;
+    }
+
+    public int getMaxNum() {
+        return maxNum;
+    }
+
+    public void setMaxNum(int maxNum) {
+        this.maxNum = maxNum;
+    }
+
+    public int getCurrentNum() {
+        return currentNum;
+    }
+
+    public void setCurrentNum(int currentNum) {
+        this.currentNum = currentNum;
+    }
+
+    public String getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(String deptID) {
+        this.deptID = deptID;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
 
     @Override
     public String toString() {

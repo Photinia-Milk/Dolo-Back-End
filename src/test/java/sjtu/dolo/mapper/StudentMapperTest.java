@@ -58,4 +58,16 @@ public class StudentMapperTest extends CourseApplicationTests {
         sqlSession.commit();
         sqlSession.close();
     }
+    @Test
+    public void deleteTest()
+    {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
+        BigDecimal grade = BigDecimal.valueOf(83);
+        BigDecimal gpa = BigDecimal.valueOf(4.0);
+        int res = takesMapper.delete(new Takes("2","2","2019","2","3","liujinke",grade,gpa));
+        System.out.println(res);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }
