@@ -6,17 +6,22 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.utils.MybatisUtils;
 
-import java.util.List;
+import java.util.*;
 
 public class StudentMapperTest {
     @Test
     public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper mapper =  sqlSession.getMapper(StudentMapper.class);
-        List<Section> allSection = mapper.getAllSection();
+        SectionMapper mapper =  sqlSession.getMapper(SectionMapper.class);
+        Map<String,Integer> map = new HashMap<String,Integer>();
+//        Map<String,Integer> map = null;
+        map.put("startIndex",1);
+        map.put("pageSize",3);
 
-        for (Section section : allSection) {
-            System.out.println(section);
+        List<Map<String,Object>> allSection = mapper.getSectionByLimit(map);
+
+        for (Map<String,Object> map1: allSection) {
+            System.out.println(map1);
         }
         sqlSession.close();
     }

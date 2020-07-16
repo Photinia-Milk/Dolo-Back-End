@@ -23,6 +23,13 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
     private TakesMapper takesMapper;
     private SectionMapper sectionMapper;
+//
+//    @Override
+//    public StudentServiceImpl(StudentMapper studentMapper, TakesMapper takesMapper, SectionMapper sectionMapper) {
+//        this.studentMapper = studentMapper;
+//        this.takesMapper = takesMapper;
+//        this.sectionMapper = sectionMapper;
+//    }
 
 //    @Override
 //    public List<Map> findSectionValid() {

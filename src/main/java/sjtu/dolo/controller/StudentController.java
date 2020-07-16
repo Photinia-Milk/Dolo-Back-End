@@ -16,44 +16,33 @@ public class StudentController {
 
     @RequestMapping("/course_valid")
     @ResponseBody
-    public List<Map<String, Object>> getCourseValid(JSONObject data) {
-        try{
-            assert data != null;
-            System.out.println("data:");
-            System.out.println(data);
-            int startIdx = data.optInt("startIndex");
-            int pageSize = data.optInt("pageSize");
-            System.out.println(startIdx);
-            System.out.println(pageSize);
-            return studentService.findSectionValid(startIdx, pageSize);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
+
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
+        return studentService.findSectionValid(startIdx, pageSize);
     }
 
 
 
     @RequestMapping("/course_search")
     @ResponseBody
-    public List<Map<String, Object>> searchCourse(JSONObject data) {
-//        int startIdx = data.getInt("startIndex");
-        int startIdx = data.optInt("startIndex");
-        int pageSize = data.optInt("pageSize");
+    public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
+        int startIdx = data.getInt("startIndex");
+        int pageSize = data.getInt("pageSize");
         String searchString = data.getString("searchString");
         return studentService.findSection(searchString, startIdx, pageSize);
     }
 
     @RequestMapping("/course_select")
     @ResponseBody
-    public int selectCourse(JSONObject data) {
+    public int selectCourse(@RequestBody JSONObject data) {
         return studentService.addCourseTakes(data);
     }
 
     @RequestMapping("/course_drop")
     @ResponseBody
-    public int dropCourse(JSONObject data) {
+    public int dropCourse(@RequestBody JSONObject data) {
         return studentService.delCourseTakes(data);
     }
 
