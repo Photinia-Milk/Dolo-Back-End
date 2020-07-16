@@ -2,6 +2,7 @@ package sjtu.dolo.serviceimpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.StudentMapper;
@@ -9,6 +10,7 @@ import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.Section;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.service.StudentService;
+import sjtu.dolo.utils.MybatisUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -24,6 +26,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Resource
     private SectionMapper sectionMapper;
+
+    @Resource
+    private StudentMapper studentMapper;
 
     @Override
     public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
@@ -61,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
         String weeks = data.getString("weeks");
         int maxnum = data.getInt("maxnum");
         int currentnum = data.getInt("currentnum");
-        Takes takes = new Takes(secID, semester, year, timeslotID, user_name, courseID, null ,null);
+        Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
         Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
 
         sectionWrapper
@@ -70,8 +75,14 @@ public class StudentServiceImpl implements StudentService {
                 .eq("year",year)
                 .eq("timelotID",timeslotID)
                 .eq("courseID", courseID);
-        int takesStatus = takesMapper.insert(takes);
-        int sectionStatus = sectionMapper.update(newSection,sectionWrapper);
+
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+        int takesStatus = tMapper.addTakes(takes);
+        int sectionStatus = sMapper.update(newSection,sectionWrapper);
+        sqlSession.commit();
+        sqlSession.close();
 
         int result = 0;
         if(takesStatus > 0 && sectionStatus > 0){
