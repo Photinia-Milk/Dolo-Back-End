@@ -17,20 +17,30 @@ public class StudentController {
     @RequestMapping("/course_valid")
     @ResponseBody
     public List<Map<String, Object>> getCourseValid(JSONObject data) {
-        System.out.println("data:");
-        System.out.println(data);
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
-        System.out.println(startIdx);
-        System.out.println(pageSize);
-        return studentService.findSectionValid(startIdx, pageSize);
+        try{
+            assert data != null;
+            System.out.println("data:");
+            System.out.println(data);
+            int startIdx = data.optInt("startIndex");
+            int pageSize = data.optInt("pageSize");
+            System.out.println(startIdx);
+            System.out.println(pageSize);
+            return studentService.findSectionValid(startIdx, pageSize);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
+
+
 
     @RequestMapping("/course_search")
     @ResponseBody
     public List<Map<String, Object>> searchCourse(JSONObject data) {
-        int startIdx = data.getInt("startIndex");
-        int pageSize = data.getInt("pageSize");
+//        int startIdx = data.getInt("startIndex");
+        int startIdx = data.optInt("startIndex");
+        int pageSize = data.optInt("pageSize");
         String searchString = data.getString("searchString");
         return studentService.findSection(searchString, startIdx, pageSize);
     }

@@ -8,9 +8,9 @@ import java.util.Map;
 public interface StudentService {
 //    List<Map> findSectionValid();
 
-    List<Map<String, Object>> findSectionValid(int startIdx, int pageSize);
+    List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize);
 
-    List<Map<String, Object>> findSection(String searchString, int startIdx, int pageSize);
+    List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize);
 
     int addCourseTakes(JSONObject data);
 
