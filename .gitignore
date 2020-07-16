@@ -32,6 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+# bat files
 ### Push and Pull
 push.bat
 pull.bat

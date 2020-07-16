@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 @Service
 public class StudentServiceImpl implements StudentService {
     @Resource
@@ -36,16 +37,15 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<Map<String, Object>> findSectionValid(int startIdx, int pageSize) {
+    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
-        map.put("page", pageSize);
-//        SectionMapper sectionMapper = new SectionMapper() ;
+        map.put("pageSize", pageSize);
         return sectionMapper.getSectionByLimit(map);
     }
 
     @Override
-    public List<Map<String, Object>> findSection(String searchString, int startIdx, int pageSize) {
+    public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("page", pageSize);
