@@ -10,6 +10,7 @@ import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.Section;
 import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.Takes;
+import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
@@ -26,16 +27,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Resource
     private SectionMapper sectionMapper;
-//
-//    @Override
-//    public StudentServiceImpl(StudentMapper studentMapper, TakesMapper takesMapper, SectionMapper sectionMapper) {
-//        this.studentMapper = studentMapper;
-//        this.takesMapper = takesMapper;
-//        this.sectionMapper = sectionMapper;
-//    }
 
-    @Resource
-    private StudentMapper studentMapper;
+
 
 //    @Override
 //    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
@@ -55,20 +48,25 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize) {
-        System.out.println(startIdx);
+
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
-        System.out.println(map);
+
         List<SectionCourseTimeSlotVO> itemList;
         itemList = sectionMapper.getSectionByLimit(map);
-        System.out.println(itemList);
+
         return itemList;
     }
 
     @Override
-    public List<Map<String, Object>> findSection(String searchString, Integer startIdx, Integer pageSize) {
-        return null;
+    public List<SectionCourseTimeSlotVO> findSection(String searchString, Integer startIdx, Integer pageSize) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("pageSize", pageSize);
+        List<SectionCourseTimeSlotVO> itemList;
+        itemList = sectionMapper.getSectionLike(searchString, map);
+        return itemList;
     }
 
     @Override
@@ -163,7 +161,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Map<String, Object>> findTakeList(String user_name) {
+    public List<TakesCourseStudentVO> findTakeList(String user_name) {
 //        return studentMapper.getAllTakes(user_name);
 //        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
 //        takesQueryWrapper
@@ -171,7 +169,7 @@ public class StudentServiceImpl implements StudentService {
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
 //
-         return null;
+         return takesMapper.getTakes(user_name);
     }
 
 
