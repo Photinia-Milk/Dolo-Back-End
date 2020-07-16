@@ -62,7 +62,6 @@ public class StudentControllerTest extends CourseApplicationTests {
         .andExpect());
     }
 
-
     @Test
     public void searchCourse() throws Exception {
         int startIdx = data.getInt("startIndex");
