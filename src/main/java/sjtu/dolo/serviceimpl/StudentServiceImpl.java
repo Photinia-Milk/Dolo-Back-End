@@ -53,7 +53,12 @@ public class StudentServiceImpl implements StudentService {
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
 
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         List<SectionCourseTimeSlotVO> itemList;
+//        itemList = sMapper.getSectionByLimit(map);
+//        sqlSession.commit();
+//        sqlSession.close();
         itemList = sectionMapper.getSectionByLimit(map);
 
         return itemList;
@@ -67,6 +72,13 @@ public class StudentServiceImpl implements StudentService {
         System.out.println(map);
         List<SectionCourseTimeSlotVO> itemList;
         String search = "%"+searchString+"%";
+
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+//        itemList = sMapper.getSectionLike(search, map);
+//        sqlSession.commit();
+//        sqlSession.close();
+//        System.out.println(itemList);
         itemList = sectionMapper.getSectionLike(search, map);
         return itemList;
     }
@@ -181,7 +193,13 @@ public class StudentServiceImpl implements StudentService {
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
 //
-         return takesMapper.getTakes(user_name);
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
+        List<TakesCourseStudentVO> itemList;
+        itemList = takesMapper.getTakes(user_name);
+        sqlSession.commit();
+        sqlSession.close();
+         return itemList;
     }
 
 

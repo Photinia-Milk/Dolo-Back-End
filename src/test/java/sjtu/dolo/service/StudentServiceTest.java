@@ -9,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,6 +24,7 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.serviceimpl.StudentServiceImpl;
 
 import java.math.BigDecimal;
 import java.sql.Time;
@@ -40,10 +43,17 @@ import static org.mockito.Mockito.*;
 public class StudentServiceTest extends CourseApplicationTests {
 
 
-    @Test
-    public void contextLoads() {
-
+    @TestConfiguration
+    static class StudentServiceImplyTestContextConfiguration{
+        @Bean
+        public StudentService studentService() {
+            return new StudentServiceImpl();
+        }
     }
+//    @Test
+//    public void contextLoads() {
+//
+//    }
 
     @Autowired
     private StudentService studentService;
@@ -160,10 +170,12 @@ public class StudentServiceTest extends CourseApplicationTests {
     public void findTakeList() {
         String name = "amadeus";
         List<TakesCourseStudentVO> vo = new LinkedList<>();
-        vo.add(new TakesCourseStudentVO("2","1","2019","1","1","amadeus",null,null,"1","ICS","必修",null,null,null, (short) 0,null,null,null,null,null));
-        when(takesMapper.getTakes(name)).thenReturn(vo);
+//        vo.add(new TakesCourseStudentVO("2","2","2019","2","3","amadeus",null,null,"1","Computer Science","必修","Xingyu",null,null, (short) 0,null,null,null,null,null));
+        vo.add(new TakesCourseStudentVO("1","2","2019","1","1","amadeus",null,null,"1","ICS","必修","Xingyu",null,null, (short) 0,null,null,null,null,null));
+//        when(takesMapper.getTakes(name)).thenReturn(vo);
+//        System.out.println(studentService.findTakeList(name));
         for(int i = 0; i < vo.size(); i++){
-            assertEquals(vo.get(i), takesMapper.getTakes(name).get(i));
+            assertEquals(vo.get(i), studentService.findTakeList(name).get(i));
         }
 //        assertEquals(vo, studentService.findTakeList(name));
     }
