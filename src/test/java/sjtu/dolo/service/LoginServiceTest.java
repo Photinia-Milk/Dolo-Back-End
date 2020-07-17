@@ -62,14 +62,14 @@ public class LoginServiceTest extends CourseApplicationTests {
         assertEquals(msgA.getStatus(), loginService.login(usernameA,passwordA).getStatus());
         assertEquals(msgA.getData(), loginService.login(usernameA,passwordA).getData());
 
-//        String usernameW = "admin";
-//        String passwordW = "iamanidiot";
-//        UserAuth userAuthW = new UserAuth();
-//        userAuthW.setUser_name("admin");
-//        userAuthW.setPassword("iamanidiot");
-//        Msg msgW = new Msg(1, null);
-//        when(userAuthMapper.checkUser(usernameW, passwordW)).thenReturn(userAuthW);
-//        assertEquals(msgW.getStatus(), loginService.login(usernameW,passwordW).getStatus());
-//        assertEquals(msgW.getData(), loginService.login(usernameW,passwordW).getData());
+        String usernameW = "admin";
+        String passwordW = "iamanidiot";
+        UserAuth userAuthW = new UserAuth();
+        userAuthW.setUser_name("admin");
+        userAuthW.setPassword("iamanidiot");
+        Msg msgW = new Msg(1, null);
+        when(userAuthMapper.checkUser(usernameW, passwordW)).thenReturn(userAuthW);
+        assertEquals(msgW.getStatus(), loginService.login(usernameW,passwordW).getStatus());
+        assertEquals(msgW.getData(), loginService.login(usernameW,passwordW).getData());
     }
 }
