@@ -70,8 +70,8 @@ public class StudentControllerTest extends CourseApplicationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         int startIdx = 0;
         int pageSize = 3;
-        params.add("start_index", String.valueOf(startIdx));
-        params.add("page_size", String.valueOf(pageSize));
+        params.add("startIndex", String.valueOf(startIdx));
+        params.add("pageSize", String.valueOf(pageSize));
         MvcResult mvcResult = mockMvc.perform(get("api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();

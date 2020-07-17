@@ -20,8 +20,8 @@ public class StudentController {
     @ResponseBody
 
     public List<SectionCourseTimeSlotVO> getCourseValid(
-            @RequestParam("start_index") int startIdx,
-            @RequestParam("page_size") int pageSize) {
+            @RequestParam("startIndex") int startIdx,
+            @RequestParam("pageSize") int pageSize) {
 
         return studentService.findSectionValid(startIdx, pageSize);
     }
