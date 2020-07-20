@@ -72,7 +72,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         int pageSize = 3;
         params.add("start_index", String.valueOf(startIdx));
         params.add("page_size", String.valueOf(pageSize));
-        MvcResult mvcResult = mockMvc.perform(get("api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         List<SectionCourseTimeSlotVO> sectionCourseTimeSlotVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseTimeSlotVO>>() {});
@@ -89,7 +89,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         params.add("start_index", String.valueOf(startIdx));
         params.add("page_size", String.valueOf(pageSize));
         params.add("key", searchString);
-        MvcResult mvcResult = mockMvc.perform(get("api/student/course_search").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/student/course_search").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         List<SectionCourseTimeSlotVO> sectionCourseTimeSlotVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseTimeSlotVO>>() {});
@@ -101,7 +101,7 @@ public class StudentControllerTest extends CourseApplicationTests {
     public void selectCourse() throws Exception {
         JSONObject data = new JSONObject();
         // data 初始化没做！！！！！
-        MvcResult mvcResult = mockMvc.perform(post("api/student/course_select").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/student/course_select").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         int status = om.readValue(resultContent, new TypeReference<Integer>() {});
@@ -113,7 +113,7 @@ public class StudentControllerTest extends CourseApplicationTests {
     public void dropCourse() throws Exception {
         JSONObject data = new JSONObject();
         // data 初始化没做！！！！！
-        MvcResult mvcResult = mockMvc.perform(post("api/student/course_drop").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/student/course_drop").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         int status = om.readValue(resultContent, new TypeReference<Integer>() {});
@@ -126,7 +126,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         String user_name = "user_name";
         params.add("user_name", user_name);
-        MvcResult mvcResult = mockMvc.perform(get("api/student/course_list").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/student/course_list").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         List<TakesCourseStudentVO> takesCourseStudentVOS = om.readValue(resultContent, new TypeReference<List<TakesCourseStudentVO>>() {});
