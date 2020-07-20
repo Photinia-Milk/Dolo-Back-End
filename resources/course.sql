@@ -3,6 +3,7 @@
 /* Created on:     2020/7/10 13:53:31                           */
 /*==============================================================*/
 
+SET FOREIGN_KEY_CHECKS = 0;
 
 drop table if exists administrators;
 
@@ -157,6 +158,8 @@ create table userAuth
    type                 varchar(8),
    primary key (user_name)
 );
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 alter table administrators add constraint FK_Reference_9 foreign key (user_name)
       references userAuth (user_name) on delete restrict on update restrict;
