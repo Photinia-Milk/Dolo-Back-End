@@ -23,7 +23,7 @@ drop table if exists teacher;
 
 drop table if exists timeslot;
 
-drop table if exists userAuth;
+drop table if exists userauth;
 
 /*==============================================================*/
 /* Table: administrators                                        */
@@ -149,9 +149,9 @@ create table timeslot
 );
 
 /*==============================================================*/
-/* Table: userAuth                                              */
+/* Table: userauth                                              */
 /*==============================================================*/
-create table userAuth
+create table userauth
 (
    user_name            varchar(16) not null,
    password             varchar(16),
@@ -162,7 +162,7 @@ create table userAuth
 SET FOREIGN_KEY_CHECKS = 1;
 
 alter table administrators add constraint FK_Reference_9 foreign key (user_name)
-      references userAuth (user_name) on delete restrict on update restrict;
+      references userauth (user_name) on delete restrict on update restrict;
 
 alter table course add constraint FK_Reference_10 foreign key (deptID)
       references department (deptID) on delete restrict on update restrict;
@@ -177,7 +177,7 @@ alter table student add constraint FK_Reference_11 foreign key (deptID)
       references department (deptID) on delete restrict on update restrict;
 
 alter table student add constraint FK_Reference_7 foreign key (user_name)
-      references userAuth (user_name) on delete restrict on update restrict;
+      references userauth (user_name) on delete restrict on update restrict;
 
 alter table takes add constraint FK_takes foreign key (secID, semester, year, timeslotID, courseID)
       references section (secID, semester, year, timeslotID, courseID) on delete restrict on update restrict;
@@ -195,7 +195,7 @@ alter table teacher add constraint FK_Reference_12 foreign key (deptID)
       references department (deptID) on delete restrict on update restrict;
 
 alter table teacher add constraint FK_Reference_8 foreign key (user_name)
-      references userAuth (user_name) on delete restrict on update restrict;
+      references userauth (user_name) on delete restrict on update restrict;
 			
 
 
