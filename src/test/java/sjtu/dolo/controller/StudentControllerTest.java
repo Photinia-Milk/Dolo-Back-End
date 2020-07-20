@@ -132,6 +132,5 @@ public class StudentControllerTest extends CourseApplicationTests {
         List<TakesCourseStudentVO> takesCourseStudentVOS = om.readValue(resultContent, new TypeReference<List<TakesCourseStudentVO>>() {});
         // 取出数量相等断言
         assertEquals(studentService.findTakeList(user_name).size(), takesCourseStudentVOS.size());
-
     }
 }
