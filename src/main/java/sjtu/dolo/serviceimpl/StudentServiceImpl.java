@@ -53,7 +53,12 @@ public class StudentServiceImpl implements StudentService {
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
 
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         List<SectionCourseTimeSlotVO> itemList;
+//        itemList = sMapper.getSectionByLimit(map);
+//        sqlSession.commit();
+//        sqlSession.close();
         itemList = sectionMapper.getSectionByLimit(map);
 
         return itemList;
@@ -67,6 +72,13 @@ public class StudentServiceImpl implements StudentService {
         System.out.println(map);
         List<SectionCourseTimeSlotVO> itemList;
         String search = "%"+searchString+"%";
+
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+//        itemList = sMapper.getSectionLike(search, map);
+//        sqlSession.commit();
+//        sqlSession.close();
+//        System.out.println(itemList);
         itemList = sectionMapper.getSectionLike(search, map);
         return itemList;
     }
@@ -99,23 +111,37 @@ public class StudentServiceImpl implements StudentService {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
-        int takesStatus = tMapper.addTakes(takes);
-        System.out.println(takesStatus);
-        int sectionStatus = sMapper.update(newSection);
-        System.out.println(sectionStatus);
-        sqlSession.commit();
-        sqlSession.close();
-
         int result = 0;
-        if(takesStatus > 0 && sectionStatus > 0){
-            return result;
-        }else if(takesStatus > 0 && sectionStatus == 0){
+        try {
+            int takesStatus = tMapper.addTakes(takes);
+            sqlSession.commit();
+        }catch (Exception e){
             result = 1;
-            return result;
-        }else {
-            result = 2;
-            return result;
+            sqlSession.rollback();
         }
+        if(result == 0){    // 若插入成功
+            int sectionStatus = sMapper.update(newSection);
+            sqlSession.commit();
+        }
+        sqlSession.close();
+        return result;
+//        int takesStatus = tMapper.addTakes(takes);
+//        System.out.println(takesStatus);
+//        int sectionStatus = sMapper.update(newSection);
+//        System.out.println(sectionStatus);
+//        sqlSession.commit();
+//        sqlSession.close();
+
+//        int result = 0;
+//        if(takesStatus > 0 && sectionStatus > 0){
+//            return result;
+//        }else if(takesStatus > 0 && sectionStatus == 0){
+//            result = 1;
+//            return result;
+//        }else {
+//            result = 2;
+//            return result;
+//        }
     }
 
     @Override
@@ -155,21 +181,38 @@ public class StudentServiceImpl implements StudentService {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
-        int takesStatus = tMapper.delTakes(takes);
-        int sectionStatus = sMapper.update(newSection);
-        sqlSession.commit();
-        sqlSession.close();
-
-        int result = 0;
-        if(takesStatus > 0 && sectionStatus > 0){
-            return result;
-        }else if(takesStatus > 0 && sectionStatus == 0){
-            result = 1;
-            return result;
-        }else {
+        int result = 1;
+        int takesStatus = 0;
+        try {
+            takesStatus = tMapper.delTakes(takes);
+            System.out.println("rows changed:" + takesStatus);
+            sqlSession.commit();
+        }catch (Exception e){
             result = 2;
-            return result;
+            sqlSession.rollback();
         }
+        if(takesStatus != 0){    // 若删除成功
+            int sectionStatus = sMapper.update(newSection);
+            sqlSession.commit();
+            result = 0;
+        }
+        sqlSession.close();
+        return result;
+//        int takesStatus = tMapper.delTakes(takes);
+//        int sectionStatus = sMapper.update(newSection);
+//        sqlSession.commit();
+//        sqlSession.close();
+//
+//        int result = 0;
+//        if(takesStatus > 0 && sectionStatus > 0){
+//            return result;
+//        }else if(takesStatus > 0 && sectionStatus == 0){
+//            result = 1;
+//            return result;
+//        }else {
+//            result = 2;
+//            return result;
+//        }
     }
 
     @Override
@@ -181,7 +224,13 @@ public class StudentServiceImpl implements StudentService {
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
 //
-         return takesMapper.getTakes(user_name);
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
+        List<TakesCourseStudentVO> itemList;
+        itemList = takesMapper.getTakes(user_name);
+        sqlSession.commit();
+        sqlSession.close();
+         return itemList;
     }
 
 

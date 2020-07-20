@@ -3,10 +3,15 @@ package sjtu.dolo.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,6 +24,7 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.serviceimpl.StudentServiceImpl;
 
 import java.math.BigDecimal;
 import java.sql.Time;
@@ -35,12 +41,22 @@ import static org.mockito.Mockito.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StudentServiceTest extends CourseApplicationTests {
-
-
     @Test
     public void contextLoads() {
 
     }
+
+    @TestConfiguration
+    static class StudentServiceImplyTestContextConfiguration{
+        @Bean
+        public StudentService studentService() {
+            return new StudentServiceImpl();
+        }
+    }
+//    @Test
+//    public void contextLoads() {
+//
+//    }
 
     @Autowired
     private StudentService studentService;
@@ -50,6 +66,26 @@ public class StudentServiceTest extends CourseApplicationTests {
 
     @MockBean
     private TakesMapper takesMapper;
+
+    @BeforeEach
+    @Test
+    public void addTakes() {
+        JSONObject data = new JSONObject();
+        data.put("secID", "1");
+        data.put("user_name", "amadeus");
+        data.put("semester", "2");
+        data.put("year", "2019");
+        data.put("timeslotID", "1");
+        data.put("courseID", "1");
+        data.put("building", "东上院");
+        data.put("roomnumber", "202");
+        data.put("credits", 3.0);
+        data.put("weeks", "第一周到第十六周");
+        data.put("maxnum", 120);
+        data.put("currentnum", 2);
+        int status = studentService.addCourseTakes(data);
+        System.out.println(status);
+    }
 
     @Test
     public void findSectionValid(){
@@ -79,7 +115,7 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time endTime = new java.sql.Time(end.getTime());
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
         vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 //        vo.add(new SectionCourseTimeSlotVO("1","1","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","Tuesday",startTime,endTime));
         when(sectionMapper.getSectionByLimit(map)).thenReturn(vo);
@@ -122,33 +158,68 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
 
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
         vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 
         when(sectionMapper.getSectionLike(search, map)).thenReturn(vo);
 //        assertEquals(vo, studentService.findSectionValid(0,2));
         for(int i = 0; i < vo.size(); i++){
-            assertEquals(vo.get(i), studentService.findSectionValid(0,2).get(i));
+            assertEquals(vo.get(i), studentService.findSection("I",0,2).get(i));
         }
-        assertEquals(2, studentService.findSectionValid(0,2).size());
+        assertEquals(2, studentService.findSection("I",0,2).size());
     }
 
     @Test
     public void findTakeList() {
         String name = "amadeus";
         List<TakesCourseStudentVO> vo = new LinkedList<>();
-        vo.add(new TakesCourseStudentVO("2","1","2019","1","1","amadeus",null,null,"1","ICS","必修",null,null,null, (short) 0,null,null,null,null,null));
-        when(takesMapper.getTakes(name)).thenReturn(vo);
+//        vo.add(new TakesCourseStudentVO("2","2","2019","2","3","amadeus",null,null,"1","Computer Science","必修","Xingyu",null,null, (short) 0,null,null,null,null,null));
+        vo.add(new TakesCourseStudentVO("1","2","2019","1","1","amadeus",null,null,"1","ICS","必修","Xingyu",null,null, (short) 0,null,null,null,null,null));
+//        when(takesMapper.getTakes(name)).thenReturn(vo);
+//        System.out.println(studentService.findTakeList(name));
         for(int i = 0; i < vo.size(); i++){
-            assertEquals(vo.get(i), takesMapper.getTakes(name).get(i));
+            assertEquals(vo.get(i), studentService.findTakeList(name).get(i));
         }
 //        assertEquals(vo, studentService.findTakeList(name));
     }
 
     @Test
-    @Transactional
-    @Rollback(true)
     public void addCourseTakes() {
+        JSONObject data = new JSONObject();
+        JSONObject wrongData = new JSONObject();
+        data.put("secID", "1");
+        data.put("user_name", "amadeus");
+        data.put("semester", "2");
+        data.put("year", "2019");
+        data.put("timeslotID", "1");
+        data.put("courseID", "1");
+        data.put("building", "东上院");
+        data.put("roomnumber", "202");
+        data.put("credits", 3.0);
+        data.put("weeks", "第一周到第十六周");
+        data.put("maxnum", 120);
+        data.put("currentnum", 2);
+        wrongData.put("secID", "1");
+        wrongData.put("user_name", "iamanidiot");
+        wrongData.put("semester", "2");
+        wrongData.put("year", "2019");
+        wrongData.put("timeslotID", "1");
+        wrongData.put("courseID", "1");
+        wrongData.put("building", "东上院");
+        wrongData.put("roomnumber", "202");
+        wrongData.put("credits", 3.0);
+        wrongData.put("weeks", "第一周到第十六周");
+        wrongData.put("maxnum", 120);
+        wrongData.put("currentnum", 2);
+        int status = 0;
+        int errorStatus = 1;
+        assertEquals(status, studentService.addCourseTakes(data));
+        assertEquals(errorStatus, studentService.addCourseTakes(wrongData));
+    }
+
+    @AfterEach
+    @Test
+    public void delTakes() {
         JSONObject data = new JSONObject();
         data.put("secID", "1");
         data.put("user_name", "amadeus");
@@ -163,14 +234,14 @@ public class StudentServiceTest extends CourseApplicationTests {
         data.put("maxnum", 120);
         data.put("currentnum", 2);
         int status = 0;
-        assertEquals(status, studentService.addCourseTakes(data));
+        assertEquals(status, studentService.delCourseTakes(data));
     }
 
     @Test
-    @Transactional
-    @Rollback(true)
     public void delCourseTakes() {
         JSONObject data = new JSONObject();
+        JSONObject wrongData = new JSONObject();
+
 //        data.put("secID", "2");
 //        data.put("user_name", "amadeus");
 //        data.put("semester", "2");
@@ -195,7 +266,21 @@ public class StudentServiceTest extends CourseApplicationTests {
         data.put("weeks", "第一周到第十六周");
         data.put("maxnum", 120);
         data.put("currentnum", 1);
+        wrongData.put("secID", "100");
+        wrongData.put("user_name", "iamanidiot");
+        wrongData.put("semester", "2");
+        wrongData.put("year", "2019");
+        wrongData.put("timeslotID", "1");
+        wrongData.put("courseID", "1");
+        wrongData.put("building", "东上院");
+        wrongData.put("roomnumber", "202");
+        wrongData.put("credits", 3.0);
+        wrongData.put("weeks", "第一周到第十六周");
+        wrongData.put("maxnum", 120);
+        wrongData.put("currentnum", 2);
         int status = 0;
+        int errStatus1 = 1;
+
 //        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
 //        takesQueryWrapper
 //                .eq("secID", "2")
@@ -208,5 +293,6 @@ public class StudentServiceTest extends CourseApplicationTests {
 //        BigDecimal big = BigDecimal.valueOf(3.0);
 //        Section section = new Section("1", "2", "2019", "1", "1", "东上院", "202", big, "第一周到第十六周", 120, 2);
         assertEquals(status, studentService.delCourseTakes(data));
+        assertEquals(errStatus1, studentService.delCourseTakes(wrongData));
     }
 }
