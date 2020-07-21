@@ -14,6 +14,7 @@ node{
 		sh 'mvn package'
 	}
 	stage('Pack Docker img'){
+		sh 'docker ps'
 		sh 'docker build -t dolo:back-end .'
 	}
 }
