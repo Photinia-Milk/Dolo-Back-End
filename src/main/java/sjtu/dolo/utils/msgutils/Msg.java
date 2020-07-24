@@ -7,10 +7,6 @@ public class Msg {
     private String msg; //信息
     private JSONObject data; //待传数据
 
-    public Msg(){
-
-    }
-
     public Msg(int status, String extra, JSONObject data){
         this.status = status;
         this.msg = extra;
@@ -21,6 +17,9 @@ public class Msg {
         this.status = status;
         this.msg = extra;
         this.data = null;
+    }
+
+    public Msg() {
     }
 
     public int getStatus() {

@@ -2,10 +2,10 @@
 //
 //import com.fasterxml.jackson.core.type.TypeReference;
 //import com.fasterxml.jackson.databind.ObjectMapper;
-//import org.apache.ibatis.session.SqlSession;
+//import net.sf.json.JSONObject;
 //import org.junit.Before;
-//import org.junit.Test;
 //import org.junit.jupiter.api.AfterEach;
+//import org.junit.jupiter.api.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
@@ -14,23 +14,22 @@
 //import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.test.web.servlet.MvcResult;
 //import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-//import org.springframework.util.LinkedMultiValueMap;
-//import org.springframework.util.MultiValueMap;
 //import org.springframework.web.context.WebApplicationContext;
-//import sjtu.dolo.mapper.UserAuthMapper;
-//import sjtu.dolo.model.UserAuth;
+//import sjtu.dolo.CourseApplicationTests;
+//import sjtu.dolo.model.SectionCourseTimeSlotVO;
 //import sjtu.dolo.service.LoginService;
-//import sjtu.dolo.utils.MybatisUtils;
+//import sjtu.dolo.service.StudentService;
 //import sjtu.dolo.utils.msgutils.Msg;
 //
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+//import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
+//import static org.junit.jupiter.api.Assertions.*;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 //
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-//public class LoginController {
+//class LoginControllerTest extends CourseApplicationTests {
+//
 //    @Test
 //    public void contentLoads(){}
 //
@@ -57,27 +56,21 @@
 //
 //    @Test
 //    public void login() throws Exception{
-//        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-//        String username = "hey";
-//        String password = "okay";
-//        params.add("username", username);
-//        params.add("password", password);
-//        MvcResult mvcResult = mockMvc.perform(post("api/login").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
-//                .andExpect(status().isOk()).andReturn();
+//        JSONObject data = new JSONObject();
+//        String username = "test";
+//        String password = "test";
+//        data.put("username",username);
+//        data.put("password",password);
+//        System.out.println(data.toString());
+//        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/login")
+//                .contentType(MediaType.APPLICATION_JSON))
+////                .andExpect(jsonPath("$.data.username", is("test")))
+////                .andExpect(jsonPath("$.data.password", is("password")))
+//                .andExpect(status().isOk())
+//                .andReturn();
+//        System.out.println("HaHa");
 //        String resultContent = mvcResult.getResponse().getContentAsString();
 //        Msg msg = om.readValue(resultContent, new TypeReference<Msg>() {});
-//        SqlSession sqlSession = MybatisUtils.getSqlSession();
-//        UserAuthMapper uMapper = sqlSession.getMapper(UserAuthMapper.class);
-//        UserAuth userAuth = uMapper.checkUser(username, password);
-//        sqlSession.commit();
-//        sqlSession.close();
-//        if (userAuth == null)
-//        {
-//            assertEquals(msg.getStatus(), 0);
-//        }
-//        else
-//        {
-//            assertEquals(msg.getStatus(), 1);
-//        }
+//        assertEquals(loginService.login(username, password), msg);
 //    }
 //}

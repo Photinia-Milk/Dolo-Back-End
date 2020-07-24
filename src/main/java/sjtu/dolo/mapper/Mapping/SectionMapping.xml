@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.SectionMapper">
-    <select id="findSectionByLimit" parameterType="map" resultType="sjtu.dolo.model.Section">
-        select * from course.section limit #{startIndex},#{pageSize}
+     <select id="findSectionByCourseId" resultType="sjtu.dolo.model.Section">
+         select * from course2.section where courseId = #{courseId}
+     </select>
+    <select id="getSectionToSelect" resultType="sjtu.dolo.model.Section">
+        select * from course2.section where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
     </select>
-    <select id="findSectionLike" resultType="sjtu.dolo.model.Section">
-        select * from course.section natural join course.course where coursename like #{value}
-    </select>
-    <update id="update" parameterType="sjtu.dolo.model.Section">
-        update course.section set building = #{building}, roomnumber = #{roomNumber}, credits = #{credits}, weeks = #{weeks}, maxnum = #{maxNum}, currentnum = #{currentNum} where secID = #{secID} and semester = #{semester} and year = #{year} and timeslotID = #{timeSlotID} and courseID = #{courseID}
+    <update id="updateCurrentNum" >
+        update course2.section set currentNum = currentNum + 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
     </update>
 </mapper>

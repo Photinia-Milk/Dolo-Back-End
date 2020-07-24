@@ -1,19 +1,25 @@
 package sjtu.dolo.model;
 
 public class UserAuth {
-    private String user_name; //用户名
+    private String userName; //用户名
     private String password; //密码
     private String type; //用户类型
 
     public UserAuth() {
     }
 
-    public String getUser_name() {
-        return user_name;
+    public UserAuth(String userName, String password, String type) {
+        this.userName = userName;
+        this.password = password;
+        this.type = type;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -35,7 +41,7 @@ public class UserAuth {
     @Override
     public String toString() {
         return "UserAuth{" +
-                "user_name='" + user_name + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
                 '}';
