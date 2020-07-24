@@ -54,7 +54,7 @@ public class StudentController {
 
     @GetMapping("/course_list")
     @ResponseBody
-    public List<TakesCourseStudentVO> getCourseList(@RequestParam("user_name") String user_name) {
+    public Map<Integer, List<TakesCourseStudentVO>> getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);
     }
 }

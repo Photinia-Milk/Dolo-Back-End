@@ -7,9 +7,12 @@
         select * from course2.course limit #{startIndex},#{pageSize}
     </select>
     <select id="getCourseLike" resultType="sjtu.dolo.model.Course">
-        select * from course2.course where courseName like #{value} limit #{startIndex},#{pageSize}
+        select * from course2.course where courseName like #{value} limit #{map.startIndex},#{map.pageSize}
     </select>
     <select id="getPageNumber" resultType="int">
-        select count(*)/#{pageSize} from course2.course
+        select count(*) from course2.course
+    </select>
+    <select id="getSearchPageNumber" resultType="int">
+        select count(*) from course2.course where courseName like #{searchString}
     </select>
 </mapper>

@@ -20,5 +20,5 @@ public interface StudentService {
 
     int delCourseTakes(JSONObject data);
 
-    List<TakesCourseStudentVO> findTakeList(String studentID);
+    Map<Integer, List<TakesCourseStudentVO>> findTakeList(String studentID);
 }

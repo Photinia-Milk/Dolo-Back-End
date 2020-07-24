@@ -8,5 +8,6 @@ import java.util.Map;
 public interface CourseMapper {
     List<Course> getCourse(Map<String,Integer> map);
     List<Course> getCourseLike(Map<String,Integer> map,String value);
-    int getPageNumber(int pageSize);
+    int getPageNumber();
+    int getSearchPageNumber(String searchString);
 }
