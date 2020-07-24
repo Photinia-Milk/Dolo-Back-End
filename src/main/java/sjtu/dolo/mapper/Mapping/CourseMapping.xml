@@ -9,4 +9,7 @@
     <select id="getCourseLike" resultType="sjtu.dolo.model.Course">
         select * from course2.course where courseName like #{value} limit #{startIndex},#{pageSize}
     </select>
+    <select id="getPageNumber" resultType="int">
+        select count(*)/#{pageSize} from course2.course
+    </select>
 </mapper>
