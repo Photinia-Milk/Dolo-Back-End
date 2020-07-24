@@ -15,7 +15,4 @@
     <select id="getSearchPageNumber" resultType="int">
         select count(*) from course2.course where courseName like #{searchString}
     </select>
-    <select id="getPageNumber" resultType="int">
-        select count(*)/#{pageSize} from course2.course
-    </select>
 </mapper>

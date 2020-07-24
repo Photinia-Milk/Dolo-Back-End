@@ -106,14 +106,17 @@ public class StudentServiceImpl implements StudentService {
         String teacherUserName = data.getString("teacherUserName");
         Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
 
+        System.out.println(takes);
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 0;
         try {
-            int takesStatus = tMapper.addTakes(takes);
+            int takesStatus = tMapper.insert(takes);
+            System.out.println(takesStatus);
             sqlSession.commit();
         }catch (Exception e){
+            System.out.println(e.toString());
             result = 1;
             sqlSession.rollback();
         }
@@ -121,6 +124,7 @@ public class StudentServiceImpl implements StudentService {
             int sectionStatus = sMapper.updateCurrentNum(courseID, semester, year, teacherUserName);
             sqlSession.commit();
         }
+
         sqlSession.close();
         return result;
 //        int takesStatus = tMapper.addTakes(takes);
@@ -152,15 +156,16 @@ public class StudentServiceImpl implements StudentService {
         Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 1;
         int takesStatus = 0;
         try {
-            takesStatus = tMapper.delTakes(takes);
+            takesStatus = tMapper.delete(takes);
             System.out.println("rows changed:" + takesStatus);
             sqlSession.commit();
         }catch (Exception e){
+            System.out.println(e.toString());
             result = 2;
             sqlSession.rollback();
         }
