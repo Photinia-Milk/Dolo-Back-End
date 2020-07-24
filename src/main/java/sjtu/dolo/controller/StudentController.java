@@ -3,6 +3,8 @@ package sjtu.dolo.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sjtu.dolo.model.Course;
+import sjtu.dolo.model.Section;
 import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
@@ -18,25 +20,29 @@ public class StudentController {
 
     @GetMapping("/course_valid")
     @ResponseBody
-
-    public List<SectionCourseTimeSlotVO> getCourseValid(
+    public List<Course> getCourseValid(
             @RequestParam("startIndex") int startIdx,
             @RequestParam("pageSize") int pageSize) {
 
-        return studentService.findSectionValid(startIdx, pageSize);
+//        return studentService.findSectionValid(startIdx, pageSize);
+        return null;
     }
 
-
+    @GetMapping("/section_valid")
+    @ResponseBody
+    public List<Section> getSectionValid(@RequestParam("courseId") String courseId){
+        return null;
+    }
 
     @GetMapping("/course_search")
     @ResponseBody
-
-    public List<SectionCourseTimeSlotVO> searchCourse(
+    public List<Course> searchCourse(
             @RequestParam("start_index") int startIdx,
             @RequestParam("page_size") int pageSize,
             @RequestParam("key") String searchString) {
 
-        return studentService.findSection(searchString, startIdx, pageSize);
+//        return studentService.findSection(searchString, startIdx, pageSize);\
+        return null;
     }
 
     @PostMapping("/course_select")

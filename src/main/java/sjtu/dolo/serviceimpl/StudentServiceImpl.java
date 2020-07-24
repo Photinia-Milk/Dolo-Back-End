@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.Takes;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.*;
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
@@ -28,7 +25,8 @@ public class StudentServiceImpl implements StudentService {
     @Resource
     private SectionMapper sectionMapper;
 
-
+    @Resource
+    private CourseMapper courseMapper;
 
 //    @Override
 //    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
@@ -47,7 +45,16 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize) {
+    public List<Course> findCourseValid(Integer startIdx, Integer pageSize){
+        Map<String, Integer> map = new HashMap<>();
+        map.put("startIndex", startIdx);
+        map.put("pageSize", pageSize);
+        List<Course> itemList;
+        itemList = courseMapper.getCourseByLimit(map);
+    }
+
+    @Override
+    public List<Section> findSectionValid(String courseId) {
 
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
@@ -59,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
 //        itemList = sMapper.getSectionByLimit(map);
 //        sqlSession.commit();
 //        sqlSession.close();
-        itemList = sectionMapper.getSectionByLimit(map);
+        itemList = sectionMapper.getSection(map);
 
         return itemList;
     }
