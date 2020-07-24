@@ -8,10 +8,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import sjtu.dolo.service.LoginService;
-import sjtu.dolo.utils.Oauth2Properties;
 import sjtu.dolo.utils.msgutils.Msg;
 
 //@Slf4j

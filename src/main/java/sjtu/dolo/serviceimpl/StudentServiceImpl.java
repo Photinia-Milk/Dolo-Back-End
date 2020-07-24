@@ -1,6 +1,5 @@
 package sjtu.dolo.serviceimpl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,22 +45,29 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<Course> findCourseValid(Integer startIdx, Integer pageSize){
+    public Map<Integer, List<Course>> findCourseValid(Integer startIdx, Integer pageSize){
         Map<String, Integer> map = new HashMap<>();
+        Map<Integer, List<Course>> returnMap = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         List<Course> itemList;
+        int pageNum;
+        pageNum = courseMapper.getPageNumber();
         itemList = courseMapper.getCourse(map);
-        return itemList;
+        returnMap.put(pageNum, itemList);
+//        return itemList;
+        return returnMap;
     }
 
     @Override
-    public List<Course> findCourse(String searchString, Integer startIdx, Integer pageSize) {
+    public Map<Integer, List<Course>> findCourse(String searchString, Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
+        Map<Integer, List<Course>> returnMap = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         System.out.println(map);
         List<Course> itemList;
+        int pageNum;
         String search = "%"+searchString+"%";
 
 //        SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -71,8 +76,11 @@ public class StudentServiceImpl implements StudentService {
 //        sqlSession.commit();
 //        sqlSession.close();
 //        System.out.println(itemList);
+        pageNum = courseMapper.getSearchPageNumber(search);
         itemList = courseMapper.getCourseLike(map,search);
-        return itemList;
+        returnMap.put(pageNum, itemList);
+//        return itemList;
+        return returnMap;
     }
 
     @Override
@@ -181,7 +189,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<TakesCourseStudentVO> findTakeList(String user_name) {
+    public Map<Integer, List<TakesCourseStudentVO>> findTakeList(String user_name) {
 //        return studentMapper.getAllTakes(user_name);
 //        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
 //        takesQueryWrapper
@@ -189,13 +197,16 @@ public class StudentServiceImpl implements StudentService {
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
 //
+        Map<Integer, List<TakesCourseStudentVO>> returnMap = new HashMap<>();
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
         List<TakesCourseStudentVO> itemList;
         itemList = takesMapper.getTakes(user_name);
+        int pageNum = takesMapper.getSearchPageNumber(user_name);
         sqlSession.commit();
         sqlSession.close();
-        return itemList;
+        returnMap.put(pageNum, itemList);
+        return returnMap;
     }
 
 
