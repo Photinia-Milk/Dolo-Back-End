@@ -9,4 +9,7 @@
     <select id="findSectionLike" resultType="sjtu.dolo.model.Section">
         select * from course.section natural join course.course where coursename like #{value}
     </select>
+    <update id="update" parameterType="sjtu.dolo.model.Section">
+        update course.section set building = #{building}, roomnumber = #{roomNumber}, credits = #{credits}, weeks = #{weeks}, maxnum = #{maxNum}, currentnum = #{currentNum} where secID = #{secID} and semester = #{semester} and year = #{year} and timeslotID = #{timeSlotID} and courseID = #{courseID}
+    </update>
 </mapper>

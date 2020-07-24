@@ -3,6 +3,8 @@ package sjtu.dolo.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sjtu.dolo.model.SectionCourseTimeSlotVO;
+import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
@@ -14,44 +16,44 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("/course_valid")
+    @GetMapping("/course_valid")
     @ResponseBody
-    public List<Map<String, Object>> getCourseValid(@RequestBody JSONObject data) {
-        assert data != null;
-        System.out.println("data:");
-        System.out.println(data);
-        Integer startIdx = data.optInt("startIndex");
-        Integer pageSize = data.optInt("pageSize");
-        System.out.println(startIdx);
-        System.out.println(pageSize);
+
+    public List<SectionCourseTimeSlotVO> getCourseValid(
+            @RequestParam("startIndex") int startIdx,
+            @RequestParam("pageSize") int pageSize) {
+
         return studentService.findSectionValid(startIdx, pageSize);
     }
 
-    @RequestMapping("/course_search")
+
+
+    @GetMapping("/course_search")
     @ResponseBody
-    public List<Map<String, Object>> searchCourse(@RequestBody JSONObject data) {
-//        int startIdx = data.getInt("startIndex");
-        int startIdx = data.optInt("startIndex");
-        int pageSize = data.optInt("pageSize");
-        String searchString = data.getString("searchString");
+
+    public List<SectionCourseTimeSlotVO> searchCourse(
+            @RequestParam("start_index") int startIdx,
+            @RequestParam("page_size") int pageSize,
+            @RequestParam("key") String searchString) {
+
         return studentService.findSection(searchString, startIdx, pageSize);
     }
 
-    @RequestMapping("/course_select")
+    @PostMapping("/course_select")
     @ResponseBody
     public int selectCourse(@RequestBody JSONObject data) {
         return studentService.addCourseTakes(data);
     }
 
-    @RequestMapping("/course_drop")
+    @PostMapping("/course_drop")
     @ResponseBody
     public int dropCourse(@RequestBody JSONObject data) {
         return studentService.delCourseTakes(data);
     }
 
-    @RequestMapping("/course_list")
+    @GetMapping("/course_list")
     @ResponseBody
-    public List<Map<String, Object>> getCourseList(@RequestParam("user_name") String user_name) {
+    public List<TakesCourseStudentVO> getCourseList(@RequestParam("user_name") String user_name) {
         return studentService.findTakeList(user_name);
     }
 }

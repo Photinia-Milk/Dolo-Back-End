@@ -3,10 +3,7 @@ package sjtu.dolo.controller;
 
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sjtu.dolo.service.LoginService;
 import sjtu.dolo.utils.msgutils.Msg;
 
@@ -24,7 +21,7 @@ public class LoginController {
 //        return ;
 //    }
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     public Msg login(@RequestBody JSONObject data) {
         System.out.println(data);

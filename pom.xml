@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sjtu</groupId>
-	<artifactId>couse</artifactId>
+	<artifactId>dolo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>couse</name>
+	<name>course</name>
 	<description>A project for Course Selection</description>
 
 	<properties>
@@ -93,6 +93,13 @@
 			<artifactId>mybatis-plus-generator</artifactId>
 			<version>3.3.2</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

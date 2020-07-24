@@ -10,14 +10,15 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
-class CouseApplicationTests {
+public
+class CourseApplicationTests {
 
-	@Autowired
-	private StudentMapper studentMapper;
-	@Test
-	void contextLoads() {
-		List<Student> students = studentMapper.selectList(null);
-		students.forEach(System.out::println);
-	}
+//	@Autowired
+//	private StudentMapper studentMapper;
+//	@Test
+//	void contextLoads() {
+//		List<Student> students = studentMapper.selectList(null);
+//		students.forEach(System.out::println);
+//	}
 
 }
