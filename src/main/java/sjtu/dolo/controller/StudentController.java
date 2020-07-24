@@ -20,25 +20,23 @@ public class StudentController {
             @RequestParam("startIndex") int startIdx,
             @RequestParam("pageSize") int pageSize) {
 
-//        return studentService.findSectionValid(startIdx, pageSize);
-        return null;
+        return studentService.findCourseValid(startIdx, pageSize);
     }
 
     @GetMapping("/section_valid")
     @ResponseBody
     public List<Section> getSectionValid(@RequestParam("courseId") String courseId){
-        return null;
+        return studentService.findSectionValid(courseId);
     }
 
     @GetMapping("/course_search")
     @ResponseBody
     public List<Course> searchCourse(
-            @RequestParam("start_index") int startIdx,
-            @RequestParam("page_size") int pageSize,
+            @RequestParam("startIndex") int startIdx,
+            @RequestParam("pageSize") int pageSize,
             @RequestParam("key") String searchString) {
 
-//        return studentService.findSection(searchString, startIdx, pageSize);\
-        return null;
+        return studentService.findCourse(searchString, startIdx, pageSize);
     }
 
     @PostMapping("/course_select")
@@ -55,7 +53,7 @@ public class StudentController {
 
     @GetMapping("/course_list")
     @ResponseBody
-    public List<SecTime> getCourseList(@RequestParam("user_name") String user_name) {
-       // return studentService.findTakeList(user_name);
+    public List<TakesCourseStudentVO> getCourseList(@RequestParam("user_name") String user_name) {
+        return studentService.findTakeList(user_name);
     }
 }
