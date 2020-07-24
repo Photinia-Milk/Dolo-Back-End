@@ -6,12 +6,13 @@ import sjtu.dolo.model.Section;
 import sjtu.dolo.model.TakesCourseStudentVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentService {
 
-    List<Course> findCourseValid(Integer startIdx, Integer pageSize);
+    Map<Integer,List<Course>> findCourseValid(Integer startIdx, Integer pageSize);
 
-    List<Course> findCourse(String searchString, Integer startIdx, Integer pageSize);
+    Map<Integer,List<Course>> findCourse(String searchString, Integer startIdx, Integer pageSize);
 
     List<Section> findSectionValid(String courseId);
 
@@ -19,5 +20,5 @@ public interface StudentService {
 
     int delCourseTakes(JSONObject data);
 
-    List<TakesCourseStudentVO> findTakeList(String studentID);
+    Map<Integer, List<TakesCourseStudentVO>> findTakeList(String studentID);
 }

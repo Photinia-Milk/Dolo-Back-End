@@ -27,6 +27,8 @@ public interface TakesMapper extends BaseMapper<Takes> {
 //
 //    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} and coursename like #{value}")
 //    List<TakesCourseStudentVO> getTakesLike(String username,String value);
+    @Select("select count(*) from takes where userName = #{searchString}")
+    int getSearchPageNumber(String searchString);
 
     int delete(Takes takes);
 }

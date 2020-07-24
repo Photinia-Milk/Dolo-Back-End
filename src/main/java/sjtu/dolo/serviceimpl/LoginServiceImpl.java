@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
         sqlSession.commit();
         sqlSession.close();
 //        UserAuth userAuth = userAuthMapper.checkUser(username, password);
-        if(userAuth != null && (userAuth.getType().equals("0") || userAuth.getType().equals("1"))){
+        if(userAuth != null && (userAuth.getType().equals("teacher") || userAuth.getType().equals("student"))){
             return new Msg(0, userAuth.getType());
         } else {
             return new Msg(1, null);
