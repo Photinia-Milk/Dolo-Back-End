@@ -107,13 +107,15 @@ public class StudentServiceImpl implements StudentService {
         Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 0;
         try {
-            int takesStatus = tMapper.addTakes(takes);
+            System.out.println(takes);
+            int takesStatus = tMapper.insert(takes);
             sqlSession.commit();
         }catch (Exception e){
+            System.out.println(e.toString());
             result = 1;
             sqlSession.rollback();
         }
@@ -152,15 +154,16 @@ public class StudentServiceImpl implements StudentService {
         Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 1;
         int takesStatus = 0;
         try {
-            takesStatus = tMapper.delTakes(takes);
+            takesStatus = tMapper.delete(takes);
             System.out.println("rows changed:" + takesStatus);
             sqlSession.commit();
         }catch (Exception e){
+            System.out.println(e.toString());
             result = 2;
             sqlSession.rollback();
         }
