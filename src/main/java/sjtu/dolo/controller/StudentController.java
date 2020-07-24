@@ -7,6 +7,7 @@ import sjtu.dolo.model.*;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/student")
@@ -16,7 +17,7 @@ public class StudentController {
 
     @GetMapping("/course_valid")
     @ResponseBody
-    public List<Course> getCourseValid(
+    public Map<Integer, List<Course>> getCourseValid(
             @RequestParam("startIndex") int startIdx,
             @RequestParam("pageSize") int pageSize) {
 
@@ -31,7 +32,7 @@ public class StudentController {
 
     @GetMapping("/course_search")
     @ResponseBody
-    public List<Course> searchCourse(
+    public Map<Integer, List<Course>> searchCourse(
             @RequestParam("startIndex") int startIdx,
             @RequestParam("pageSize") int pageSize,
             @RequestParam("key") String searchString) {
