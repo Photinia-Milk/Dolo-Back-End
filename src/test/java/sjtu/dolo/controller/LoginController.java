@@ -2,7 +2,6 @@ package sjtu.dolo.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,16 +16,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 import sjtu.dolo.mapper.UserAuthMapper;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
 import sjtu.dolo.model.UserAuth;
 import sjtu.dolo.service.LoginService;
 import sjtu.dolo.utils.MybatisUtils;
 import sjtu.dolo.utils.msgutils.Msg;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

@@ -3,9 +3,7 @@ package sjtu.dolo.mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import sjtu.dolo.CourseApplicationTests;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.SectionCourseVO;
 import sjtu.dolo.utils.MybatisUtils;
 
 import java.util.HashMap;
@@ -22,9 +20,9 @@ public class SectionMapperTest extends CourseApplicationTests {
         map.put("startIndex", 1);
         map.put("pageSize", 3);
 
-        List<SectionCourseTimeSlotVO> allSection = mapper.getSectionLike("%ICS%", map);
+        List<SectionCourseVO> allSection = mapper.getSectionLike("%ICS%", map);
 
-        for (SectionCourseTimeSlotVO map1 : allSection) {
+        for (SectionCourseVO map1 : allSection) {
             System.out.println(map1);
         }
         sqlSession.close();

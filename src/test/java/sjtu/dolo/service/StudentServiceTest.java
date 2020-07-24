@@ -1,10 +1,8 @@
 package sjtu.dolo.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.springframework.transaction.annotation.Transactional;
 import sjtu.dolo.CourseApplicationTests;
 import sjtu.dolo.mapper.SectionMapper;
-import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.Takes;
+import sjtu.dolo.model.SectionCourseVO;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.serviceimpl.StudentServiceImpl;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
@@ -92,7 +83,7 @@ public class StudentServiceTest extends CourseApplicationTests {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", 0);
         map.put("pageSize", 2);
-        List<SectionCourseTimeSlotVO> vo = new LinkedList<>();
+        List<SectionCourseVO> vo = new LinkedList<>();
         BigDecimal big = BigDecimal.valueOf(3.0);
         String startime = "08:00:00";
         String endtime = "09:50:00";
@@ -115,8 +106,8 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time endTime = new java.sql.Time(end.getTime());
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
+        vo.add(new SectionCourseVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 //        vo.add(new SectionCourseTimeSlotVO("1","1","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","Tuesday",startTime,endTime));
         when(sectionMapper.getSectionByLimit(map)).thenReturn(vo);
         for(int i = 0; i < vo.size(); i++){
@@ -134,7 +125,7 @@ public class StudentServiceTest extends CourseApplicationTests {
 
         String search = "I";
 
-        List<SectionCourseTimeSlotVO> vo = new LinkedList<>();
+        List<SectionCourseVO> vo = new LinkedList<>();
         BigDecimal big = BigDecimal.valueOf(3.0);
         String startime = "08:00:00";
         String endtime = "09:50:00";
@@ -158,8 +149,8 @@ public class StudentServiceTest extends CourseApplicationTests {
         java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
         java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
 
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
-        vo.add(new SectionCourseTimeSlotVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
+        vo.add(new SectionCourseVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
+        vo.add(new SectionCourseVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 
         when(sectionMapper.getSectionLike(search, map)).thenReturn(vo);
 //        assertEquals(vo, studentService.findSectionValid(0,2));

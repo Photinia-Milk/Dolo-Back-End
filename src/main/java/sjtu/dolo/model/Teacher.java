@@ -1,19 +1,43 @@
 package sjtu.dolo.model;
 
 public class Teacher {
-    private String teacherID;
+    private String userName;
+    private String deptName;
+    private String rank;
     private String name;
-    private String user_name;
+
+    public Teacher(String userName, String deptName, String rank, String name) {
+        this.userName = userName;
+        this.deptName = deptName;
+        this.rank = rank;
+        this.name = name;
+    }
 
     public Teacher() {
     }
 
-    public String getTeacherID() {
-        return teacherID;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setTeacherID(String teacherID) {
-        this.teacherID = teacherID;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
     public String getName() {
@@ -24,17 +48,13 @@ public class Teacher {
         this.name = name;
     }
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public Teacher(String teacherID, String name, String user_name) {
-        this.teacherID = teacherID;
-        this.name = name;
-        this.user_name = user_name;
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "userName='" + userName + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", rank='" + rank + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

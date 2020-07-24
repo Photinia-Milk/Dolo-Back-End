@@ -1,45 +1,32 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
-
 public class Section {
 
-    private String secID; //学期编号
     private String semester; //学期
     private String year; //学年
-    private String timeSlotID; //时间段编号
-    private String courseID; //课号
-    private String building; //教学楼
-    private String roomNumber; //房间号
-    private BigDecimal credits; //学分
-    private String weeks; //上课周数
+    private String courseId; //时间段编号
+    private String teacherUserName; //课号
+    private String courseTime;
+    private String location;
+    private String remarks;
+    private String model;
     private int maxNum; //最大选课人数
     private int currentNum; //当前选课人数
 
     public Section() {
     }
 
-    public Section(String sectionID, String semester, String year, String timeSlotID, String courseID, String building, String roomNumber, BigDecimal credits, String weeks, int maxNum, int currentNum) {
-        this.secID = sectionID;
-
+    public Section(String semester, String year, String courseId, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum) {
         this.semester = semester;
         this.year = year;
-        this.timeSlotID = timeSlotID;
-        this.courseID = courseID;
-        this.building = building;
-        this.roomNumber = roomNumber;
-        this.credits = credits;
-        this.weeks = weeks;
+        this.courseId = courseId;
+        this.teacherUserName = teacherUserName;
+        this.courseTime = courseTime;
+        this.location = location;
+        this.remarks = remarks;
+        this.model = model;
         this.maxNum = maxNum;
         this.currentNum = currentNum;
-    }
-
-    public String getSecID() {
-        return secID;
-    }
-
-    public void setSecID(String sectionID) {
-        this.secID = sectionID;
     }
 
     public String getSemester() {
@@ -58,52 +45,52 @@ public class Section {
         this.year = year;
     }
 
-    public String getTimeSlotID() {
-        return timeSlotID;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setTimeSlotID(String timeSlotID) {
-        this.timeSlotID = timeSlotID;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
-    public String getCourseID() {
-        return courseID;
+    public String getTeacherUserName() {
+        return teacherUserName;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setTeacherUserName(String teacherUserName) {
+        this.teacherUserName = teacherUserName;
     }
 
-    public String getBuilding() {
-        return building;
+    public String getCourseTime() {
+        return courseTime;
     }
 
-    public void setBuilding(String building) {
-        this.building = building;
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public String getLocation() {
+        return location;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public BigDecimal getCredits() {
-        return credits;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setCredits(BigDecimal credits) {
-        this.credits = credits;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
-    public String getWeeks() {
-        return weeks;
+    public String getModel() {
+        return model;
     }
 
-    public void setWeeks(String weeks) {
-        this.weeks = weeks;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public int getMaxNum() {
@@ -118,25 +105,23 @@ public class Section {
         return currentNum;
     }
 
+    public void setCurrentNum(int currentNum) {
+        this.currentNum = currentNum;
+    }
 
     @Override
     public String toString() {
         return "Section{" +
-                "secID='" + secID + '\'' +
-                ", semester='" + semester + '\'' +
+                "semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
-                ", timeSlotID='" + timeSlotID + '\'' +
-                ", courseID='" + courseID + '\'' +
-                ", building='" + building + '\'' +
-                ", roomNumber='" + roomNumber + '\'' +
-                ", credits=" + credits +
-                ", weeks='" + weeks + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", teacherUserName='" + teacherUserName + '\'' +
+                ", courseTime='" + courseTime + '\'' +
+                ", location='" + location + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", model='" + model + '\'' +
                 ", maxNum=" + maxNum +
                 ", currentNum=" + currentNum +
                 '}';
-    }
-
-    public void setCurrentNum(int currentNum) {
-        this.currentNum = currentNum;
     }
 }

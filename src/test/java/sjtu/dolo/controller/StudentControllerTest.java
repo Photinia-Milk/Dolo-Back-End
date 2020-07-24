@@ -1,7 +1,6 @@
 package sjtu.dolo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.test.web.servlet.MvcResult;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,16 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import sjtu.dolo.CourseApplicationTests;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
+import sjtu.dolo.model.SectionCourseVO;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
-import java.util.Map;
-
 
 
 @RunWith(SpringRunner.class)
@@ -75,9 +70,9 @@ public class StudentControllerTest extends CourseApplicationTests {
         MvcResult mvcResult = mockMvc.perform(get("api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
-        List<SectionCourseTimeSlotVO> sectionCourseTimeSlotVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseTimeSlotVO>>() {});
+        List<SectionCourseVO> sectionCourseVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseVO>>() {});
         // 取出数量相等断言
-        assertEquals(studentService.findSectionValid(startIdx, pageSize).size(), sectionCourseTimeSlotVOS.size());
+        assertEquals(studentService.findSectionValid(startIdx, pageSize).size(), sectionCourseVOS.size());
     }
 
     @Test
@@ -92,9 +87,9 @@ public class StudentControllerTest extends CourseApplicationTests {
         MvcResult mvcResult = mockMvc.perform(get("api/student/course_search").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
-        List<SectionCourseTimeSlotVO> sectionCourseTimeSlotVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseTimeSlotVO>>() {});
+        List<SectionCourseVO> sectionCourseVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseVO>>() {});
         // 取出数量相等断言
-        assertEquals(studentService.findSection(searchString, startIdx, pageSize).size(), sectionCourseTimeSlotVOS.size());
+        assertEquals(studentService.findSection(searchString, startIdx, pageSize).size(), sectionCourseVOS.size());
     }
 
     @Test

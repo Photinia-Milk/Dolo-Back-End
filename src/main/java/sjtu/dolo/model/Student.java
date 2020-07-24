@@ -3,30 +3,39 @@ package sjtu.dolo.model;
 import java.util.Date;
 
 public class Student {
+    private String userName; //用户名
     private String name;
-    private String user_name; //用户名
-    private String phone; //联系电话
-    private String address; //家庭住址
-    private short gender;
-    private Date birthday;
-    private Date admisson_date;
-    private String document_type;
+    private String deptName;
+    private String grade;
+    private Boolean gender;
+    private Date admissionDate;
     private String country;
-    private String academic_year;
+    private String documentType;
+    private String phone;
+    private String address;
+
     public Student() {
     }
 
-    public Student(String name, String user_name, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country, String academic_year) {
+    public Student(String userName, String name, String deptName, String grade, Boolean gender, Date admissionDate, String country, String documentType, String phone, String address) {
+        this.userName = userName;
         this.name = name;
-        this.user_name = user_name;
+        this.deptName = deptName;
+        this.grade = grade;
+        this.gender = gender;
+        this.admissionDate = admissionDate;
+        this.country = country;
+        this.documentType = documentType;
         this.phone = phone;
         this.address = address;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.admisson_date = admisson_date;
-        this.document_type = document_type;
-        this.country = country;
-        this.academic_year = academic_year;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {
@@ -37,12 +46,52 @@ public class Student {
         this.name = name;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
+
+    public Date getAdmissionDate() {
+        return admissionDate;
+    }
+
+    public void setAdmissionDate(Date admissionDate) {
+        this.admissionDate = admissionDate;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 
     public String getPhone() {
@@ -61,67 +110,19 @@ public class Student {
         this.address = address;
     }
 
-    public short getGender() {
-        return gender;
-    }
-
-    public void setGender(short gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Date getAdmisson_date() {
-        return admisson_date;
-    }
-
-    public void setAdmisson_date(Date admisson_date) {
-        this.admisson_date = admisson_date;
-    }
-
-    public String getDocument_type() {
-        return document_type;
-    }
-
-    public void setDocument_type(String document_type) {
-        this.document_type = document_type;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAcademic_year() {
-        return academic_year;
-    }
-
-    public void setAcademic_year(String academic_year) {
-        this.academic_year = academic_year;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
+                "userName='" + userName + '\'' +
                 ", name='" + name + '\'' +
-                ", user_name='" + user_name + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", grade='" + grade + '\'' +
+                ", gender=" + gender +
+                ", admissionDate=" + admissionDate +
+                ", country='" + country + '\'' +
+                ", documentType='" + documentType + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", gender=" + gender +
-                ", birthday=" + birthday +
-                ", admisson_date=" + admisson_date +
-                ", document_type='" + document_type + '\'' +
-                ", country='" + country + '\'' +
-                ", academic_year='" + academic_year + '\'' +
                 '}';
     }
 }
