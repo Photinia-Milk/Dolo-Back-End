@@ -1,7 +1,7 @@
 node{
 	stage('Checkout Integration'){
-	    sh 'git pull https://github.com/Photinia-Milk/Dolo-Back-End feat_integration'
-	    sh 'git checkout feat_integration'
+	    sh 'git pull https://github.com/Photinia-Milk/Dolo-Back-End develop'
+	    sh 'git checkout develop'
 	}
 	stage('Set up test data'){
 		sh 'mysql -uroot -proot -Dcourse2 < ./resources/1-addCourseTime.sql'
