@@ -19,14 +19,14 @@ public interface TakesMapper extends BaseMapper<Takes> {
 
     int insert(Takes takes);
 
-    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username}")
+    @Select("select * from takes natural join course natural join section natural join sectime where userName = #{username}")
     List<TakesCourseStudentVO> getTakes(String username);
 
-    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} limit #{startIndex},#{pageSize}")
-    List<TakesCourseStudentVO> getTakesByLimit(String username,Map<String,Integer> map);
-
-    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} and coursename like #{value}")
-    List<TakesCourseStudentVO> getTakesLike(String username,String value);
+//    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} limit #{startIndex},#{pageSize}")
+//    List<TakesCourseStudentVO> getTakesByLimit(String username,Map<String,Integer> map);
+//
+//    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} and coursename like #{value}")
+//    List<TakesCourseStudentVO> getTakesLike(String username,String value);
 
     int delete(Takes takes);
 }

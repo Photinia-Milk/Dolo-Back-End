@@ -6,4 +6,10 @@
      <select id="findSectionByCourseId" resultType="sjtu.dolo.model.Section">
          select * from course2.section where courseId = #{courseId}
      </select>
+    <select id="getSectionToSelect" resultType="sjtu.dolo.model.Section">
+        select * from course2.section where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
+    </select>
+    <update id="updateCurrentNum" >
+        update course2.section set currentNum = currentNum + 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
+    </update>
 </mapper>
