@@ -1,28 +1,31 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
-
-public class Takes {
-
+public class SecTime {
+    private String timeSlotId;
     private String semester;
     private String year;
     private String courseId;
-    private String userName;
-    private BigDecimal grade;
-    private BigDecimal gpa;
     private String teacherUserName;
+    private String weeks;
 
-    public Takes() {
+    public SecTime() {
     }
 
-    public Takes(String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName) {
+    public SecTime(String timeSlotId, String semester, String year, String courseId, String teacherUserName, String weeks) {
+        this.timeSlotId = timeSlotId;
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
-        this.userName = userName;
-        this.grade = grade;
-        this.gpa = gpa;
         this.teacherUserName = teacherUserName;
+        this.weeks = weeks;
+    }
+
+    public String getTimeSlotId() {
+        return timeSlotId;
+    }
+
+    public void setTimeSlotId(String timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
     public String getSemester() {
@@ -49,30 +52,6 @@ public class Takes {
         this.courseId = courseId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public BigDecimal getGrade() {
-        return grade;
-    }
-
-    public void setGrade(BigDecimal grade) {
-        this.grade = grade;
-    }
-
-    public BigDecimal getGpa() {
-        return gpa;
-    }
-
-    public void setGpa(BigDecimal gpa) {
-        this.gpa = gpa;
-    }
-
     public String getTeacherUserName() {
         return teacherUserName;
     }
@@ -81,16 +60,23 @@ public class Takes {
         this.teacherUserName = teacherUserName;
     }
 
+    public String getWeeks() {
+        return weeks;
+    }
+
+    public void setWeeks(String weeks) {
+        this.weeks = weeks;
+    }
+
     @Override
     public String toString() {
-        return "Takes{" +
-                "semester='" + semester + '\'' +
+        return "SecTime{" +
+                "timeSlotId='" + timeSlotId + '\'' +
+                ", semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
                 ", courseId='" + courseId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", grade=" + grade +
-                ", gpa=" + gpa +
                 ", teacherUserName='" + teacherUserName + '\'' +
+                ", weeks='" + weeks + '\'' +
                 '}';
     }
 }

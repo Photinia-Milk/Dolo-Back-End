@@ -1,8 +1,9 @@
 package sjtu.dolo.mapper;
 
+import org.junit.Test;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.jupiter.api.Test;
 import sjtu.dolo.CourseApplicationTests;
+import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.utils.MybatisUtils;
 
@@ -18,11 +19,11 @@ public class TakesMapperTest extends CourseApplicationTests {
 //        map.put("startIndex",1);
 //        map.put("pageSize",3);
 
-        List<TakesCourseStudentVO> allSection = mapper.getTakes("amadeus");
-
-        for (TakesCourseStudentVO map1: allSection) {
-            System.out.println(map1);
-        }
+        Takes takes = new Takes("1","2020-2021","AD001","student0",null,null,"teacher130");
+        int num = mapper.insert(takes);
+        System.out.println(takes);
+        System.out.println(num);
+        sqlSession.commit();
         sqlSession.close();
     }
 }
