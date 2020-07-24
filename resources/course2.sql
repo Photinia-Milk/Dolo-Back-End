@@ -14,7 +14,7 @@
  Date: 24/07/2020 23:31:15
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -22,11 +22,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `administrators`;
 CREATE TABLE `administrators`  (
-  `userName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `userName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`userName`) USING BTREE,
   CONSTRAINT `FK_Reference_9` FOREIGN KEY (`userName`) REFERENCES `userauth` (`userName`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of administrators
@@ -37,13 +37,13 @@ CREATE TABLE `administrators`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course`  (
-  `courseId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `courseName` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `courseType` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `electiveType` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `courseId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `courseName` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `courseType` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `electiveType` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `credits` decimal(2, 1) NULL DEFAULT NULL,
   PRIMARY KEY (`courseId`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of course
@@ -312,18 +312,18 @@ INSERT INTO `course` VALUES ('WA002', '战争的起源：理论与历史', '通�
 -- ----------------------------
 DROP TABLE IF EXISTS `sectime`;
 CREATE TABLE `sectime`  (
-  `timeslotId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `semester` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `year` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `courseId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `weeks` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `teacherUserName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `timeslotId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `semester` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `year` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `courseId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `weeks` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `teacherUserName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`teacherUserName`, `year`, `courseId`, `semester`, `weeks`, `timeslotId`) USING BTREE,
   INDEX `fk_secTime_timeslot_1`(`timeslotId`) USING BTREE,
   INDEX `fk_secTime_section_1`(`semester`, `year`, `courseId`, `teacherUserName`) USING BTREE,
   CONSTRAINT `fk_secTime_section_1` FOREIGN KEY (`semester`, `year`, `courseId`, `teacherUserName`) REFERENCES `section` (`semester`, `year`, `courseId`, `teacherUserName`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_secTime_timeslot_1` FOREIGN KEY (`timeslotId`) REFERENCES `timeslot` (`timeslotId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sectime
@@ -639,14 +639,14 @@ INSERT INTO `sectime` VALUES ('9', '1', '2020-2021', 'PI929', '1-16周', 'teache
 -- ----------------------------
 DROP TABLE IF EXISTS `section`;
 CREATE TABLE `section`  (
-  `semester` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `year` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `courseId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `teacherUserName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `courseTime` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `location` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remarks` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `model` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `semester` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `year` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `courseId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `teacherUserName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `courseTime` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `location` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `remarks` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `model` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `maxNum` int(0) NULL DEFAULT NULL,
   `currentNum` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`semester`, `year`, `courseId`, `teacherUserName`) USING BTREE,
@@ -654,7 +654,7 @@ CREATE TABLE `section`  (
   INDEX `FK_Relationship_3`(`teacherUserName`) USING BTREE,
   CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`courseId`) REFERENCES `course` (`courseId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK_Relationship_3` FOREIGN KEY (`teacherUserName`) REFERENCES `teacher` (`userName`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of section
@@ -953,19 +953,19 @@ INSERT INTO `section` VALUES ('1', '2020-2021', 'WA002', 'teacher230', '星期�
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
-  `userName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `deptName` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `grade` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `userName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `deptName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `grade` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `gender` tinyint(1) NULL DEFAULT NULL,
   `admissonDate` date NULL DEFAULT NULL,
-  `country` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `documentType` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `phone` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `address` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `country` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `documentType` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `address` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`userName`) USING BTREE,
   CONSTRAINT `FK_Reference_7` FOREIGN KEY (`userName`) REFERENCES `userauth` (`userName`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student
@@ -10976,19 +10976,19 @@ INSERT INTO `student` VALUES ('student9999', '学生9999', '航空航天学院',
 -- ----------------------------
 DROP TABLE IF EXISTS `takes`;
 CREATE TABLE `takes`  (
-  `semester` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `year` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `courseId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `userName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `semester` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `year` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `courseId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `userName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `grade` decimal(3, 0) NULL DEFAULT NULL,
   `gpa` decimal(3, 2) NULL DEFAULT NULL,
-  `teacherUserName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `teacherUserName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`semester`, `year`, `courseId`, `userName`, `teacherUserName`) USING BTREE,
   INDEX `FK_takes2`(`userName`) USING BTREE,
   INDEX `fk_takes_section_1`(`semester`, `year`, `courseId`, `teacherUserName`) USING BTREE,
   CONSTRAINT `FK_takes2` FOREIGN KEY (`userName`) REFERENCES `student` (`userName`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_takes_section_1` FOREIGN KEY (`semester`, `year`, `courseId`, `teacherUserName`) REFERENCES `section` (`semester`, `year`, `courseId`, `teacherUserName`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of takes
@@ -11000,13 +11000,13 @@ INSERT INTO `takes` VALUES ('1', '2020-2021', 'AD003', 'student1', NULL, NULL, '
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher`  (
-  `userName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `deptName` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `rank` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `userName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `deptName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `rank` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`userName`) USING BTREE,
   CONSTRAINT `FK_Reference_8` FOREIGN KEY (`userName`) REFERENCES `userauth` (`userName`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teacher
@@ -11305,12 +11305,12 @@ INSERT INTO `teacher` VALUES ('teacher99', '', '副教授', '黄琪轩');
 -- ----------------------------
 DROP TABLE IF EXISTS `timeslot`;
 CREATE TABLE `timeslot`  (
-  `timeslotId` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `day` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `timeslotId` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `day` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `startTime` int(0) NULL DEFAULT NULL,
   `endTime` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`timeslotId`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of timeslot
@@ -11354,11 +11354,11 @@ INSERT INTO `timeslot` VALUES ('9', '星期五', 11, 12);
 -- ----------------------------
 DROP TABLE IF EXISTS `userauth`;
 CREATE TABLE `userauth`  (
-  `userName` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `userName` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `type` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`userName`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of userauth
