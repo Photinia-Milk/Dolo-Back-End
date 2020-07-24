@@ -3,14 +3,10 @@ package sjtu.dolo.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sjtu.dolo.model.Course;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.*;
 import sjtu.dolo.service.StudentService;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("api/student")
@@ -59,7 +55,7 @@ public class StudentController {
 
     @GetMapping("/course_list")
     @ResponseBody
-    public List<TakesCourseStudentVO> getCourseList(@RequestParam("user_name") String user_name) {
-        return studentService.findTakeList(user_name);
+    public List<SecTime> getCourseList(@RequestParam("user_name") String user_name) {
+       // return studentService.findTakeList(user_name);
     }
 }

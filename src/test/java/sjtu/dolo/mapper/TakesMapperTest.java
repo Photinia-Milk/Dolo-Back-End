@@ -1,7 +1,7 @@
 package sjtu.dolo.mapper;
 
+import org.junit.Test;
 import org.apache.ibatis.session.SqlSession;
-import org.junit.jupiter.api.Test;
 import sjtu.dolo.CourseApplicationTests;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.utils.MybatisUtils;

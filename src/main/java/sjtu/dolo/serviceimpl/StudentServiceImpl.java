@@ -8,6 +8,7 @@ import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.*;
+
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
@@ -62,7 +63,7 @@ public class StudentServiceImpl implements StudentService {
 
 //        SqlSession sqlSession = MybatisUtils.getSqlSession();
 //        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
-        List<SectionCourseTimeSlotVO> itemList;
+        List<SectionCourseVO> itemList;
 //        itemList = sMapper.getSectionByLimit(map);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -72,12 +73,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<SectionCourseTimeSlotVO> findSection(String searchString, Integer startIdx, Integer pageSize) {
+    public List<SectionCourseVO> findSection(String searchString, Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         System.out.println(map);
-        List<SectionCourseTimeSlotVO> itemList;
+        List<SectionCourseVO> itemList;
         String search = "%"+searchString+"%";
 
 //        SqlSession sqlSession = MybatisUtils.getSqlSession();
