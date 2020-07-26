@@ -97,12 +97,12 @@ public class StudentServiceImpl implements StudentService {
     public int addCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName) {
         Takes takes = new Takes(semester, year, courseId, userName, null ,null, teacherUserName);
 
+        System.out.println(takes);
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 0;
         try {
-            System.out.println(takes);
             int takesStatus = tMapper.insert(takes);
             sqlSession.commit();
         }catch (Exception e){
@@ -114,6 +114,7 @@ public class StudentServiceImpl implements StudentService {
             int sectionStatus = sMapper.addCurrentNum(courseId, semester, year, teacherUserName);
             sqlSession.commit();
         }
+
         sqlSession.close();
         return result;
 //        int takesStatus = tMapper.addTakes(takes);

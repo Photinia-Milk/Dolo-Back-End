@@ -20,8 +20,7 @@ public class StudentController {
     public CourseNumListVO getCourseValid(
             @RequestParam("startIndex") int startIdx,
             @RequestParam("pageSize") int pageSize) {
-
-        return studentService.findCourseValid(startIdx, pageSize);
+            return studentService.findCourseValid(startIdx, pageSize);
     }
 
     @GetMapping("/section_valid")
