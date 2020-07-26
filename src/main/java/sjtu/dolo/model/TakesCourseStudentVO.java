@@ -17,6 +17,7 @@ public class TakesCourseStudentVO {
     private BigDecimal gpa; //GPA
     private String teacherUserName;
     private String courseTime;
+    private String location;
     private String remarks;
     private String model;
     private int maxNum;
@@ -27,7 +28,7 @@ public class TakesCourseStudentVO {
     private int startTime;
     private int endTime;
 
-    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, double credits, String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName, String courseTime, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
+    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, double credits, String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
         this.courseName = courseName;
         this.courseType = courseType;
         this.electiveType = electiveType;
@@ -40,6 +41,7 @@ public class TakesCourseStudentVO {
         this.gpa = gpa;
         this.teacherUserName = teacherUserName;
         this.courseTime = courseTime;
+        this.location = location;
         this.remarks = remarks;
         this.model = model;
         this.maxNum = maxNum;
@@ -150,6 +152,14 @@ public class TakesCourseStudentVO {
         this.courseTime = courseTime;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getRemarks() {
         return remarks;
     }
@@ -237,6 +247,7 @@ public class TakesCourseStudentVO {
                 ", gpa=" + gpa +
                 ", teacherUserName='" + teacherUserName + '\'' +
                 ", courseTime='" + courseTime + '\'' +
+                ", location='" + location + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", model='" + model + '\'' +
                 ", maxNum=" + maxNum +
@@ -270,6 +281,7 @@ public class TakesCourseStudentVO {
                 Objects.equals(gpa, that.gpa) &&
                 Objects.equals(teacherUserName, that.teacherUserName) &&
                 Objects.equals(courseTime, that.courseTime) &&
+                Objects.equals(location, that.location) &&
                 Objects.equals(remarks, that.remarks) &&
                 Objects.equals(model, that.model) &&
                 Objects.equals(timeSlotId, that.timeSlotId) &&
@@ -279,6 +291,6 @@ public class TakesCourseStudentVO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseName, courseType, electiveType, credits, semester, year, courseId, userName, grade, gpa, teacherUserName, courseTime, remarks, model, maxNum, currentNum, timeSlotId, weeks, day, startTime, endTime);
+        return Objects.hash(courseName, courseType, electiveType, credits, semester, year, courseId, userName, grade, gpa, teacherUserName, courseTime, location, remarks, model, maxNum, currentNum, timeSlotId, weeks, day, startTime, endTime);
     }
 }
