@@ -19,7 +19,6 @@ public interface SectionMapper extends BaseMapper<Section> {
 
       int addCurrentNum(String courseId, String semester, String year, String teacherUserName);
       int delCurrentNum(String courseId, String semester, String year, String teacherUserName);
-
       List<Section> findSectionByCourseId(String courseId);
       Section getSectionToSelect(String courseId, String semester, String year, String teacherUserName);
 }
