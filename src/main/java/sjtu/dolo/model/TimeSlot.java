@@ -5,13 +5,13 @@ import java.sql.Time;
 public class TimeSlot {
     private String timeSlotId; //时间段编号
     private String day; //日期
-    private Time startTime; //开始时间
-    private Time endTime; //结束时间
+    private int startTime; //开始时间
+    private int endTime; //结束时间
 
     public TimeSlot() {
     }
 
-    public TimeSlot(String timeSlotId, String day, Time startTime, Time endTime) {
+    public TimeSlot(String timeSlotId, String day, int startTime, int endTime) {
         this.timeSlotId = timeSlotId;
         this.day = day;
         this.startTime = startTime;
@@ -34,19 +34,19 @@ public class TimeSlot {
         this.day = day;
     }
 
-    public Time getStartTime() {
+    public int getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public int getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
 
