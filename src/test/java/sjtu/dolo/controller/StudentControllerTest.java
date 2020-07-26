@@ -65,15 +65,9 @@
 //        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 //        int startIdx = 0;
 //        int pageSize = 3;
-//<<<<<<< HEAD
 //        params.add("start_index", String.valueOf(startIdx));
 //        params.add("page_size", String.valueOf(pageSize));
 //        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
-//=======
-//        params.add("startIndex", String.valueOf(startIdx));
-//        params.add("pageSize", String.valueOf(pageSize));
-//        MvcResult mvcResult = mockMvc.perform(get("api/student/course_valid").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
-//>>>>>>> 7b67cbd57d749379262141988a3afe7e1b9f4407
 //        .andExpect(status().isOk()).andReturn();
 //        String resultContent = mvcResult.getResponse().getContentAsString();
 //        List<SectionCourseVO> sectionCourseVOS = om.readValue(resultContent, new TypeReference<List<SectionCourseVO>>() {});
