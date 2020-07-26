@@ -23,9 +23,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("对外开放接口API 文档")
-                .description("HTTP对外开放接口")
-                .version("1.0.0")
+                .title("Dolo 对外开放接口 API 文档")
+                .description("HTTP  对外开放接口")
+                .version("0.0.1")
                 .termsOfServiceUrl("https://www.dolo.club")
                 .license("LICENSE")
                 .licenseUrl("https://www.dolo.club")
