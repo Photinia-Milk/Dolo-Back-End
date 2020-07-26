@@ -19,7 +19,7 @@ public interface TakesMapper extends BaseMapper<Takes> {
 
     int insert(Takes takes);
 
-    @Select("select * from takes natural join course natural join section natural join sectime where userName = #{username}")
+    @Select("select * from takes natural join course natural join section natural join sectime natural join timeslot where userName = #{username}")
     List<TakesCourseStudentVO> getTakes(String username);
 
 //    @Select("select * from (takes natural join student) join course using (courseID) where user_name = #{username} limit #{startIndex},#{pageSize}")

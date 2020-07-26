@@ -2,6 +2,7 @@ package sjtu.dolo.service;
 
 import net.sf.json.JSONObject;
 import sjtu.dolo.model.Course;
+import sjtu.dolo.model.CourseNumListVO;
 import sjtu.dolo.model.Section;
 import sjtu.dolo.model.TakesCourseStudentVO;
 
@@ -10,15 +11,15 @@ import java.util.Map;
 
 public interface StudentService {
 
-    Map<Integer,List<Course>> findCourseValid(Integer startIdx, Integer pageSize);
+    CourseNumListVO findCourseValid(Integer startIdx, Integer pageSize);
 
-    Map<Integer,List<Course>> findCourse(String searchString, Integer startIdx, Integer pageSize);
+    CourseNumListVO findCourse(String searchString, Integer startIdx, Integer pageSize);
 
     List<Section> findSectionValid(String courseId);
 
-    int addCourseTakes(JSONObject data);
+    int addCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName);
 
-    int delCourseTakes(JSONObject data);
+    int delCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName);
 
-    Map<Integer, List<TakesCourseStudentVO>> findTakeList(String studentID);
+    List<TakesCourseStudentVO> findTakeList(String studentID);
 }

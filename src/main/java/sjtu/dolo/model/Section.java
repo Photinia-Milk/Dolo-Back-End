@@ -1,5 +1,7 @@
 package sjtu.dolo.model;
 
+import java.util.Objects;
+
 public class Section {
 
     private String semester; //学期
@@ -123,5 +125,27 @@ public class Section {
                 ", maxNum=" + maxNum +
                 ", currentNum=" + currentNum +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Section section = (Section) o;
+        return maxNum == section.maxNum &&
+                currentNum == section.currentNum &&
+                Objects.equals(semester, section.semester) &&
+                Objects.equals(year, section.year) &&
+                Objects.equals(courseId, section.courseId) &&
+                Objects.equals(teacherUserName, section.teacherUserName) &&
+                Objects.equals(courseTime, section.courseTime) &&
+                Objects.equals(location, section.location) &&
+                Objects.equals(remarks, section.remarks) &&
+                Objects.equals(model, section.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(semester, year, courseId, teacherUserName, courseTime, location, remarks, model, maxNum, currentNum);
     }
 }

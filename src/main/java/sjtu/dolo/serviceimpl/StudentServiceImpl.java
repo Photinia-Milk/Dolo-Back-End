@@ -5,7 +5,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import sjtu.dolo.mapper.CourseMapper;
 import sjtu.dolo.mapper.SectionMapper;
-import sjtu.dolo.mapper.StudentMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.*;
 
@@ -45,29 +44,26 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public Map<Integer, List<Course>> findCourseValid(Integer startIdx, Integer pageSize){
+    public CourseNumListVO findCourseValid(Integer startIdx, Integer pageSize){
         Map<String, Integer> map = new HashMap<>();
-        Map<Integer, List<Course>> returnMap = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         List<Course> itemList;
-        int pageNum;
-        pageNum = courseMapper.getPageNumber();
+        int courseNum;
+        courseNum = courseMapper.getPageNumber();
         itemList = courseMapper.getCourse(map);
-        returnMap.put(pageNum, itemList);
-//        return itemList;
-        return returnMap;
+        return new CourseNumListVO(courseNum, itemList);
     }
 
     @Override
-    public Map<Integer, List<Course>> findCourse(String searchString, Integer startIdx, Integer pageSize) {
+    public CourseNumListVO findCourse(String searchString, Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
         Map<Integer, List<Course>> returnMap = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         System.out.println(map);
         List<Course> itemList;
-        int pageNum;
+        int courseNum;
         String search = "%"+searchString+"%";
 
 //        SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -76,11 +72,11 @@ public class StudentServiceImpl implements StudentService {
 //        sqlSession.commit();
 //        sqlSession.close();
 //        System.out.println(itemList);
-        pageNum = courseMapper.getSearchPageNumber(search);
+        courseNum = courseMapper.getSearchPageNumber(search);
         itemList = courseMapper.getCourseLike(map,search);
-        returnMap.put(pageNum, itemList);
+        returnMap.put(courseNum, itemList);
 //        return itemList;
-        return returnMap;
+        return new CourseNumListVO(courseNum, itemList);
     }
 
     @Override
@@ -98,13 +94,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int addCourseTakes(JSONObject data) {
-        String user_name = data.getString("userName");
-        String semester = "1";
-        String year = "2020-2021";
-        String courseID = data.getString("courseId");
-        String teacherUserName = data.getString("teacherUserName");
-        Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
+    public int addCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName) {
+        Takes takes = new Takes(semester, year, courseId, userName, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
@@ -120,7 +111,7 @@ public class StudentServiceImpl implements StudentService {
             sqlSession.rollback();
         }
         if(result == 0){    // 若插入成功
-            int sectionStatus = sMapper.updateCurrentNum(courseID, semester, year, teacherUserName);
+            int sectionStatus = sMapper.addCurrentNum(courseId, semester, year, teacherUserName);
             sqlSession.commit();
         }
         sqlSession.close();
@@ -145,13 +136,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int delCourseTakes(JSONObject data) {
-        String user_name = data.getString("userName");
-        String semester = "1";
-        String year = "2020-2021";
-        String courseID = data.getString("courseId");
-        String teacherUserName = data.getString("teacherUserName");
-        Takes takes = new Takes(semester, year, courseID, user_name, null ,null, teacherUserName);
+    public int delCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName) {
+        Takes takes = new Takes(semester, year, courseId, userName, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
@@ -168,7 +154,7 @@ public class StudentServiceImpl implements StudentService {
             sqlSession.rollback();
         }
         if(takesStatus != 0){    // 若删除成功
-            int sectionStatus = sMapper.updateCurrentNum(courseID, semester, year, teacherUserName);
+            int sectionStatus = sMapper.delCurrentNum(courseId, semester, year, teacherUserName);
             sqlSession.commit();
             result = 0;
         }
@@ -192,24 +178,21 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Map<Integer, List<TakesCourseStudentVO>> findTakeList(String user_name) {
+    public List<TakesCourseStudentVO> findTakeList(String user_name) {
 //        return studentMapper.getAllTakes(user_name);
 //        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
 //        takesQueryWrapper
 //                .eq("user_name", user_name);
 //        return takesMapper.selectList(takesQueryWrapper);
 //        return takesMapper.getTakes(user_name);
-//
-        Map<Integer, List<TakesCourseStudentVO>> returnMap = new HashMap<>();
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
         List<TakesCourseStudentVO> itemList;
         itemList = takesMapper.getTakes(user_name);
         int pageNum = takesMapper.getSearchPageNumber(user_name);
-        sqlSession.commit();
-        sqlSession.close();
-        returnMap.put(pageNum, itemList);
-        return returnMap;
+//        sqlSession.commit();
+//        sqlSession.close();
+        return itemList;
     }
 
 

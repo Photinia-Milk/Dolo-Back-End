@@ -21,12 +21,13 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Msg login(String username, String password) {
 
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserAuthMapper uMapper = sqlSession.getMapper(UserAuthMapper.class);
-        UserAuth userAuth = uMapper.checkUser(username, password);
-        sqlSession.commit();
-        sqlSession.close();
+//        SqlSession sqlSession = MybatisUtils.getSqlSession();
+//        UserAuthMapper uMapper = sqlSession.getMapper(UserAuthMapper.class);
+        UserAuth userAuth = userAuthMapper.checkUser(username, password);
+//        sqlSession.commit();
+//        sqlSession.close();
 //        UserAuth userAuth = userAuthMapper.checkUser(username, password);
+        System.out.println(userAuth);
         if(userAuth != null && (userAuth.getType().equals("teacher") || userAuth.getType().equals("student"))){
             return new Msg(0, userAuth.getType());
         } else {

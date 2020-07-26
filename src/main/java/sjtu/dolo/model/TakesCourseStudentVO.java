@@ -8,12 +8,11 @@ public class TakesCourseStudentVO {
     private String courseName;
     private String courseType;
     private String electiveType;
-    private double credit;
+    private double credits;
     private String semester; //学期
     private String year; //学年
     private String courseId; //课号
     private String userName; //用户名
-    private String timeslotId; //时间段编号
     private BigDecimal grade; //成绩
     private BigDecimal gpa; //GPA
     private String teacherUserName;
@@ -24,19 +23,19 @@ public class TakesCourseStudentVO {
     private int currentNum;
     private String timeSlotId;
     private String weeks;
+    private String day;
     private int startTime;
     private int endTime;
 
-    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, double credit, String semester, String year, String courseId, String userName, String timeslotId, BigDecimal grade, BigDecimal gpa, String teacherUserName, String courseTime, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, int startTime, int endTime) {
+    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, double credits, String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName, String courseTime, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
         this.courseName = courseName;
         this.courseType = courseType;
         this.electiveType = electiveType;
-        this.credit = credit;
+        this.credits = credits;
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
         this.userName = userName;
-        this.timeslotId = timeslotId;
         this.grade = grade;
         this.gpa = gpa;
         this.teacherUserName = teacherUserName;
@@ -47,6 +46,7 @@ public class TakesCourseStudentVO {
         this.currentNum = currentNum;
         this.timeSlotId = timeSlotId;
         this.weeks = weeks;
+        this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -78,12 +78,12 @@ public class TakesCourseStudentVO {
         this.electiveType = electiveType;
     }
 
-    public double getCredit() {
-        return credit;
+    public double getCredits() {
+        return credits;
     }
 
-    public void setCredit(double credit) {
-        this.credit = credit;
+    public void setCredits(double credits) {
+        this.credits = credits;
     }
 
     public String getSemester() {
@@ -116,14 +116,6 @@ public class TakesCourseStudentVO {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getTimeslotId() {
-        return timeslotId;
-    }
-
-    public void setTimeslotId(String timeslotId) {
-        this.timeslotId = timeslotId;
     }
 
     public BigDecimal getGrade() {
@@ -206,6 +198,14 @@ public class TakesCourseStudentVO {
         this.weeks = weeks;
     }
 
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
     public int getStartTime() {
         return startTime;
     }
@@ -228,12 +228,11 @@ public class TakesCourseStudentVO {
                 "courseName='" + courseName + '\'' +
                 ", courseType='" + courseType + '\'' +
                 ", electiveType='" + electiveType + '\'' +
-                ", credit=" + credit +
+                ", credits=" + credits +
                 ", semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", userName='" + userName + '\'' +
-                ", timeslotId='" + timeslotId + '\'' +
                 ", grade=" + grade +
                 ", gpa=" + gpa +
                 ", teacherUserName='" + teacherUserName + '\'' +
@@ -244,9 +243,42 @@ public class TakesCourseStudentVO {
                 ", currentNum=" + currentNum +
                 ", timeSlotId='" + timeSlotId + '\'' +
                 ", weeks='" + weeks + '\'' +
+                ", day='" + day + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TakesCourseStudentVO that = (TakesCourseStudentVO) o;
+        return Double.compare(that.credits, credits) == 0 &&
+                maxNum == that.maxNum &&
+                currentNum == that.currentNum &&
+                startTime == that.startTime &&
+                endTime == that.endTime &&
+                Objects.equals(courseName, that.courseName) &&
+                Objects.equals(courseType, that.courseType) &&
+                Objects.equals(electiveType, that.electiveType) &&
+                Objects.equals(semester, that.semester) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(courseId, that.courseId) &&
+                Objects.equals(userName, that.userName) &&
+                Objects.equals(grade, that.grade) &&
+                Objects.equals(gpa, that.gpa) &&
+                Objects.equals(teacherUserName, that.teacherUserName) &&
+                Objects.equals(courseTime, that.courseTime) &&
+                Objects.equals(remarks, that.remarks) &&
+                Objects.equals(model, that.model) &&
+                Objects.equals(timeSlotId, that.timeSlotId) &&
+                Objects.equals(weeks, that.weeks) &&
+                Objects.equals(day, that.day);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseName, courseType, electiveType, credits, semester, year, courseId, userName, grade, gpa, teacherUserName, courseTime, remarks, model, maxNum, currentNum, timeSlotId, weeks, day, startTime, endTime);
+    }
 }

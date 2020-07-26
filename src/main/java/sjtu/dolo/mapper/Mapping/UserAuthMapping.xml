@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.UserAuthMapper">
     <select id="checkUser" resultType="sjtu.dolo.model.UserAuth">
-        select * from course.userauth where user_name = #{userName} and password = #{password};
+        select * from course2.userauth where userName = #{userName} and password = #{password};
     </select>
 </mapper>

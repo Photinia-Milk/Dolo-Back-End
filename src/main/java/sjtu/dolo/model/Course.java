@@ -1,6 +1,7 @@
 package sjtu.dolo.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Course {
     private String courseId; //课程编号
@@ -69,5 +70,22 @@ public class Course {
                 ", courseType='" + courseType + '\'' +
                 ", credits=" + credits +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return Objects.equals(courseId, course.courseId) &&
+                Objects.equals(electiveType, course.electiveType) &&
+                Objects.equals(courseName, course.courseName) &&
+                Objects.equals(courseType, course.courseType) &&
+                Objects.equals(credits, course.credits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseId, electiveType, courseName, courseType, credits);
     }
 }

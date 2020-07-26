@@ -12,6 +12,7 @@
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.test.context.junit4.SpringRunner;
 //
+//import org.springframework.transaction.annotation.Transactional;
 //import sjtu.dolo.CourseApplicationTests;
 //import sjtu.dolo.mapper.SectionMapper;
 //import sjtu.dolo.mapper.TakesMapper;
@@ -59,25 +60,26 @@
 //    @MockBean
 //    private TakesMapper takesMapper;
 //
-//    @BeforeEach
-//    @Test
-//    public void addTakes() {
-//        JSONObject data = new JSONObject();
-//        data.put("secID", "1");
-//        data.put("user_name", "amadeus");
-//        data.put("semester", "2");
-//        data.put("year", "2019");
-//        data.put("timeslotID", "1");
-//        data.put("courseID", "1");
-//        data.put("building", "东上院");
-//        data.put("roomnumber", "202");
-//        data.put("credits", 3.0);
-//        data.put("weeks", "第一周到第十六周");
-//        data.put("maxnum", 120);
-//        data.put("currentnum", 2);
-//        int status = studentService.addCourseTakes(data);
-//        System.out.println(status);
-//    }
+////    @BeforeEach
+////    @Test
+////    public void addTakes() {
+////        JSONObject data = new JSONObject();
+//////        data.put("secID", "1");
+//////        data.put("user_name", "amadeus");
+//////        data.put("semester", "2");
+//////        data.put("year", "2019");
+//////        data.put("timeslotID", "1");
+//////        data.put("courseID", "1");
+//////        data.put("building", "东上院");
+//////        data.put("roomnumber", "202");
+//////        data.put("credits", 3.0);
+//////        data.put("weeks", "第一周到第十六周");
+//////        data.put("maxnum", 120);
+//////        data.put("currentnum", 2);
+//////        data.put("");
+////        int status = studentService.addCourseTakes(data);
+////        System.out.println(status);
+////    }
 //
 //    @Test
 //    public void findSectionValid(){
@@ -85,28 +87,28 @@
 //        map.put("startIndex", 0);
 //        map.put("pageSize", 2);
 //        List<SectionCourseVO> vo = new LinkedList<>();
-//        BigDecimal big = BigDecimal.valueOf(3.0);
-//        String startime = "08:00:00";
-//        String endtime = "09:50:00";
-//        String startime2 = "10:00:00";
-//        String endtime2 = "11:50:00";
-//        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-//        java.util.Date start = null;
-//        java.util.Date end = null;
-//        java.util.Date start2 = null;
-//        java.util.Date end2 = null;
-//        try {
-//            start = format.parse(startime);
-//            end = format.parse(endtime);
-//            start2 = format.parse(startime2);
-//            end2 = format.parse(endtime2);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        java.sql.Time startTime = new java.sql.Time(start.getTime());
-//        java.sql.Time endTime = new java.sql.Time(end.getTime());
-//        java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
-//        java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
+////        BigDecimal big = BigDecimal.valueOf(3.0);
+////        String startime = "08:00:00";
+////        String endtime = "09:50:00";
+////        String startime2 = "10:00:00";
+////        String endtime2 = "11:50:00";
+////        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+////        java.util.Date start = null;
+////        java.util.Date end = null;
+////        java.util.Date start2 = null;
+////        java.util.Date end2 = null;
+////        try {
+////            start = format.parse(startime);
+////            end = format.parse(endtime);
+////            start2 = format.parse(startime2);
+////            end2 = format.parse(endtime2);
+////        } catch (Exception e) {
+////            e.printStackTrace();
+////        }
+////        java.sql.Time startTime = new java.sql.Time(start.getTime());
+////        java.sql.Time endTime = new java.sql.Time(end.getTime());
+////        java.sql.Time startTime2 = new java.sql.Time(start2.getTime());
+////        java.sql.Time endTime2 = new java.sql.Time(end2.getTime());
 //        vo.add(new SectionCourseVO("1","2","2019","1","1","东上院","202",big,"第一周到第十六周",120,2,"1","ICS","必修","星期一",startTime,endTime));
 //        vo.add(new SectionCourseVO("1","2","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","必修","星期二",startTime2,endTime2));
 ////        vo.add(new SectionCourseTimeSlotVO("1","1","2019","6","1","东上院","202",big,"第一周到第十六周",120,1,"1","ICS","Tuesday",startTime,endTime));
