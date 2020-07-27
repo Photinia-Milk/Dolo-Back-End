@@ -26,10 +26,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 import sjtu.dolo.CourseApplicationTests;
-import sjtu.dolo.model.CourseNumListVO;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseVO;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.*;
 import sjtu.dolo.service.LoginService;
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.msgutils.Msg;
@@ -173,5 +170,24 @@ public class StudentControllerTest extends CourseApplicationTests {
         // 取出数量相等断言
         assertEquals(studentService.findTakeList(userName).size(), takesCourseStudentVOS.size());
 
+    }
+
+    @Test
+    public void getGPA() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        String userName = "student66";
+        String  from = "2020-2021-1";
+        String to = "2020-2021-1";
+        String type = "";
+        params.add("userName", userName);
+        params.add("type", type);
+        params.add("from",from);
+        params.add("to", to);
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8081/api/student/gpa").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk()).andReturn();
+        String resultContent = mvcResult.getResponse().getContentAsString();
+        GpaVO gpaVO = om.readValue(resultContent, new TypeReference<GpaVO>() {});
+        // 取出VO类相等断言
+        assertEquals(studentService.getGPA(userName, from, to, type).getAvgGpa(), gpaVO.getAvgGpa());
     }
 }

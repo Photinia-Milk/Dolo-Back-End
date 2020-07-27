@@ -4,7 +4,7 @@ node{
 	    sh 'git checkout develop'
 	}
 	stage('Set up test data'){
-		sh 'mysql -uroot -proot -Dcourse2 < ./resources/course_07_27/course_07_27.sql'
+		sh 'mysql -uroot -proot -Dcourse2 < ./resources/course2.2.0/course.sql'
 	}
 	stage('Test'){
 		sh 'mvn test'

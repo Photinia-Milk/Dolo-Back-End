@@ -16,6 +16,7 @@ import sjtu.dolo.mapper.CourseMapper;
 import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.Course;
+import sjtu.dolo.model.GpaVO;
 import sjtu.dolo.model.Section;
 import sjtu.dolo.model.TakesCourseStudentVO;
 import sjtu.dolo.service.StudentService;
@@ -58,7 +59,7 @@ class StudentServiceImplTest {
     private TakesMapper takesMapper;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         String addUserName = "student1";
         String addCourseId = "AD003";
         String addTeacherUserName = "teacher131";
@@ -74,7 +75,7 @@ class StudentServiceImplTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         String delUserName = "student2";
         String delCourseId = "AV012";
         String delTeacherUserName = "teacher266";
@@ -102,7 +103,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findCourseValid() {
+    public void findCourseValid() {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", 1);
         map.put("pageSize", 3);
@@ -127,7 +128,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findCourse() {
+    public void findCourse() {
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", 2);
         map.put("pageSize", 3);
@@ -153,7 +154,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findSectionValid() {
+    public void findSectionValid() {
         String courseId = "SE125";
 //        List<Section> sectionList = new LinkedList<>();
 
@@ -168,7 +169,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void addCourseTakes() {
+    public void addCourseTakes() {
         String correctUserName = "student66";
         String correctSemester = "1";
         String correctYear = "2020-2021";
@@ -183,7 +184,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void delCourseTakes() {
+    public void delCourseTakes() {
         String currectUserName = "student1";
         String currectSemester = "1";
         String currectYear = "2020-2021";
@@ -200,7 +201,7 @@ class StudentServiceImplTest {
     }
 
     @Test
-    void findTakeList() {
+    public void findTakeList() {
         String userName = "student66";
 //        int takesNum;
         List<TakesCourseStudentVO> takeList = new LinkedList<>();
@@ -219,4 +220,21 @@ class StudentServiceImplTest {
             assertEquals(takeList.get(i), studentService.findTakeList(userName).get(i));
         }
     }
+
+    @Test
+    public void getGPA(){
+        String userName = "student66";
+        String  from = "2020-2021-1";
+        String to = "2020-2021-1";
+        String type = "";
+
+        GpaVO gpaVO = studentService.getGPA(userName, from, to, type);
+        GpaVO gpaVO1 = studentService.getGPA(userName, "1998-1999-2", "2000-2021-2", "okay");
+
+        // 断言可取出结果
+        assert gpaVO != null;
+        // 断言无结果
+        assert gpaVO1 == null;
+    }
+
 }
