@@ -121,9 +121,11 @@ class StudentServiceImplTest {
 
         when(courseMapper.getCourse(map)).thenReturn(returnList);
         when(courseMapper.getPageNumber()).thenReturn(returnPageNum);
-//        assertEquals(returnPageNum, studentService.findCourseValid(1,10).get(""));
+//        assertEquals(returnPageNum, studentService.findCourseValid(1,10).get(""));4
+
+        // 稍耦合，判断课号相等
         for(int i = 0; i < returnList.size(); i++) {
-            assertEquals(returnList.get(i), studentService.findCourseValid(1,3).getCourseList().get(i));
+            assertEquals(returnList.get(i).getCourseId(), studentService.findCourseValid(1,3).getCourseList().get(i).getCourseId());
         }
     }
 
@@ -148,8 +150,10 @@ class StudentServiceImplTest {
 
         when(courseMapper.getCourseLike(map,searchString)).thenReturn(returnList);
         when(courseMapper.getSearchPageNumber(searchString)).thenReturn(returnPageNum);
+
+        // 稍耦合，判断课号相等
         for(int i = 0; i < returnList.size(); i++) {
-            assertEquals(returnList.get(i), studentService.findCourse(searchString,2,3).getCourseList().get(i));
+            assertEquals(returnList.get(i).getCourseId(), studentService.findCourse(searchString,2,3).getCourseList().get(i).getCourseId());
         }
     }
 
@@ -163,8 +167,10 @@ class StudentServiceImplTest {
         returnList.add(new Section("2020-2021-1","2020-2021","SE125","teacher236","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,0));
 
         when(sectionMapper.findSectionByCourseId(courseId)).thenReturn(returnList);
+
+        // 稍耦合，判断课号相等
         for(int i = 0; i < returnList.size(); i++) {
-            assertEquals(returnList.get(i), studentService.findSectionValid(courseId).get(i));
+            assertEquals(returnList.get(i).getCourseId(), studentService.findSectionValid(courseId).get(i).getCourseId());
         }
     }
 
@@ -216,8 +222,10 @@ class StudentServiceImplTest {
 
         int returnNum = 4;
         when(takesMapper.getTakes(userName)).thenReturn(takeList);
+
+        // 稍耦合，判断课号相等
         for(int i = 0; i < takeList.size(); i++) {
-            assertEquals(takeList.get(i), studentService.findTakeList(userName).get(i));
+            assertEquals(takeList.get(i).getCourseId(), studentService.findTakeList(userName).get(i).getCourseId());
         }
     }
 
