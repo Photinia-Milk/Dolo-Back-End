@@ -8,12 +8,12 @@ public class Course {
     private String electiveType; //院系编号
     private String courseName; //课程名称
     private String courseType; //课程描述
-    private BigDecimal credits;
+    private Double credits;
 
     public Course() {
     }
 
-    public Course(String courseId, String electiveType, String courseName, String courseType, BigDecimal credits) {
+    public Course(String courseId, String electiveType, String courseName, String courseType, Double credits) {
         this.courseId = courseId;
         this.electiveType = electiveType;
         this.courseName = courseName;
@@ -53,11 +53,11 @@ public class Course {
         this.courseType = courseType;
     }
 
-    public BigDecimal getCredits() {
+    public Double getCredits() {
         return credits;
     }
 
-    public void setCredits(BigDecimal credits) {
+    public void setCredits(Double credits) {
         this.credits = credits;
     }
 
@@ -81,7 +81,7 @@ public class Course {
                 Objects.equals(electiveType, course.electiveType) &&
                 Objects.equals(courseName, course.courseName) &&
                 Objects.equals(courseType, course.courseType) &&
-                Objects.equals(credits, course.credits);
+                Math.abs(credits - course.credits) < 0.001 ;
     }
 
     @Override
