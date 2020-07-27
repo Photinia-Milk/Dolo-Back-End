@@ -149,7 +149,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         data.put("teacherUserName", teacherUserName);
         data.put("semester", semester);
         data.put("year", year);
-        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8080/api/student/course_drop").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8081/api/student/course_drop").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         int status0 = studentService.addCourseTakes(userName,semester,year,courseId,teacherUserName);
@@ -163,7 +163,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         String userName = "student66";
         params.add("userName", userName);
-        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/student/course_list").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8081/api/student/course_list").params(params).contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn();
         String resultContent = mvcResult.getResponse().getContentAsString();
         List<TakesCourseStudentVO> takesCourseStudentVOS = om.readValue(resultContent, new TypeReference<List<TakesCourseStudentVO>>() {});
