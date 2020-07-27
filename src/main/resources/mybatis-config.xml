@@ -12,9 +12,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/course2?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/course3?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT"/>
                 <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <property name="password" value="200510"/>
             </dataSource>
         </environment>
     </environments>
@@ -27,6 +27,6 @@
         <mapper resource="sjtu/dolo/mapper/Mapping/TeacherMapping.xml"/>
         <mapper resource="sjtu/dolo/mapper/Mapping/UserAuthMapping.xml"/>
         <mapper resource="sjtu/dolo/mapper/Mapping/CourseMapping.xml"/>
-
+        <mapper resource="sjtu/dolo/mapper/Mapping/SecTimeMapping.xml"/>
     </mappers>
 </configuration>

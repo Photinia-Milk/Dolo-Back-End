@@ -6,18 +6,21 @@ public class SecTime {
     private String year;
     private String courseId;
     private String teacherUserName;
-    private String weeks;
-
+    private Integer weeks;
+    private Integer weekDay;
+    private Integer classNum;
     public SecTime() {
     }
 
-    public SecTime(String timeSlotId, String semester, String year, String courseId, String teacherUserName, String weeks) {
+    public SecTime(String timeSlotId, String semester, String year, String courseId, String teacherUserName, Integer weeks, Integer weekDay, Integer classNum) {
         this.timeSlotId = timeSlotId;
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
         this.teacherUserName = teacherUserName;
         this.weeks = weeks;
+        this.weekDay = weekDay;
+        this.classNum = classNum;
     }
 
     public String getTimeSlotId() {
@@ -60,12 +63,28 @@ public class SecTime {
         this.teacherUserName = teacherUserName;
     }
 
-    public String getWeeks() {
+    public Integer getWeeks() {
         return weeks;
     }
 
-    public void setWeeks(String weeks) {
+    public void setWeeks(Integer weeks) {
         this.weeks = weeks;
+    }
+
+    public Integer getWeekDay() {
+        return weekDay;
+    }
+
+    public void setWeekDay(Integer weekDay) {
+        this.weekDay = weekDay;
+    }
+
+    public Integer getClassNum() {
+        return classNum;
+    }
+
+    public void setClassNum(Integer classNum) {
+        this.classNum = classNum;
     }
 
     @Override
@@ -76,7 +95,9 @@ public class SecTime {
                 ", year='" + year + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", teacherUserName='" + teacherUserName + '\'' +
-                ", weeks='" + weeks + '\'' +
+                ", weeks=" + weeks +
+                ", weekDay=" + weekDay +
+                ", classNum=" + classNum +
                 '}';
     }
 }
