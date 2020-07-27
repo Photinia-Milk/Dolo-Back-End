@@ -62,20 +62,18 @@ public class LoginControllerTest extends CourseApplicationTests {
         String password = "123456";
         data.put("username",username);
         data.put("password",password);
-        Msg msg = loginController.login(data);
-        System.out.println(msg.toString());
-//        System.out.println(data.toString());
-//        System.out.println(mockMvc.toString());
-//        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8081/api/login").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
-////                .andExpect(jsonPath("$.data.username", is("test")))
-////                .andExpect(jsonPath("$.data.password", is("password")))
-//                .andDo(MockMvcResultHandlers.print())
-//                .andExpect(status().isOk())
-//                .andReturn();
+        System.out.println(data.toString());
+        System.out.println(mockMvc.toString());
+        MvcResult mvcResult = mockMvc.perform(post("http://localhost:8081/api/login").content(data.toString()).contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andExpect(jsonPath("$.data.username", is("test")))
+//                .andExpect(jsonPath("$.data.password", is("password")))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andReturn();
 
 //        System.out.println("HaHa");
-//        String resultContent = mvcResult.getResponse().getContentAsString();
-//        Msg msg = om.readValue(resultContent, new TypeReference<Msg>() {});
-//        assertEquals(loginService.login(username, password), msg);
+        String resultContent = mvcResult.getResponse().getContentAsString();
+        Msg msg = om.readValue(resultContent, new TypeReference<Msg>() {});
+        assertEquals(loginService.login(username, password), msg);
     }
 }
