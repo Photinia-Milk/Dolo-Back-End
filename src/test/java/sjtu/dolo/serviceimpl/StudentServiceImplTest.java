@@ -112,9 +112,9 @@ class StudentServiceImplTest {
 
         List<Course> returnList = new LinkedList<>();
         BigDecimal big2 = BigDecimal.valueOf(2.0);
-        returnList.add(new Course("AD003","","设计素描","通选",big2));
-        returnList.add(new Course("AI007",null,"人工智能","通选",big2));
-        returnList.add(new Course("AM001","","管理基础","通选",big2));
+        returnList.add(new Course("AD003","","设计素描","通选",2.0));
+        returnList.add(new Course("AI007",null,"人工智能","通选",2.0));
+        returnList.add(new Course("AM001","","管理基础","通选",2.0));
         int returnPageNum = 258;
 //        Map<Integer, List<Course>> returnMap = new HashMap<>();
 //        returnMap.put(returnPageNum, returnList);
@@ -139,9 +139,9 @@ class StudentServiceImplTest {
         List<Course> returnList = new LinkedList<>();
         BigDecimal big2 = BigDecimal.valueOf(2.0);
         BigDecimal big3 = BigDecimal.valueOf(3.0);
-        returnList.add(new Course("AM314","","沟通技巧与领导力开发","通选",big2));
-        returnList.add(new Course("AR904","人文学科","图像遗产与中国古代艺术","通识核心课程",big2));
-        returnList.add(new Course("AR909","人文学科","书法与中国美学","通识核心课程",big3));
+        returnList.add(new Course("AM314","","沟通技巧与领导力开发","通选",2.0));
+        returnList.add(new Course("AR904","人文学科","图像遗产与中国古代艺术","通识核心课程",2.0));
+        returnList.add(new Course("AR909","人文学科","书法与中国美学","通识核心课程",2.0));
         int returnPageNum = 109;
 //        Map<Integer, List<Course>> returnMap = new HashMap<>();
 //        returnMap.put(returnPageNum, returnList);
@@ -205,14 +205,14 @@ class StudentServiceImplTest {
         String userName = "student66";
 //        int takesNum;
         List<TakesCourseStudentVO> takeList = new LinkedList<>();
-        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",new BigDecimal(88),new BigDecimal(3.65),"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"25","1-15周(单)","星期三",1,2));
-        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",new BigDecimal(88),new BigDecimal(3.65),"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"26","1-16周","星期一",3,4));
-        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",new BigDecimal(94),new BigDecimal(4.00),"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"27","1-16周","星期二",3,4));
-        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",new BigDecimal(94),new BigDecimal(4.00),"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"28","1-16周","星期四",3,4));
-        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",new BigDecimal(99),new BigDecimal(4.30),"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"29","1-16周","星期三",3,4));
-        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",new BigDecimal(99),new BigDecimal(4.30),"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"30","2-16周(双)","星期五",3,4));
-        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",new BigDecimal(82),new BigDecimal(3.30),"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"10","1-12周","星期四",9,10));
-        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",new BigDecimal(82),new BigDecimal(3.30),"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"31","1-12周","星期二",1,2));
+        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",88.0,3.65,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"25","1-15周(单)","星期三",1,2));
+        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",88.0,3.65,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"26","1-16周","星期一",3,4));
+        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",94.0,4.00,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"27","1-16周","星期二",3,4));
+        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",94.0,4.00,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"28","1-16周","星期四",3,4));
+        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",99.0,4.30,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"29","1-16周","星期三",3,4));
+        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",99.0,4.30,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"30","2-16周(双)","星期五",3,4));
+        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",82.0,3.30,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"10","1-12周","星期四",9,10));
+        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",82.0,3.30,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"31","1-12周","星期二",1,2));
 
         int returnNum = 4;
         when(takesMapper.getTakes(userName)).thenReturn(takeList);
