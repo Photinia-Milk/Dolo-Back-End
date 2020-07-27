@@ -63,7 +63,7 @@ class StudentServiceImplTest {
         String addUserName = "student1";
         String addCourseId = "AD003";
         String addTeacherUserName = "teacher131";
-        String addSemester = "1";
+        String addSemester = "2020-2021-1";
         String addYear = "2020-2021";
 
         int currectStatus = studentService.addCourseTakes(addUserName,addSemester,addYear,addCourseId,addTeacherUserName);
@@ -79,12 +79,12 @@ class StudentServiceImplTest {
         String delUserName = "student2";
         String delCourseId = "AV012";
         String delTeacherUserName = "teacher266";
-        String delSemester = "1";
+        String delSemester = "2020-2021-1";
         String delYear = "2020-2021";
         String delInitUserName = "student1";
         String delInitCourseId = "AV012";
         String delInitTeacherUserName = "teacher131";
-        String delInitSemester = "1";
+        String delInitSemester = "2020-2021-1";
         String delInitYear = "2020-2021";
 
 
@@ -159,8 +159,8 @@ class StudentServiceImplTest {
 //        List<Section> sectionList = new LinkedList<>();
 
         List<Section> returnList = new LinkedList<>();
-        returnList.add(new Section("1","2020-2021","SE125","teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1));
-        returnList.add(new Section("1","2020-2021","SE125","teacher236","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,0));
+        returnList.add(new Section("2020-2021-1","2020-2021","SE125","teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1));
+        returnList.add(new Section("2020-2021-1","2020-2021","SE125","teacher236","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,0));
 
         when(sectionMapper.findSectionByCourseId(courseId)).thenReturn(returnList);
         for(int i = 0; i < returnList.size(); i++) {
@@ -171,7 +171,7 @@ class StudentServiceImplTest {
     @Test
     public void addCourseTakes() {
         String correctUserName = "student66";
-        String correctSemester = "1";
+        String correctSemester = "2020-2021-1";
         String correctYear = "2020-2021";
         String correctCourseId = "AM008";
         String correctTeacherUserName = "teacher133";
@@ -186,7 +186,7 @@ class StudentServiceImplTest {
     @Test
     public void delCourseTakes() {
         String currectUserName = "student1";
-        String currectSemester = "1";
+        String currectSemester = "2020-2021-1";
         String currectYear = "2020-2021";
         String currectCourseId = "AD003";
         String currectTeacherUserName = "teacher131";
@@ -205,14 +205,14 @@ class StudentServiceImplTest {
         String userName = "student66";
 //        int takesNum;
         List<TakesCourseStudentVO> takeList = new LinkedList<>();
-        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"1","2020-2021","SE123","student66",null,null,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"25","1-15周(单)","星期三",1,2));
-        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"1","2020-2021","SE123","student66",null,null,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"26","1-16周","星期一",3,4));
-        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"1","2020-2021","SE124","student66",null,null,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"27","1-16周","星期二",3,4));
-        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"1","2020-2021","SE124","student66",null,null,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"28","1-16周","星期四",3,4));
-        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"1","2020-2021","SE125","student66",null,null,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"29","1-16周","星期三",3,4));
-        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"1","2020-2021","SE125","student66",null,null,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"30","2-16周(双)","星期五",3,4));
-        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"1","2020-2021","SE302","student66",null,null,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"10","1-12周","星期四",9,10));
-        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"1","2020-2021","SE302","student66",null,null,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"31","1-12周","星期二",1,2));
+        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",null,null,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"25","1-15周(单)","星期三",1,2));
+        takeList.add(new TakesCourseStudentVO("软件工程原理与实践","必修",null,3.0,"2020-2021-1","2020-2021","SE123","student66",null,null,"teacher232","星期一第3-4节{1-16周}\\n星期三第1-2节{1-15周(单)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"26","1-16周","星期一",3,4));
+        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",null,null,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"27","1-16周","星期二",3,4));
+        takeList.add(new TakesCourseStudentVO("计算机系统工程","必修",null,4.0,"2020-2021-1","2020-2021","SE124","student66",null,null,"teacher234","星期二第3-4节{1-16周}\\n星期四第3-4节{1-16周}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"28","1-16周","星期四",3,4));
+        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",null,null,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"29","1-16周","星期三",3,4));
+        takeList.add(new TakesCourseStudentVO("机器学习","必修",null,3.0,"2020-2021-1","2020-2021","SE125","student66",null,null,"teacher235","星期三第3-4节{1-16周}\\n星期五第3-4节{2-16周(双)}","东上院411","仅限软件工程专业学生选课","面讲授课",180,1,"30","2-16周(双)","星期五",3,4));
+        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",null,null,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"10","1-12周","星期四",9,10));
+        takeList.add(new TakesCourseStudentVO("编译原理与技术","限选",null,3.0,"2020-2021-1","2020-2021","SE302","student66",null,null,"teacher237","星期二第1-2节{1-12周}\\n星期四第9-10节{1-12周}","东上院411","系统软件方向必修课，仅限软件工程专业学生选课","面讲授课",120,1,"31","1-12周","星期二",1,2));
 
         int returnNum = 4;
         when(takesMapper.getTakes(userName)).thenReturn(takeList);
