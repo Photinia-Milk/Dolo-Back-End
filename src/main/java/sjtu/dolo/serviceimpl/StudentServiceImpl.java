@@ -81,13 +81,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Section> findSectionValid(String courseId) {
-
-//        SqlSession sqlSession = MybatisUtils.getSqlSession();
-//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         List<Section> itemList;
-//        itemList = sMapper.getSectionByLimit(map);
-//        sqlSession.commit();
-//        sqlSession.close();
         itemList = sectionMapper.findSectionByCourseId(courseId);
 
         return itemList;
@@ -180,19 +174,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<TakesCourseStudentVO> findTakeList(String user_name) {
-//        return studentMapper.getAllTakes(user_name);
-//        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
-//        takesQueryWrapper
-//                .eq("user_name", user_name);
-//        return takesMapper.selectList(takesQueryWrapper);
-//        return takesMapper.getTakes(user_name);
-//        SqlSession sqlSession = MybatisUtils.getSqlSession();
-//        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
         List<TakesCourseStudentVO> itemList;
         itemList = takesMapper.getTakes(user_name);
         int pageNum = takesMapper.getSearchPageNumber(user_name);
-//        sqlSession.commit();
-//        sqlSession.close();
         return itemList;
     }
 

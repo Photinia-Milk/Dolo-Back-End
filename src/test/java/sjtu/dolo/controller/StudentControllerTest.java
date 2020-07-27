@@ -171,6 +171,7 @@ public class StudentControllerTest extends CourseApplicationTests {
         String resultContent = mvcResult.getResponse().getContentAsString();
         List<TakesCourseStudentVO> takesCourseStudentVOS = om.readValue(resultContent, new TypeReference<List<TakesCourseStudentVO>>() {});
         // 取出数量相等断言
+        System.out.println(takesCourseStudentVOS.size());
         assertEquals(studentService.findTakeList(userName).size(), takesCourseStudentVOS.size());
 
     }
