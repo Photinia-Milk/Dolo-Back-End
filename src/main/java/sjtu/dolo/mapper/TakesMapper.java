@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import sjtu.dolo.model.GpaVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
 
@@ -31,4 +32,6 @@ public interface TakesMapper extends BaseMapper<Takes> {
     int getSearchPageNumber(String searchString);
 
     int delete(Takes takes);
+
+    GpaVO getGPA(String userName, String from, String to);
 }

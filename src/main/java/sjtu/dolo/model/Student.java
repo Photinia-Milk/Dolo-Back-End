@@ -3,6 +3,7 @@ package sjtu.dolo.model;
 import java.util.Date;
 
 public class Student {
+    private Long userId;
     private String userName; //用户名
     private String name;
     private String deptName;
@@ -124,5 +125,13 @@ public class Student {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

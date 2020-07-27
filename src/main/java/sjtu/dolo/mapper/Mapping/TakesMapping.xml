@@ -9,4 +9,9 @@
     <delete id="delete" parameterType="sjtu.dolo.model.Takes">
         delete from course2.takes where courseId = #{courseId} and semester = #{semester} and year = #{year} and userName = #{userName} and teacherUserName = #{teacherUserName}
     </delete>
+    <select id="getGPA" resultType="sjtu.dolo.model.GpaVO">
+        SELECT AVG(grade) AS avgGrade, AVG(gpa) AS avgGpa
+        FROM takes
+        WHERE userName = #{userName} AND `semester` BETWEEN #{from} AND #{to};
+    </select>
 </mapper>

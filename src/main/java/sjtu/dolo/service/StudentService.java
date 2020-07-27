@@ -1,10 +1,7 @@
 package sjtu.dolo.service;
 
 import net.sf.json.JSONObject;
-import sjtu.dolo.model.Course;
-import sjtu.dolo.model.CourseNumListVO;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +19,6 @@ public interface StudentService {
     int delCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName);
 
     List<TakesCourseStudentVO> findTakeList(String studentID);
+
+    GpaVO getGPA(String userName, String from, String to, String type);
 }
