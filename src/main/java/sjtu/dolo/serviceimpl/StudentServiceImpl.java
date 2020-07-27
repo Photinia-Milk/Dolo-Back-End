@@ -4,6 +4,7 @@ import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import sjtu.dolo.mapper.CourseMapper;
+import sjtu.dolo.mapper.SecTimeMapper;
 import sjtu.dolo.mapper.SectionMapper;
 import sjtu.dolo.mapper.TakesMapper;
 import sjtu.dolo.model.*;
@@ -101,18 +102,43 @@ public class StudentServiceImpl implements StudentService {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+        SecTimeMapper stMapper = sqlSession.getMapper(SecTimeMapper.class);
         int result = 0;
-        try {
-            int takesStatus = tMapper.insert(takes);
-            sqlSession.commit();
-        }catch (Exception e){
-            System.out.println(e.toString());
-            result = 1;
-            sqlSession.rollback();
+        //检验上课时间段是否冲突
+        List<SecTime> secTimes = stMapper.getSecTime(semester,year,courseId,teacherUserName);
+        for(SecTime secTime:secTimes)
+        {
+            Integer weeks = secTime.getWeeks();
+            Integer weekDay = secTime.getWeekDay();
+            Integer classNum = secTime.getClassNum();
+            Map<String,Integer> map = new HashMap<>();
+            map.put("weeks",weeks);
+            map.put("weekDay",weekDay);
+            map.put("classNum",classNum);
+            if(stMapper.isConflict(map,userName)!=0)
+                result = 1;
+            break;
         }
+
+        if(result == 0){
+            try {
+                tMapper.insert(takes);
+                sqlSession.commit();
+            }catch (Exception e){
+                System.out.println(e.toString());
+                result = 1;
+                sqlSession.rollback();
+            }
+        }
+
         if(result == 0){    // 若插入成功
-            int sectionStatus = sMapper.addCurrentNum(courseId, semester, year, teacherUserName);
-            sqlSession.commit();
+            try {
+                sMapper.addCurrentNum(courseId, semester, year, teacherUserName);
+                sqlSession.commit();
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
+
         }
 
         sqlSession.close();
