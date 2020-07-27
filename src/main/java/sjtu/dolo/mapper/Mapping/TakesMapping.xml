@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.TakesMapper">
     <insert id="insert" parameterType="sjtu.dolo.model.Takes">
-        insert into course2.takes(semester, year, courseId, userName, grade, gpa, teacherUserName) values (#{semester},#{year},#{courseId},#{userName},#{grade},#{gpa},#{teacherUserName})
+        insert into takes(semester, year, courseId, userName, grade, gpa, teacherUserName) values (#{semester},#{year},#{courseId},#{userName},#{grade},#{gpa},#{teacherUserName})
     </insert>
     <delete id="delete" parameterType="sjtu.dolo.model.Takes">
-        delete from course2.takes where courseId = #{courseId} and semester = #{semester} and year = #{year} and userName = #{userName} and teacherUserName = #{teacherUserName}
+        delete from takes where courseId = #{courseId} and semester = #{semester} and year = #{year} and userName = #{userName} and teacherUserName = #{teacherUserName}
     </delete>
     <select id="getGPA" resultType="sjtu.dolo.model.GpaVO">
         SELECT AVG(grade) AS avgGrade, AVG(gpa) AS avgGpa
