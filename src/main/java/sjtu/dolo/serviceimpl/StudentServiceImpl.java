@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -222,5 +223,18 @@ public class StudentServiceImpl implements StudentService {
         return itemList;
     }
 
+    @Override
+    public GpaVO getGPA(String userName, String from, String to, String type) {
+        // 符合 [n个数字]-[n个数字]-[n个数字] 的正则表达式
+        String pattern = "^\\d+.-\\d+.-\\d+";
 
+        // 如果不符合，埋了吧，返回错误
+        boolean matchPattern = Pattern.matches(pattern, from) && Pattern.matches(pattern, to);
+        if(!matchPattern)
+        {
+            return null;
+        }
+
+        return takesMapper.getGPA(userName, from, to);
+    }
 }
