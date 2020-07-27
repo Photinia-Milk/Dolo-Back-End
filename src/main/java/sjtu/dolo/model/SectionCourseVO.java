@@ -1,6 +1,5 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.Objects;
 
@@ -18,12 +17,12 @@ public class SectionCourseVO {
     private String courseName;
     private String courseType;
     private String electiveType;
-    private BigDecimal credits;
+    private Double credits;
 
     public SectionCourseVO() {
     }
 
-    public SectionCourseVO(String semester, String year, String courseId, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String courseName, String courseType, String electiveType, BigDecimal credits) {
+    public SectionCourseVO(String semester, String year, String courseId, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String courseName, String courseType, String electiveType, Double credits) {
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
@@ -144,11 +143,11 @@ public class SectionCourseVO {
         this.electiveType = electiveType;
     }
 
-    public BigDecimal getCredits() {
+    public Double getCredits() {
         return credits;
     }
 
-    public void setCredits(BigDecimal credits) {
+    public void setCredits(Double credits) {
         this.credits = credits;
     }
 

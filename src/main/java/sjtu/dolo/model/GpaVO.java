@@ -1,25 +1,24 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class GpaVO {
-    private BigDecimal avgGrade;
-    private BigDecimal avgGpa;
+    private Double avgGrade;
+    private Double avgGpa;
 
-    public BigDecimal getAvgGrade() {
+    public Double getAvgGrade() {
         return avgGrade;
     }
 
-    public void setAvgGrade(BigDecimal avgGrade) {
+    public void setAvgGrade(Double avgGrade) {
         this.avgGrade = avgGrade;
     }
 
-    public BigDecimal getAvgGpa() {
+    public Double getAvgGpa() {
         return avgGpa;
     }
 
-    public void setAvgGpa(BigDecimal avgGpa) {
+    public void setAvgGpa(Double avgGpa) {
         this.avgGpa = avgGpa;
     }
 
