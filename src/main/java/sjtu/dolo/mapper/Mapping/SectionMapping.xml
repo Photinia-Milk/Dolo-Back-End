@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.SectionMapper">
      <select id="findSectionByCourseId" resultType="sjtu.dolo.model.Section">
-         select * from course2.section where courseId = #{courseId}
+         select * from `section` where courseId = #{courseId}
      </select>
     <select id="getSectionToSelect" resultType="sjtu.dolo.model.Section">
-        select * from course2.section where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
+        select * from `section` where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
     </select>
     <update id="addCurrentNum" >
-        update course2.section set currentNum = currentNum + 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
+        update `section` set currentNum = currentNum + 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
     </update>
     <update id="delCurrentNum" >
-        update course2.section set currentNum = currentNum - 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
+        update `section` set currentNum = currentNum - 1 where courseId = #{courseId} and semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName}
     </update>
 </mapper>
