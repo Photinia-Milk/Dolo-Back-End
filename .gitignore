@@ -36,3 +36,8 @@ build/
 ### Push and Pull
 push.bat
 pull.bat
+
+###config files
+mybatis-config.xml
+log4j.properties
+application.properties

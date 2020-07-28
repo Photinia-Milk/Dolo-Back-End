@@ -1,6 +1,5 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 
 public class Takes {
 
@@ -8,14 +7,14 @@ public class Takes {
     private String year;
     private String courseId;
     private String userName;
-    private BigDecimal grade;
-    private BigDecimal gpa;
+    private Double grade;
+    private Double gpa;
     private String teacherUserName;
 
     public Takes() {
     }
 
-    public Takes(String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName) {
+    public Takes(String semester, String year, String courseId, String userName, Double grade, Double gpa, String teacherUserName) {
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
@@ -57,19 +56,19 @@ public class Takes {
         this.userName = userName;
     }
 
-    public BigDecimal getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(BigDecimal grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
-    public BigDecimal getGpa() {
+    public Double getGpa() {
         return gpa;
     }
 
-    public void setGpa(BigDecimal gpa) {
+    public void setGpa(Double gpa) {
         this.gpa = gpa;
     }
 

@@ -1,6 +1,5 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,13 +7,13 @@ public class TakesCourseStudentVO {
     private String courseName;
     private String courseType;
     private String electiveType;
-    private double credits;
+    private Double credits;
     private String semester; //学期
     private String year; //学年
     private String courseId; //课号
     private String userName; //用户名
-    private BigDecimal grade; //成绩
-    private BigDecimal gpa; //GPA
+    private Double grade; //成绩
+    private Double gpa; //GPA
     private String teacherUserName;
     private String courseTime;
     private String location;
@@ -28,7 +27,7 @@ public class TakesCourseStudentVO {
     private int startTime;
     private int endTime;
 
-    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, double credits, String semester, String year, String courseId, String userName, BigDecimal grade, BigDecimal gpa, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
+    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, Double credits, String semester, String year, String courseId, String userName, Double grade, Double gpa, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
         this.courseName = courseName;
         this.courseType = courseType;
         this.electiveType = electiveType;
@@ -80,11 +79,11 @@ public class TakesCourseStudentVO {
         this.electiveType = electiveType;
     }
 
-    public double getCredits() {
+    public Double getCredits() {
         return credits;
     }
 
-    public void setCredits(double credits) {
+    public void setCredits(Double credits) {
         this.credits = credits;
     }
 
@@ -120,19 +119,19 @@ public class TakesCourseStudentVO {
         this.userName = userName;
     }
 
-    public BigDecimal getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(BigDecimal grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
-    public BigDecimal getGpa() {
+    public Double getGpa() {
         return gpa;
     }
 
-    public void setGpa(BigDecimal gpa) {
+    public void setGpa(Double gpa) {
         this.gpa = gpa;
     }
 
@@ -265,7 +264,7 @@ public class TakesCourseStudentVO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TakesCourseStudentVO that = (TakesCourseStudentVO) o;
-        return Double.compare(that.credits, credits) == 0 &&
+        return  Math.abs(credits - that.credits) < 0.0001 &&
                 maxNum == that.maxNum &&
                 currentNum == that.currentNum &&
                 startTime == that.startTime &&
@@ -277,8 +276,8 @@ public class TakesCourseStudentVO {
                 Objects.equals(year, that.year) &&
                 Objects.equals(courseId, that.courseId) &&
                 Objects.equals(userName, that.userName) &&
-                Objects.equals(grade, that.grade) &&
-                Objects.equals(gpa, that.gpa) &&
+                Math.abs(grade - that.grade) < 0.0001 &&
+                Math.abs(gpa - that.gpa) < 0.0001 &&
                 Objects.equals(teacherUserName, that.teacherUserName) &&
                 Objects.equals(courseTime, that.courseTime) &&
                 Objects.equals(location, that.location) &&

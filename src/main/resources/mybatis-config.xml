@@ -27,6 +27,6 @@
         <mapper resource="sjtu/dolo/mapper/Mapping/TeacherMapping.xml"/>
         <mapper resource="sjtu/dolo/mapper/Mapping/UserAuthMapping.xml"/>
         <mapper resource="sjtu/dolo/mapper/Mapping/CourseMapping.xml"/>
-
+        <mapper resource="sjtu/dolo/mapper/Mapping/SecTimeMapping.xml"/>
     </mappers>
 </configuration>

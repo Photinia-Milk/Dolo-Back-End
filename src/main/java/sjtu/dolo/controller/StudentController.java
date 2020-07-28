@@ -66,4 +66,13 @@ public class StudentController {
     public List<TakesCourseStudentVO> getCourseList(@RequestParam("userName") String user_name) {
         return studentService.findTakeList(user_name);
     }
+
+    @GetMapping("/gpa")
+    @ResponseBody
+    public GpaVO getGPA(@RequestParam("userName") String userName,
+                             @RequestParam("from") String from,
+                             @RequestParam("to") String to,
+                             @RequestParam("type") String type) {
+        return studentService.getGPA(userName, from, to, type);
+    }
 }
