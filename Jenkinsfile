@@ -17,7 +17,7 @@ node{
 		sh 'docker ps'
 	}
 	stage('Deploy docker img'){
-	    sh 'docker rm -f dolo-back-end'
+	    sh 'docker rm -f dolo-back-end' 
 	    sh 'docker run -d --name dolo-back-end --network host dolo:back-end'
 	    sh 'docker ps -a'
 	}
