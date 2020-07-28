@@ -61,7 +61,6 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    @ResponseBody
     public String home() {
         return "hello world";
     }
