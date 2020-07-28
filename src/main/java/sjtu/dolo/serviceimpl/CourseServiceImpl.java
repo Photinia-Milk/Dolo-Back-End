@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class CourseServiceImpl implements CourseService {
-    @Autowired
-    TakesMapper takesMapper;
+//    @Autowired
+//    TakesMapper takesMapper;
 
 }

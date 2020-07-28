@@ -113,7 +113,7 @@ public class StudentServiceImpl implements StudentService {
             map.put("weeks",weeks);
             map.put("weekDay",weekDay);
             map.put("classNum",classNum);
-            if(stMapper.isConflict(map,userName)!=0)
+            if(stMapper.isConflict(map,userName,semester,year)!=0)
                 result = 1;
             break;
         }
