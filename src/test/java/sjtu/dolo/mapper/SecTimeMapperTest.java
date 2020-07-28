@@ -19,7 +19,7 @@ public class SecTimeMapperTest extends CourseApplicationTests {
         map.put("weeks",65535);
         map.put("weekDay",8);
         map.put("classNum",768);
-        int result = mapper.isConflict(map,"student1");
+        int result = mapper.isConflict(map,"student1","2020-2021-1","2020-2021");
         System.out.println(result);
         sqlSession.close();
     }

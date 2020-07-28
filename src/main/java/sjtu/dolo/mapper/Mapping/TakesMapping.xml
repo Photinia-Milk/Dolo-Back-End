@@ -4,14 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.TakesMapper">
     <insert id="insert" parameterType="sjtu.dolo.model.Takes">
-        insert into takes(semester, year, courseId, userName, grade, gpa, teacherUserName) values (#{semester},#{year},#{courseId},#{userName},#{grade},#{gpa},#{teacherUserName})
+        insert into course3.takes(semester, year, courseId, userName, grade, gpa, teacherUserName) values (#{semester},#{year},#{courseId},#{userName},#{grade},#{gpa},#{teacherUserName})
     </insert>
+<!--    <update id="update" parameterType="sjtu.dolo.model.Takes">-->
+<!--        -->
+<!--    </update>-->
     <delete id="delete" parameterType="sjtu.dolo.model.Takes">
-        delete from takes where courseId = #{courseId} and semester = #{semester} and year = #{year} and userName = #{userName} and teacherUserName = #{teacherUserName}
+        delete from course3.takes where courseId = #{courseId} and semester = #{semester} and year = #{year} and userName = #{userName} and teacherUserName = #{teacherUserName}
     </delete>
     <select id="getGPA" resultType="sjtu.dolo.model.GpaVO">
         SELECT AVG(grade) AS avgGrade, AVG(gpa) AS avgGpa
-        FROM takes
+        FROM course3.takes
         WHERE userName = #{userName} AND `semester` BETWEEN #{from} AND #{to};
     </select>
 </mapper>

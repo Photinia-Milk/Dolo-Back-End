@@ -1,10 +1,7 @@
 package sjtu.dolo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import sjtu.dolo.model.GpaVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
@@ -30,6 +27,9 @@ public interface TakesMapper extends BaseMapper<Takes> {
 //    List<TakesCourseStudentVO> getTakesLike(String username,String value);
     @Select("select count(*) from takes where userName = #{searchString}")
     int getSearchPageNumber(String searchString);
+
+    @Update("update course3.takes set grade = #{grade} and gpa = #{gpa} where semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName} and userName = #{userName} and courseId = #{courseId}")
+    int update(Takes takes);
 
     int delete(Takes takes);
 

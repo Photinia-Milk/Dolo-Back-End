@@ -12,8 +12,5 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {
-     List<Section> getAllSection();
-     int addTakes(Takes takes);
-     int delTakes(Takes takes);
-     List<Takes> getAllTakes(String username);
+     Student getStuInfo(String userName);
 }
