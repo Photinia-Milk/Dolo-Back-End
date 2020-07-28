@@ -5,7 +5,7 @@
 <mapper namespace="sjtu.dolo.mapper.TeacherMapper">
      <update id="score" parameterType="sjtu.dolo.model.Takes">
           update course3.takes
-          set grade = #{grade} and gpa = #{gpa}
+          set grade = #{grade} , gpa = #{gpa}
           where semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName} and userName = #{userName} and courseId = #{courseId}
      </update>
 </mapper>

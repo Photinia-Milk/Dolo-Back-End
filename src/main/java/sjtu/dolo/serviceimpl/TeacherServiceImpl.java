@@ -35,14 +35,14 @@ public class TeacherServiceImpl implements TeacherService{
         System.out.println(takes.toString());
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        TakesMapper teacherMapper = sqlSession.getMapper(TakesMapper.class);
+        TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
 
 //        Double grade1 = takes.getGrade();
 //        System.out.println(grade1);
 //        Double gpa1 = takes.getGpa();
 //        System.out.println(gpa1);
         try{
-            result = teacherMapper.update(takes);
+            result = teacherMapper.score(takes);
             sqlSession.commit();
         }catch (Exception e){
             System.out.println(e);
