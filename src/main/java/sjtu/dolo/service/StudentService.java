@@ -21,4 +21,6 @@ public interface StudentService {
     List<TakesCourseStudentVO> findTakeList(String studentID);
 
     GpaVO getGPA(String userName, String from, String to, String type);
+
+    Student getStuInfo(String userName);
 }

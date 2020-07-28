@@ -3,10 +3,7 @@ package sjtu.dolo.serviceimpl;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
-import sjtu.dolo.mapper.CourseMapper;
-import sjtu.dolo.mapper.SecTimeMapper;
-import sjtu.dolo.mapper.SectionMapper;
-import sjtu.dolo.mapper.TakesMapper;
+import sjtu.dolo.mapper.*;
 import sjtu.dolo.model.*;
 
 import sjtu.dolo.service.StudentService;
@@ -236,5 +233,14 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return takesMapper.getGPA(userName, from, to);
+    }
+
+    @Override
+    public Student getStuInfo(String userName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        Student student = studentMapper.getStuInfo(userName);
+        sqlSession.close();
+        return student;
     }
 }
