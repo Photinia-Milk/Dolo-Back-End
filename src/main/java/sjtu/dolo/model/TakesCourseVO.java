@@ -3,36 +3,30 @@ package sjtu.dolo.model;
 import java.sql.Time;
 import java.util.Objects;
 
-public class SectionCourseVO {
+public class TakesCourseVO {
     private String semester; //学期
     private String year; //学年
     private String courseId; //课号
+    private String userName;
     private String teacherUserName;
-    private String courseTime;
-    private String location;
-    private String remarks;
-    private String model;
-    private int maxNum;
-    private int currentNum;
+    private Double grade;
+    private Double gpa;
     private String courseName;
     private String courseType;
     private String electiveType;
     private Double credits;
 
-    public SectionCourseVO() {
+    public TakesCourseVO() {
     }
 
-    public SectionCourseVO(String semester, String year, String courseId, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String courseName, String courseType, String electiveType, Double credits) {
+    public TakesCourseVO(String semester, String year, String courseId, String userName, String teacherUserName, Double grade, Double gpa, String courseName, String courseType, String electiveType, Double credits) {
         this.semester = semester;
         this.year = year;
         this.courseId = courseId;
+        this.userName = userName;
         this.teacherUserName = teacherUserName;
-        this.courseTime = courseTime;
-        this.location = location;
-        this.remarks = remarks;
-        this.model = model;
-        this.maxNum = maxNum;
-        this.currentNum = currentNum;
+        this.grade = grade;
+        this.gpa = gpa;
         this.courseName = courseName;
         this.courseType = courseType;
         this.electiveType = electiveType;
@@ -63,6 +57,14 @@ public class SectionCourseVO {
         this.courseId = courseId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getTeacherUserName() {
         return teacherUserName;
     }
@@ -71,52 +73,20 @@ public class SectionCourseVO {
         this.teacherUserName = teacherUserName;
     }
 
-    public String getCourseTime() {
-        return courseTime;
+    public Double getGrade() {
+        return grade;
     }
 
-    public void setCourseTime(String courseTime) {
-        this.courseTime = courseTime;
+    public void setGrade(Double grade) {
+        this.grade = grade;
     }
 
-    public String getLocation() {
-        return location;
+    public Double getGpa() {
+        return gpa;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getMaxNum() {
-        return maxNum;
-    }
-
-    public void setMaxNum(int maxNum) {
-        this.maxNum = maxNum;
-    }
-
-    public int getCurrentNum() {
-        return currentNum;
-    }
-
-    public void setCurrentNum(int currentNum) {
-        this.currentNum = currentNum;
+    public void setGpa(Double gpa) {
+        this.gpa = gpa;
     }
 
     public String getCourseName() {
@@ -153,17 +123,14 @@ public class SectionCourseVO {
 
     @Override
     public String toString() {
-        return "SectionCourseVO{" +
+        return "TakesCourseVO{" +
                 "semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
                 ", courseId='" + courseId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", teacherUserName='" + teacherUserName + '\'' +
-                ", courseTime='" + courseTime + '\'' +
-                ", location='" + location + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", model='" + model + '\'' +
-                ", maxNum=" + maxNum +
-                ", currentNum=" + currentNum +
+                ", grade=" + grade +
+                ", gpa=" + gpa +
                 ", courseName='" + courseName + '\'' +
                 ", courseType='" + courseType + '\'' +
                 ", electiveType='" + electiveType + '\'' +
