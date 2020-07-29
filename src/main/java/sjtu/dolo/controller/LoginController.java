@@ -3,10 +3,7 @@ package sjtu.dolo.controller;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +16,8 @@ import sjtu.dolo.utils.msgutils.Msg;
 @Controller
 public class LoginController {
     private final Oauth2Properties oauth2Properties;
+
+    private String requestResult;
 
     public LoginController(Oauth2Properties oauth2Properties) {
         this.oauth2Properties = oauth2Properties;
@@ -57,10 +56,10 @@ public class LoginController {
         String userInfo = getUserInfo(accessToken);
         System.out.println("Get userInfo success!");
         log.info("重定向到home");
-        return "redirect:/home";
+        return "redirect:/student/home";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/student/home")
     public String home() {
         return "hello world";
     }
@@ -96,16 +95,22 @@ public class LoginController {
         log.info("getUserInfo url:{}", url);
         // 构建请求头
         HttpHeaders requestHeaders = new HttpHeaders();
+//        HttpHeaders headers = new HttpHeaders(); headers.setContentType(MediaType.APPLICATION_JSON);
         // 指定响应返回json格式
-        requestHeaders.add("accept", "application/json");
-        // AccessToken放在请求头中
-        requestHeaders.add("Authorization", "token " + accessToken);
+//        requestHeaders.add("accept", "application/json");
+//        requestHeaders.add("Host","");
+
+//        // AccessToken放在请求头中
+        requestHeaders.add("Authorization", "Bearer 407f58434bdddb902b6f719f12b510e82de6f12f");
         // 构建请求实体
         HttpEntity<String> requestEntity = new HttpEntity<>(requestHeaders);
+        System.out.println("headers: "+requestHeaders);
+        System.out.println("entity: "+requestEntity.toString());
         RestTemplate restTemplate = new RestTemplate();
         // get请求方式
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
         String userInfo = response.getBody();
+        requestResult = userInfo;
         log.info("userInfo={}", userInfo);
         return userInfo;
     }
