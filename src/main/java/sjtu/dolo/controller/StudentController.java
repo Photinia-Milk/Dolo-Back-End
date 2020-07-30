@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/student")
+@RequestMapping("student")
 public class StudentController {
     @Autowired
     private StudentService studentService;
