@@ -3,5 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.TeacherMapper">
-
+     <update id="score" parameterType="sjtu.dolo.model.Takes">
+          update takes
+          set grade = #{grade} , gpa = #{gpa}
+          where semester = #{semester} and year = #{year} and teacherUserName = #{teacherUserName} and userName = #{userName} and courseId = #{courseId}
+     </update>
 </mapper>

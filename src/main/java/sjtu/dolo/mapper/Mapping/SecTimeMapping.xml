@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sjtu.dolo.mapper.SecTimeMapper">
     <select id="isConflict" resultType="int">
-        select count(*) from (select * from sectime natural join (select * from takes where userName = #{userName}) as t1) as s1 where (((weeks&amp;#{map.weeks}) and (weekDay&amp;#{map.weekDay})) and (classNum&amp;#{map.classNum}))
+        select count(*) from (select * from sectime natural join (select * from takes where userName = #{userName} and semester = #{semester} and year = #{year}) as t1) as s1 where (((weeks&amp;#{map.weeks}) and (weekDay&amp;#{map.weekDay})) and (classNum&amp;#{map.classNum}))
     </select>
     <select id="getSecTime" resultType="sjtu.dolo.model.SecTime">
         select *

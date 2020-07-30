@@ -330,7 +330,7 @@ CREATE TABLE `sectime`  (
 -- ----------------------------
 -- Records of sectime
 -- ----------------------------
-INSERT INTO `sectime` VALUES ('2020-2021-1', '2020-2021-1', '2020-2021', 'SE332', 2, 224, 65535, 'teacher0');
+INSERT INTO `sectime` VALUES ('1', '2020-2021-1', '2020-2021', 'SE332', 2, 224, 65535, 'teacher0');
 INSERT INTO `sectime` VALUES ('2', '2020-2021-1', '2020-2021', 'SE344', 8, 224, 65535, 'teacher1');
 INSERT INTO `sectime` VALUES ('8', '2020-2021-1', '2020-2021', 'CH942', 4, 7168, 2047, 'teacher10');
 INSERT INTO `sectime` VALUES ('8', '2020-2021-1', '2020-2021', 'PU933', 4, 7168, 2047, 'teacher100');
@@ -389,7 +389,7 @@ INSERT INTO `sectime` VALUES ('10', '2020-2021-1', '2020-2021', 'BM011', 8, 768,
 INSERT INTO `sectime` VALUES ('10', '2020-2021-1', '2020-2021', 'BU007', 8, 768, 65535, 'teacher149');
 INSERT INTO `sectime` VALUES ('10', '2020-2021-1', '2020-2021', 'CH946', 8, 768, 65535, 'teacher15');
 INSERT INTO `sectime` VALUES ('10', '2020-2021-1', '2020-2021', 'BU012', 8, 768, 65535, 'teacher150');
-INSERT INTO `sectime` VALUES ('2020-2021-1', '2020-2021-1', '2020-2021', 'BU013', 2, 224, 2047, 'teacher151');
+INSERT INTO `sectime` VALUES ('1', '2020-2021-1', '2020-2021', 'BU013', 2, 224, 2047, 'teacher151');
 INSERT INTO `sectime` VALUES ('7', '2020-2021-1', '2020-2021', 'BU017', 2, 3072, 65535, 'teacher152');
 INSERT INTO `sectime` VALUES ('11', '2020-2021-1', '2020-2021', 'BU304', 8, 7168, 2047, 'teacher153');
 INSERT INTO `sectime` VALUES ('4', '2020-2021-1', '2020-2021', 'BU320', 2, 7168, 65504, 'teacher154');
@@ -11333,7 +11333,7 @@ INSERT INTO `timeslot` VALUES ('18', '星期四', 11, 12);
 INSERT INTO `timeslot` VALUES ('19', '星期一', 11, 12);
 INSERT INTO `timeslot` VALUES ('2', '星期四', 6, 8);
 INSERT INTO `timeslot` VALUES ('20', '星期五', 3, 5);
-INSERT INTO `timeslot` VALUES ('2020-2021-1', '星期二', 6, 8);
+INSERT INTO `timeslot` VALUES ('1', '星期二', 6, 8);
 INSERT INTO `timeslot` VALUES ('21', '星期六', 1, 8);
 INSERT INTO `timeslot` VALUES ('22', '星期三', 2, 4);
 INSERT INTO `timeslot` VALUES ('23', '星期一', 7, 8);

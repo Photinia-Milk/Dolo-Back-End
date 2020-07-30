@@ -6,4 +6,7 @@
     <insert id="addNewStudent">
         insert into student(userName, name, deptName, grade, gender, admissonDate, country, documentType, phone, address) values(#{userName},#{name},null,null,null,null,null,null,null,null)
     </insert>
+     <select id="getStuInfo" resultType="sjtu.dolo.model.Student">
+          select * from student where userName = #{userName}
+     </select>
 </mapper>
