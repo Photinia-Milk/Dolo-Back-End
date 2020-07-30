@@ -29,6 +29,17 @@ public class LoginController {
         this.oauth2Properties = oauth2Properties;
     }
 
+    @PostMapping("/login")
+    @ResponseBody
+    public Msg login(@RequestBody JSONObject data) {
+        System.out.println(data);
+        String username = data.getString("username");
+        String password = data.getString("password");
+        System.out.println(username);
+        System.out.println(password);
+        return loginService.login(username, password);
+    }
+
     /**
      * 让用户跳转到 GitHub
      * 这里不能加@ResponseBody，因为这里是要跳转而不是返回响应
