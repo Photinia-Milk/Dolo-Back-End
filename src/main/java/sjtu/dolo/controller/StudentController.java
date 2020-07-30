@@ -81,4 +81,12 @@ public class StudentController {
     public Student getStuInfo(@RequestParam("userName") String userName){
         return studentService.getStuInfo(userName);
     }
+
+    @GetMapping("/gpa_detail")
+    @ResponseBody
+    public List<TakesCourseVO> getGPADetails(@RequestParam("userName") String userName,
+                                             @RequestParam("from") String from,
+                                             @RequestParam("to") String to) {
+        return studentService.getGPADetails(userName,from,to);
+    }
 }

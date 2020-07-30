@@ -23,4 +23,6 @@ public interface StudentService {
     GpaVO getGPA(String userName, String from, String to, String type);
 
     Student getStuInfo(String userName);
+
+    List<TakesCourseVO> getGPADetails(String userName, String from, String to);
 }

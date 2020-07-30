@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import sjtu.dolo.model.GpaVO;
 import sjtu.dolo.model.Takes;
 import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.TakesCourseVO;
 
 import java.util.List;
 import java.util.Map;
@@ -34,4 +35,6 @@ public interface TakesMapper extends BaseMapper<Takes> {
     int delete(Takes takes);
 
     GpaVO getGPA(String userName, String from, String to);
+
+    List<TakesCourseVO> getGPADetails(String userName, String from, String to);
 }

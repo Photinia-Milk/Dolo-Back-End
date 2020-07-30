@@ -243,4 +243,17 @@ public class StudentServiceImpl implements StudentService {
         sqlSession.close();
         return student;
     }
+
+    @Override
+    public List<TakesCourseVO> getGPADetails(String userName, String from, String to){
+        String pattern = "^\\d+.-\\d+.-\\d+";
+
+        // 如果不符合，埋了吧，返回错误
+        boolean matchPattern = Pattern.matches(pattern, from) && Pattern.matches(pattern, to);
+        if(!matchPattern)
+        {
+            return null;
+        }
+        return takesMapper.getGPADetails(userName, from, to);
+    }
 }
