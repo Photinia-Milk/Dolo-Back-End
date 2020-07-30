@@ -960,7 +960,7 @@ CREATE TABLE `student`  (
   `deptName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `grade` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `gender` tinyint(1) NULL DEFAULT NULL,
-  `admissonDate` date NULL DEFAULT NULL,
+  `admissionDate` date NULL DEFAULT NULL,
   `country` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `documentType` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `phone` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
