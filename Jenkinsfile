@@ -1,5 +1,9 @@
 node{
 	stage('Checkout Integration'){
+		sh 'rm * -f -r'
+	    sh 'rm .gitignore .git -f -r'
+	    sh 'ls -a'
+		sh 'git init'
 	    sh 'git pull https://github.com/Photinia-Milk/Dolo-Back-End develop'
 	    sh 'git checkout develop'
 	}
