@@ -16,4 +16,5 @@ public interface StudentMapper extends BaseMapper<Student> {
      int addTakes(Takes takes);
      int delTakes(Takes takes);
      List<Takes> getAllTakes(String username);
+     int addNewStudent(String userName, String name);
 }

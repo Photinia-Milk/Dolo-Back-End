@@ -6,4 +6,10 @@
     <select id="checkUser" resultType="sjtu.dolo.model.UserAuth">
         select * from userauth where userName = #{userName} and password = #{password};
     </select>
+    <select id="getStudent" resultType="sjtu.dolo.model.UserAuth">
+        select * from userauth where userName = #{userName}
+    </select>
+    <insert id="createStudent">
+        insert into userauth(userName, password, type) values (#{userName},null,#{userType})
+    </insert>
 </mapper>

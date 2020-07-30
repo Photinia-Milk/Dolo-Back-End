@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 //import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import sjtu.dolo.model.OAuthUser;
+import sjtu.dolo.model.UserAuth;
 import sjtu.dolo.service.LoginService;
 import sjtu.dolo.utils.Oauth2Properties;
 import sjtu.dolo.utils.msgutils.Msg;
@@ -15,9 +17,13 @@ import sjtu.dolo.utils.msgutils.Msg;
 @Slf4j
 @Controller
 public class LoginController {
+
+    @Autowired
+    LoginService loginService;
+
     private final Oauth2Properties oauth2Properties;
 
-    private String requestResult;
+    private UserAuth currentUser;
 
     public LoginController(Oauth2Properties oauth2Properties) {
         this.oauth2Properties = oauth2Properties;
@@ -53,15 +59,17 @@ public class LoginController {
         String accessToken = getAccessToken(code);
         System.out.println("Get code success!");
         // token换userInfo
-        String userInfo = getUserInfo(accessToken);
+//        String userInfo = getUserInfo(accessToken);
+        UserAuth userAuth = getUserInfo(accessToken);
+        currentUser = userAuth;
         System.out.println("Get userInfo success!");
         log.info("重定向到home");
         return "redirect:/student/home";
     }
 
     @GetMapping("/student/home")
-    public String home() {
-        return "hello world";
+    public UserAuth home() {
+        return currentUser;
     }
 
     private String getAccessToken(String code) {
@@ -90,18 +98,15 @@ public class LoginController {
         return accessToken;
     }
 
-    private String getUserInfo(String accessToken) {
+    private UserAuth getUserInfo(String accessToken) {
         String url = oauth2Properties.getUserInfoUrl();
         log.info("getUserInfo url:{}", url);
         // 构建请求头
         HttpHeaders requestHeaders = new HttpHeaders();
-//        HttpHeaders headers = new HttpHeaders(); headers.setContentType(MediaType.APPLICATION_JSON);
         // 指定响应返回json格式
 //        requestHeaders.add("accept", "application/json");
-//        requestHeaders.add("Host","");
-
-//        // AccessToken放在请求头中
-        requestHeaders.add("Authorization", "Bearer 407f58434bdddb902b6f719f12b510e82de6f12f");
+        // AccessToken放在请求头中
+        requestHeaders.add("Authorization", "token "+accessToken);
         // 构建请求实体
         HttpEntity<String> requestEntity = new HttpEntity<>(requestHeaders);
         System.out.println("headers: "+requestHeaders);
@@ -110,9 +115,14 @@ public class LoginController {
         // get请求方式
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
         String userInfo = response.getBody();
-        requestResult = userInfo;
+        // 将获取到的用户信息转为JSONObject以便处理
+        JSONObject jsonInfo =JSONObject.parseObject(userInfo);
+        String userName = jsonInfo.getString("login");
+        String name = jsonInfo.getString("name");
+        String type = jsonInfo.getString("type");
+        UserAuth userAuth = loginService.getOAuthUser(userName, name, type);
         log.info("userInfo={}", userInfo);
-        return userInfo;
+        return userAuth;
     }
 }
 
