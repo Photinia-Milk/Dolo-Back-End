@@ -7,7 +7,7 @@ node{
 	    sh 'git pull https://github.com/Photinia-Milk/Dolo-Back-End develop'
 	}
 	stage('Set up test data'){
-		sh 'mysql -uroot -proot -Dcourse2 < ./resources/course2.2.0/course.sql' 
+		sh 'mysql -uroot -proot -Dcourse2 < ./resources/course2.2.0/course.sql'
 	}
 	stage('Test'){
 		sh 'mvn test'
