@@ -3,10 +3,7 @@ package sjtu.dolo.serviceimpl;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
-import sjtu.dolo.mapper.CourseMapper;
-import sjtu.dolo.mapper.SecTimeMapper;
-import sjtu.dolo.mapper.SectionMapper;
-import sjtu.dolo.mapper.TakesMapper;
+import sjtu.dolo.mapper.*;
 import sjtu.dolo.model.*;
 
 import sjtu.dolo.service.StudentService;
@@ -110,7 +107,7 @@ public class StudentServiceImpl implements StudentService {
             map.put("weeks",weeks);
             map.put("weekDay",weekDay);
             map.put("classNum",classNum);
-            if(stMapper.isConflict(map,userName)!=0)
+            if(stMapper.isConflict(map,userName,semester,year)!=0)
                 result = 1;
             break;
         }
@@ -220,5 +217,27 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return takesMapper.getGPA(userName, from, to);
+    }
+
+    @Override
+    public Student getStuInfo(String userName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        Student student = studentMapper.getStuInfo(userName);
+        sqlSession.close();
+        return student;
+    }
+
+    @Override
+    public List<TakesCourseVO> getGPADetails(String userName, String from, String to){
+        String pattern = "^\\d+.-\\d+.-\\d+";
+
+        // 如果不符合，埋了吧，返回错误
+        boolean matchPattern = Pattern.matches(pattern, from) && Pattern.matches(pattern, to);
+        if(!matchPattern)
+        {
+            return null;
+        }
+        return takesMapper.getGPADetails(userName, from, to);
     }
 }
