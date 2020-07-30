@@ -12,5 +12,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {
+     int addNewStudent(String userName, String name);
      Student getStuInfo(String userName);
 }
