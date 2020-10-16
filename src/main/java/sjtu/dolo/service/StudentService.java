@@ -1,21 +1,28 @@
 package sjtu.dolo.service;
 
 import net.sf.json.JSONObject;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentService {
-//    List<Map> findSectionValid();
 
-    List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize);
+    CourseNumListVO findCourseValid(Integer startIdx, Integer pageSize);
 
-    List<SectionCourseTimeSlotVO> findSection(String searchString, Integer startIdx, Integer pageSize);
+    CourseNumListVO findCourse(String searchString, Integer startIdx, Integer pageSize);
 
-    int addCourseTakes(JSONObject data);
+    List<Section> findSectionValid(String courseId);
 
-    int delCourseTakes(JSONObject data);
+    int addCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName);
+
+    int delCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName);
 
     List<TakesCourseStudentVO> findTakeList(String studentID);
+
+    GpaVO getGPA(String userName, String from, String to, String type);
+
+    Student getStuInfo(String userName);
+
+    List<TakesCourseVO> getGPADetails(String userName, String from, String to);
 }

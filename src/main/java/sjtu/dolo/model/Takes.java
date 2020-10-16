@@ -1,38 +1,27 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 
 public class Takes {
 
-    private String secID; //学期编号
-    private String semester; //学期
-    private String year; //学年
-    private String timeSlotID; //时间段编号
-    private String courseID; //课号
-    private String user_name; //用户名
-    private BigDecimal grade; //成绩
-    private BigDecimal gpa; //GPA
+    private String semester;
+    private String year;
+    private String courseId;
+    private String userName;
+    private Double grade;
+    private Double gpa;
+    private String teacherUserName;
 
     public Takes() {
     }
 
-    public Takes(String secID, String semester, String year, String timeSlotID, String courseID, String user_name, BigDecimal grade, BigDecimal gpa) {
-        this.secID = secID;
+    public Takes(String semester, String year, String courseId, String userName, Double grade, Double gpa, String teacherUserName) {
         this.semester = semester;
         this.year = year;
-        this.timeSlotID = timeSlotID;
-        this.courseID = courseID;
-        this.user_name = user_name;
+        this.courseId = courseId;
+        this.userName = userName;
         this.grade = grade;
         this.gpa = gpa;
-    }
-
-    public String getSecID() {
-        return secID;
-    }
-
-    public void setSecID(String secID) {
-        this.secID = secID;
+        this.teacherUserName = teacherUserName;
     }
 
     public String getSemester() {
@@ -51,57 +40,56 @@ public class Takes {
         this.year = year;
     }
 
-    public String getTimeSlotID() {
-        return timeSlotID;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setTimeSlotID(String timeSlotID) {
-        this.timeSlotID = timeSlotID;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
-    public String getCourseID() {
-        return courseID;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public BigDecimal getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(BigDecimal grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
-    public BigDecimal getGpa() {
+    public Double getGpa() {
         return gpa;
     }
 
-    public void setGpa(BigDecimal gpa) {
+    public void setGpa(Double gpa) {
         this.gpa = gpa;
+    }
+
+    public String getTeacherUserName() {
+        return teacherUserName;
+    }
+
+    public void setTeacherUserName(String teacherUserName) {
+        this.teacherUserName = teacherUserName;
     }
 
     @Override
     public String toString() {
         return "Takes{" +
-                "secID='" + secID + '\'' +
-                ", semester='" + semester + '\'' +
+                "semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
-                ", timeSlotID='" + timeSlotID + '\'' +
-                ", courseID='" + courseID + '\'' +
-                ", user_name='" + user_name + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", grade=" + grade +
                 ", gpa=" + gpa +
+                ", teacherUserName='" + teacherUserName + '\'' +
                 '}';
     }
 }

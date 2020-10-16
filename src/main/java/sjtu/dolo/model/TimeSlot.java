@@ -3,27 +3,27 @@ package sjtu.dolo.model;
 import java.sql.Time;
 
 public class TimeSlot {
-    private String timeSlotID; //时间段编号
+    private String timeSlotId; //时间段编号
     private String day; //日期
-    private Time startTime; //开始时间
-    private Time endTime; //结束时间
+    private int startTime; //开始时间
+    private int endTime; //结束时间
 
     public TimeSlot() {
     }
 
-    public TimeSlot(String timeSlotID, String day, Time startTime, Time endTime) {
-        this.timeSlotID = timeSlotID;
+    public TimeSlot(String timeSlotId, String day, int startTime, int endTime) {
+        this.timeSlotId = timeSlotId;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public String getTimeSlotID() {
-        return timeSlotID;
+    public String getTimeSlotId() {
+        return timeSlotId;
     }
 
-    public void setTimeSlotID(String timeSlotID) {
-        this.timeSlotID = timeSlotID;
+    public void setTimeSlotId(String timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
     public String getDay() {
@@ -34,26 +34,26 @@ public class TimeSlot {
         this.day = day;
     }
 
-    public Time getStartTime() {
+    public int getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public int getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
 
     @Override
     public String toString() {
         return "TimeSlot{" +
-                "timeSlotID='" + timeSlotID + '\'' +
+                "timeSlotId='" + timeSlotId + '\'' +
                 ", day='" + day + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +

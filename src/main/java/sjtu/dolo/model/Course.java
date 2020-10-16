@@ -1,28 +1,40 @@
 package sjtu.dolo.model;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public class Course {
-    private String courseID; //课程编号
-    private String deptID; //院系编号
+    private String courseId; //课程编号
+    private String electiveType; //院系编号
     private String courseName; //课程名称
-    private String description; //课程描述
+    private String courseType; //课程描述
+    private Double credits;
 
     public Course() {
     }
 
-    public String getCourseID() {
-        return courseID;
+    public Course(String courseId, String electiveType, String courseName, String courseType, Double credits) {
+        this.courseId = courseId;
+        this.electiveType = electiveType;
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.credits = credits;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public String getDeptID() {
-        return deptID;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
-    public void setDeptID(String deptID) {
-        this.deptID = deptID;
+    public String getElectiveType() {
+        return electiveType;
+    }
+
+    public void setElectiveType(String electiveType) {
+        this.electiveType = electiveType;
     }
 
     public String getCourseName() {
@@ -33,21 +45,47 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
+    }
+
+    public Double getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Double credits) {
+        this.credits = credits;
     }
 
     @Override
     public String toString() {
         return "Course{" +
-                "courseID='" + courseID + '\'' +
-                ", deptID='" + deptID + '\'' +
+                "courseId='" + courseId + '\'' +
+                ", electiveType='" + electiveType + '\'' +
                 ", courseName='" + courseName + '\'' +
-                ", description='" + description + '\'' +
+                ", courseType='" + courseType + '\'' +
+                ", credits=" + credits +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return Objects.equals(courseId, course.courseId) &&
+                Objects.equals(electiveType, course.electiveType) &&
+                Objects.equals(courseName, course.courseName) &&
+                Objects.equals(courseType, course.courseType) &&
+                Math.abs(credits - course.credits) < 0.001 ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseId, electiveType, courseName, courseType, credits);
     }
 }

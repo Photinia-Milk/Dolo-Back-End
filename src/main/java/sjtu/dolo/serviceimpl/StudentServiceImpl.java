@@ -1,24 +1,19 @@
 package sjtu.dolo.serviceimpl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
-import sjtu.dolo.mapper.SectionMapper;
-import sjtu.dolo.mapper.StudentMapper;
-import sjtu.dolo.mapper.TakesMapper;
-import sjtu.dolo.model.Section;
-import sjtu.dolo.model.SectionCourseTimeSlotVO;
-import sjtu.dolo.model.Takes;
-import sjtu.dolo.model.TakesCourseStudentVO;
+import sjtu.dolo.mapper.*;
+import sjtu.dolo.model.*;
+
 import sjtu.dolo.service.StudentService;
 import sjtu.dolo.utils.MybatisUtils;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -28,7 +23,8 @@ public class StudentServiceImpl implements StudentService {
     @Resource
     private SectionMapper sectionMapper;
 
-
+    @Resource
+    private CourseMapper courseMapper;
 
 //    @Override
 //    public List<Map<String, Object>> findSectionValid(Integer startIdx, Integer pageSize) {
@@ -47,30 +43,26 @@ public class StudentServiceImpl implements StudentService {
 //    }
 
     @Override
-    public List<SectionCourseTimeSlotVO> findSectionValid(Integer startIdx, Integer pageSize) {
-
+    public CourseNumListVO findCourseValid(Integer startIdx, Integer pageSize){
         Map<String, Integer> map = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
-
-//        SqlSession sqlSession = MybatisUtils.getSqlSession();
-//        SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
-        List<SectionCourseTimeSlotVO> itemList;
-//        itemList = sMapper.getSectionByLimit(map);
-//        sqlSession.commit();
-//        sqlSession.close();
-        itemList = sectionMapper.getSectionByLimit(map);
-
-        return itemList;
+        List<Course> itemList;
+        int courseNum;
+        courseNum = courseMapper.getPageNumber();
+        itemList = courseMapper.getCourse(map);
+        return new CourseNumListVO(courseNum, itemList);
     }
 
     @Override
-    public List<SectionCourseTimeSlotVO> findSection(String searchString, Integer startIdx, Integer pageSize) {
+    public CourseNumListVO findCourse(String searchString, Integer startIdx, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
+        Map<Integer, List<Course>> returnMap = new HashMap<>();
         map.put("startIndex", startIdx);
         map.put("pageSize", pageSize);
         System.out.println(map);
-        List<SectionCourseTimeSlotVO> itemList;
+        List<Course> itemList;
+        int courseNum;
         String search = "%"+searchString+"%";
 
 //        SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -79,50 +71,68 @@ public class StudentServiceImpl implements StudentService {
 //        sqlSession.commit();
 //        sqlSession.close();
 //        System.out.println(itemList);
-        itemList = sectionMapper.getSectionLike(search, map);
+        courseNum = courseMapper.getSearchPageNumber(search);
+        itemList = courseMapper.getCourseLike(map,search);
+        returnMap.put(courseNum, itemList);
+//        return itemList;
+        return new CourseNumListVO(courseNum, itemList);
+    }
+
+    @Override
+    public List<Section> findSectionValid(String courseId) {
+        List<Section> itemList;
+        itemList = sectionMapper.findSectionByCourseId(courseId);
+
         return itemList;
     }
 
     @Override
-    public int addCourseTakes(JSONObject data) {
-        QueryWrapper<Section> sectionWrapper = new QueryWrapper<>();
-        String secID = data.getString("secID");
-        String user_name = data.getString("user_name");
-        String semester = data.getString("semester");
-        String year = data.getString("year");
-        String timeslotID = data.getString("timeslotID");
-        String courseID = data.getString("courseID");
-        String building = data.getString("building");
-        String roomnumber = data.getString("roomnumber");
-        BigDecimal credits = new BigDecimal(data.get("credits").toString());
-        String weeks = data.getString("weeks");
-        int maxnum = data.getInt("maxnum");
-        int currentnum = data.getInt("currentnum");
-        Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
-        Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
+    public int addCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName) {
+        Takes takes = new Takes(semester, year, courseId, userName, null ,null, teacherUserName);
 
-//        sectionWrapper
-//                .eq("secID", secID)
-//                .eq("semester",semester)
-//                .eq("year",year)
-//                .eq("timelotID",timeslotID)
-//                .eq("courseID", courseID);
-
+        System.out.println(takes);
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
+        SecTimeMapper stMapper = sqlSession.getMapper(SecTimeMapper.class);
         int result = 0;
-        try {
-            int takesStatus = tMapper.addTakes(takes);
-            sqlSession.commit();
-        }catch (Exception e){
-            result = 1;
-            sqlSession.rollback();
+        //检验上课时间段是否冲突
+        List<SecTime> secTimes = stMapper.getSecTime(semester,year,courseId,teacherUserName);
+        for(SecTime secTime:secTimes)
+        {
+            Integer weeks = secTime.getWeeks();
+            Integer weekDay = secTime.getWeekDay();
+            Integer classNum = secTime.getClassNum();
+            Map<String,Integer> map = new HashMap<>();
+            map.put("weeks",weeks);
+            map.put("weekDay",weekDay);
+            map.put("classNum",classNum);
+            if(stMapper.isConflict(map,userName,semester,year)!=0)
+                result = 1;
+            break;
         }
+
+        if(result == 0){
+            try {
+                tMapper.insert(takes);
+                sqlSession.commit();
+            }catch (Exception e){
+                System.out.println(e.toString());
+                result = 1;
+                sqlSession.rollback();
+            }
+        }
+
         if(result == 0){    // 若插入成功
-            int sectionStatus = sMapper.update(newSection);
-            sqlSession.commit();
+            try {
+                sMapper.addCurrentNum(courseId, semester, year, teacherUserName);
+                sqlSession.commit();
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
+
         }
+
         sqlSession.close();
         return result;
 //        int takesStatus = tMapper.addTakes(takes);
@@ -145,54 +155,25 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int delCourseTakes(JSONObject data) {
-        QueryWrapper<Section> sectionWrapper = new QueryWrapper<>();
-        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
-        String secID = data.getString("secID");
-        String user_name = data.getString("user_name");
-        String semester = data.getString("semester");
-        String year = data.getString("year");
-        String timeslotID = data.getString("timeslotID");
-        String courseID = data.getString("courseID");
-        String building = data.getString("building");
-        String roomnumber = data.getString("roomnumber");
-        BigDecimal credits = new BigDecimal(data.get("credits").toString());
-        String weeks = data.getString("weeks");
-        int maxnum = data.getInt("maxnum");
-        int currentnum = data.getInt("currentnum");
-        Takes takes = new Takes(secID, semester, year, timeslotID,  courseID, user_name, null ,null);
-        Section newSection = new Section(secID, semester, year, timeslotID, courseID, building, roomnumber, credits, weeks, maxnum, currentnum);
-
-//        sectionWrapper
-//                .eq("secID", secID)
-//                .eq("semester",semester)
-//                .eq("year",year)
-//                .eq("timelotID",timeslotID)
-//                .eq("courseID", courseID);
-//
-//        takesQueryWrapper
-//                .eq("secID", secID)
-//                .eq("semester", semester)
-//                .eq("year", year)
-//                .eq("timeslotID", timeslotID)
-//                .eq("user_name", user_name)
-//                .eq("courseID",courseID);
+    public int delCourseTakes(String userName, String semester, String year, String courseId, String teacherUserName) {
+        Takes takes = new Takes(semester, year, courseId, userName, null ,null, teacherUserName);
 
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-        StudentMapper tMapper = sqlSession.getMapper(StudentMapper.class);
+        TakesMapper tMapper = sqlSession.getMapper(TakesMapper.class);
         SectionMapper sMapper = sqlSession.getMapper(SectionMapper.class);
         int result = 1;
         int takesStatus = 0;
         try {
-            takesStatus = tMapper.delTakes(takes);
+            takesStatus = tMapper.delete(takes);
             System.out.println("rows changed:" + takesStatus);
             sqlSession.commit();
         }catch (Exception e){
+            System.out.println(e.toString());
             result = 2;
             sqlSession.rollback();
         }
         if(takesStatus != 0){    // 若删除成功
-            int sectionStatus = sMapper.update(newSection);
+            int sectionStatus = sMapper.delCurrentNum(courseId, semester, year, teacherUserName);
             sqlSession.commit();
             result = 0;
         }
@@ -217,21 +198,46 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<TakesCourseStudentVO> findTakeList(String user_name) {
-//        return studentMapper.getAllTakes(user_name);
-//        QueryWrapper<Takes> takesQueryWrapper = new QueryWrapper<>();
-//        takesQueryWrapper
-//                .eq("user_name", user_name);
-//        return takesMapper.selectList(takesQueryWrapper);
-//        return takesMapper.getTakes(user_name);
-//
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        TakesMapper takesMapper = sqlSession.getMapper(TakesMapper.class);
         List<TakesCourseStudentVO> itemList;
         itemList = takesMapper.getTakes(user_name);
-        sqlSession.commit();
-        sqlSession.close();
-         return itemList;
+        int pageNum = takesMapper.getSearchPageNumber(user_name);
+        return itemList;
     }
 
+    @Override
+    public GpaVO getGPA(String userName, String from, String to, String type) {
+        // 符合 [n个数字]-[n个数字]-[n个数字] 的正则表达式
+        String pattern = "^\\d+.-\\d+.-\\d+";
 
+        // 如果不符合，埋了吧，返回错误
+        boolean matchPattern = Pattern.matches(pattern, from) && Pattern.matches(pattern, to);
+        if(!matchPattern)
+        {
+            return null;
+        }
+
+        return takesMapper.getGPA(userName, from, to);
+    }
+
+    @Override
+    public Student getStuInfo(String userName) {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        Student student = studentMapper.getStuInfo(userName);
+        sqlSession.close();
+        return student;
+    }
+
+    @Override
+    public List<TakesCourseVO> getGPADetails(String userName, String from, String to){
+        String pattern = "^\\d+.-\\d+.-\\d+";
+
+        // 如果不符合，埋了吧，返回错误
+        boolean matchPattern = Pattern.matches(pattern, from) && Pattern.matches(pattern, to);
+        if(!matchPattern)
+        {
+            return null;
+        }
+        return takesMapper.getGPADetails(userName, from, to);
+    }
 }

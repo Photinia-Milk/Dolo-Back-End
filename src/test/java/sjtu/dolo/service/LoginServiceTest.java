@@ -52,20 +52,23 @@ public class LoginServiceTest extends CourseApplicationTests {
 //        assertEquals(msgS.getStatus(), loginService.login(usernameS,passwordS).getStatus());
 //        assertEquals(msgS.getData(), loginService.login(usernameS,passwordS).getData());
 
-        String usernameA = "admin";
-        String passwordA = "admin";
+        String usernameA = "student1";
+        String passwordA = "123456";
         UserAuth userAuthA = new UserAuth();
-        userAuthA.setUser_name("admin");
-        userAuthA.setPassword("admin");
-        Msg msgA = new Msg(0, "0");
+        userAuthA.setUserName("student1");
+        userAuthA.setPassword("123456");
+        Msg msgA = new Msg(0, "student");
         when(userAuthMapper.checkUser(usernameA, passwordA)).thenReturn(userAuthA);
-        assertEquals(msgA.getStatus(), loginService.login(usernameA,passwordA).getStatus());
+        assertEquals(msgA.getMsg(), loginService.login(usernameA,passwordA).getMsg());
+        System.out.println("status: ");
+        System.out.println(loginService.login(usernameA,passwordA).getMsg());
+        System.out.println("end");
         assertEquals(msgA.getData(), loginService.login(usernameA,passwordA).getData());
 
         String usernameW = "admin";
         String passwordW = "iamanidiot";
         UserAuth userAuthW = new UserAuth();
-        userAuthW.setUser_name("admin");
+        userAuthW.setUserName("admin");
         userAuthW.setPassword("iamanidiot");
         Msg msgW = new Msg(1, null);
         when(userAuthMapper.checkUser(usernameW, passwordW)).thenReturn(userAuthW);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sjtu.dolo.mapper.CourseMapper">
+    <select id="getCourse" resultType="sjtu.dolo.model.Course">
+        select * from course limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getCourseLike" resultType="sjtu.dolo.model.Course">
+        select * from course where courseName like #{value} limit #{map.startIndex},#{map.pageSize}
+    </select>
+    <select id="getPageNumber" resultType="int">
+        select count(*) from course
+    </select>
+    <select id="getSearchPageNumber" resultType="int">
+        select count(*) from course where courseName like #{searchString}
+    </select>
+</mapper>

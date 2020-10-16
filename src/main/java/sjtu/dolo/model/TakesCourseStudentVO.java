@@ -1,63 +1,90 @@
 package sjtu.dolo.model;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
 public class TakesCourseStudentVO {
-    private String secID; //学期编号
+    private String courseName;
+    private String courseType;
+    private String electiveType;
+    private Double credits;
     private String semester; //学期
     private String year; //学年
-    private String timeSlotID; //时间段编号
-    private String courseID; //课号
-    private String user_name; //用户名
-    private BigDecimal grade; //成绩
-    private BigDecimal gpa; //GPA
-    private String deptID; //院系编号
-    private String courseName; //课程名称
-    private String description; //课程描述
-    private String name;
-    private String phone; //联系电话
-    private String address; //家庭住址
-    private short gender;
-    private Date birthday;
-    private Date admisson_date;
-    private String document_type;
-    private String country;
-    private String academic_year;
+    private String courseId; //课号
+    private String userName; //用户名
+    private Double grade; //成绩
+    private Double gpa; //GPA
+    private String teacherUserName;
+    private String courseTime;
+    private String location;
+    private String remarks;
+    private String model;
+    private int maxNum;
+    private int currentNum;
+    private String timeSlotId;
+    private String weeks;
+    private String day;
+    private int startTime;
+    private int endTime;
+
+    public TakesCourseStudentVO(String courseName, String courseType, String electiveType, Double credits, String semester, String year, String courseId, String userName, Double grade, Double gpa, String teacherUserName, String courseTime, String location, String remarks, String model, int maxNum, int currentNum, String timeSlotId, String weeks, String day, int startTime, int endTime) {
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.electiveType = electiveType;
+        this.credits = credits;
+        this.semester = semester;
+        this.year = year;
+        this.courseId = courseId;
+        this.userName = userName;
+        this.grade = grade;
+        this.gpa = gpa;
+        this.teacherUserName = teacherUserName;
+        this.courseTime = courseTime;
+        this.location = location;
+        this.remarks = remarks;
+        this.model = model;
+        this.maxNum = maxNum;
+        this.currentNum = currentNum;
+        this.timeSlotId = timeSlotId;
+        this.weeks = weeks;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
     public TakesCourseStudentVO() {
     }
 
-    public TakesCourseStudentVO(String secID, String semester, String year, String timeSlotID, String courseID, String user_name, BigDecimal grade, BigDecimal gpa, String deptID, String courseName, String description, String name, String phone, String address, short gender, Date birthday, Date admisson_date, String document_type, String country, String academic_year) {
-        this.secID = secID;
-        this.semester = semester;
-        this.year = year;
-        this.timeSlotID = timeSlotID;
-        this.courseID = courseID;
-        this.user_name = user_name;
-        this.grade = grade;
-        this.gpa = gpa;
-        this.deptID = deptID;
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
-        this.description = description;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.admisson_date = admisson_date;
-        this.document_type = document_type;
-        this.country = country;
-        this.academic_year = academic_year;
     }
 
-    public String getSecID() {
-        return secID;
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setSecID(String secID) {
-        this.secID = secID;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
+    }
+
+    public String getElectiveType() {
+        return electiveType;
+    }
+
+    public void setElectiveType(String electiveType) {
+        this.electiveType = electiveType;
+    }
+
+    public Double getCredits() {
+        return credits;
+    }
+
+    public void setCredits(Double credits) {
+        this.credits = credits;
     }
 
     public String getSemester() {
@@ -76,165 +103,159 @@ public class TakesCourseStudentVO {
         this.year = year;
     }
 
-    public String getTimeSlotID() {
-        return timeSlotID;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setTimeSlotID(String timeSlotID) {
-        this.timeSlotID = timeSlotID;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
-    public String getCourseID() {
-        return courseID;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public BigDecimal getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public void setGrade(BigDecimal grade) {
+    public void setGrade(Double grade) {
         this.grade = grade;
     }
 
-    public BigDecimal getGpa() {
+    public Double getGpa() {
         return gpa;
     }
 
-    public void setGpa(BigDecimal gpa) {
+    public void setGpa(Double gpa) {
         this.gpa = gpa;
     }
 
-    public String getDeptID() {
-        return deptID;
+    public String getTeacherUserName() {
+        return teacherUserName;
     }
 
-    public void setDeptID(String deptID) {
-        this.deptID = deptID;
+    public void setTeacherUserName(String teacherUserName) {
+        this.teacherUserName = teacherUserName;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getCourseTime() {
+        return courseTime;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseTime(String courseTime) {
+        this.courseTime = courseTime;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLocation() {
+        return location;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getName() {
-        return name;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getModel() {
+        return model;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public String getAddress() {
-        return address;
+    public int getMaxNum() {
+        return maxNum;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMaxNum(int maxNum) {
+        this.maxNum = maxNum;
     }
 
-    public short getGender() {
-        return gender;
+    public int getCurrentNum() {
+        return currentNum;
     }
 
-    public void setGender(short gender) {
-        this.gender = gender;
+    public void setCurrentNum(int currentNum) {
+        this.currentNum = currentNum;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getTimeSlotId() {
+        return timeSlotId;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setTimeSlotId(String timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
-    public Date getAdmisson_date() {
-        return admisson_date;
+    public String getWeeks() {
+        return weeks;
     }
 
-    public void setAdmisson_date(Date admisson_date) {
-        this.admisson_date = admisson_date;
+    public void setWeeks(String weeks) {
+        this.weeks = weeks;
     }
 
-    public String getDocument_type() {
-        return document_type;
+    public String getDay() {
+        return day;
     }
 
-    public void setDocument_type(String document_type) {
-        this.document_type = document_type;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getCountry() {
-        return country;
+    public int getStartTime() {
+        return startTime;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
     }
 
-    public String getAcademic_year() {
-        return academic_year;
+    public int getEndTime() {
+        return endTime;
     }
 
-    public void setAcademic_year(String academic_year) {
-        this.academic_year = academic_year;
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
     }
 
     @Override
     public String toString() {
         return "TakesCourseStudentVO{" +
-                "secID='" + secID + '\'' +
+                "courseName='" + courseName + '\'' +
+                ", courseType='" + courseType + '\'' +
+                ", electiveType='" + electiveType + '\'' +
+                ", credits=" + credits +
                 ", semester='" + semester + '\'' +
                 ", year='" + year + '\'' +
-                ", timeSlotID='" + timeSlotID + '\'' +
-                ", courseID='" + courseID + '\'' +
-                ", user_name='" + user_name + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", grade=" + grade +
                 ", gpa=" + gpa +
-                ", deptID='" + deptID + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", gender=" + gender +
-                ", birthday=" + birthday +
-                ", admisson_date=" + admisson_date +
-                ", document_type='" + document_type + '\'' +
-                ", country='" + country + '\'' +
-                ", academic_year='" + academic_year + '\'' +
+                ", teacherUserName='" + teacherUserName + '\'' +
+                ", courseTime='" + courseTime + '\'' +
+                ", location='" + location + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", model='" + model + '\'' +
+                ", maxNum=" + maxNum +
+                ", currentNum=" + currentNum +
+                ", timeSlotId='" + timeSlotId + '\'' +
+                ", weeks='" + weeks + '\'' +
+                ", day='" + day + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
                 '}';
     }
 
@@ -243,30 +264,32 @@ public class TakesCourseStudentVO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TakesCourseStudentVO that = (TakesCourseStudentVO) o;
-        return gender == that.gender &&
-                secID.equals(that.secID) &&
-                semester.equals(that.semester) &&
-                year.equals(that.year) &&
-                timeSlotID.equals(that.timeSlotID) &&
-                courseID.equals(that.courseID) &&
-                user_name.equals(that.user_name) &&
-                Objects.equals(grade, that.grade) &&
-                Objects.equals(gpa, that.gpa) &&
-                deptID.equals(that.deptID) &&
+        return  Math.abs(credits - that.credits) < 0.0001 &&
+                maxNum == that.maxNum &&
+                currentNum == that.currentNum &&
+                startTime == that.startTime &&
+                endTime == that.endTime &&
                 Objects.equals(courseName, that.courseName) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(address, that.address) &&
-                Objects.equals(birthday, that.birthday) &&
-                Objects.equals(admisson_date, that.admisson_date) &&
-                Objects.equals(document_type, that.document_type) &&
-                Objects.equals(country, that.country) &&
-                Objects.equals(academic_year, that.academic_year);
+                Objects.equals(courseType, that.courseType) &&
+                Objects.equals(electiveType, that.electiveType) &&
+                Objects.equals(semester, that.semester) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(courseId, that.courseId) &&
+                Objects.equals(userName, that.userName) &&
+                Math.abs(grade - that.grade) < 0.0001 &&
+                Math.abs(gpa - that.gpa) < 0.0001 &&
+                Objects.equals(teacherUserName, that.teacherUserName) &&
+                Objects.equals(courseTime, that.courseTime) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(remarks, that.remarks) &&
+                Objects.equals(model, that.model) &&
+                Objects.equals(timeSlotId, that.timeSlotId) &&
+                Objects.equals(weeks, that.weeks) &&
+                Objects.equals(day, that.day);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(secID, semester, year, timeSlotID, courseID, user_name, grade, gpa, deptID, courseName, description, name, phone, address, gender, birthday, admisson_date, document_type, country, academic_year);
+        return Objects.hash(courseName, courseType, electiveType, credits, semester, year, courseId, userName, grade, gpa, teacherUserName, courseTime, location, remarks, model, maxNum, currentNum, timeSlotId, weeks, day, startTime, endTime);
     }
 }

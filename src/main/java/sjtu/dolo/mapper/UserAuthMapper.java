@@ -7,4 +7,6 @@ import sjtu.dolo.model.UserAuth;
 public interface UserAuthMapper extends BaseMapper<UserAuth> {
      UserAuth checkUser(String userName,String password);
      UserAuth findUserAuthByUserName(String userName);
+     UserAuth getStudent(String userName);
+     int createStudent(String userName, String userType);
 }
